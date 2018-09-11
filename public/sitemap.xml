@@ -4,7 +4,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/post/</loc>
+      <loc>/post/</loc>
       <lastmod>2017-01-01T00:00:00+08:00</lastmod>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/publication/</loc>
+      <loc>/publication/</loc>
       <lastmod>2017-01-01T00:00:00+08:00</lastmod>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/talk/</loc>
+      <loc>/talk/</loc>
       <lastmod>2017-01-01T00:00:00+08:00</lastmod>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/categories/</loc>
+      <loc>/categories/</loc>
       <priority>0</priority>
     </url>
     
@@ -36,7 +36,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/</loc>
+      <loc>/</loc>
       <lastmod>2017-10-15T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
@@ -45,7 +45,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/publication_types/</loc>
+      <loc>/publication_types/</loc>
       <priority>0</priority>
     </url>
     
@@ -53,7 +53,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/tags/</loc>
+      <loc>/tags/</loc>
       <priority>0</priority>
     </url>
     
