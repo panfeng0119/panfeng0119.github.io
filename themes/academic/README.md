@@ -1,24 +1,24 @@
-# Academic: the website designer for [Hugo](https://gohugo.io)
+# [Academic](https://github.com/gcushen/hugo-academic): the website designer for [Hugo](https://gohugo.io)
 
-**Academic** is a framework to help you create a beautiful website quickly. Perfect for personal sites, blogs, or business/project sites. [Check out the latest demo](https://themes.gohugo.io/theme/academic/) of what you'll get in less than 10 minutes. Then head on over to the [Quick Start guide](https://sourcethemes.com/academic/docs/) or take a look at the [Release Notes](https://sourcethemes.com/academic/updates/).
+**Academic** 是一个框架，它可以帮助你迅速创建漂亮的网站. 适用于个人站点、博客或商业/项目网站. 不超过10分钟即可浏览[最新的演示](https://themes.gohugo.io/theme/academic/). 然后跳转到 [快速入门指南](https://sourcethemes.com/academic/docs/) 或者查看[发行说明](https://sourcethemes.com/academic/updates/).
 
 [![Screenshot](https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png)](https://github.com/gcushen/hugo-academic/)
 
-Key features:
+主要特征:
 
-- Easily manage various content including homepage, blog posts, publications, talks, and projects
-- Extensible via **color themes** and **widgets/plugins**
-- Write in [Markdown](https://sourcethemes.com/academic/docs/writing-markdown-latex/) for easy formatting and code highlighting, with [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) for mathematical expressions
-- Social/academic network linking, [Google Analytics](https://analytics.google.com), and [Disqus](https://disqus.com) comments
-- Responsive and mobile friendly
-- Simple and refreshing one page design
-- Multilingual and easy to customize
+- 轻松管理各种内容，包括主页，博客文章，出版物，讲座和项目
+- 通过 **color themes** 和 **widgets/plugins** 进行扩展
+- 通过 [Markdown](https://sourcethemes.com/academic/docs/writing-markdown-latex/) 来进行编写，以便于格式化和代码高亮, 还可以用 [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) 来编写数学表达式
+- Social/academic 网络链接, [Google Analytics](https://analytics.google.com), and [Disqus](https://disqus.com) 评论
+- 响应和移动友好
+- 单页、简单而清爽
+- 多语言、易于定制
 
 ## Color Themes
 
-Academic is available in different color themes and font themes.
+Academic 有不同的颜色主题和字体主题.
 
-| `default` | `ocean` | `dark` |
+| `默认` | `ocean` | `dark` |
 | --- | --- | --- |
 | ![default theme](https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-default.png) | ![ocean theme](https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-ocean.png) | ![dark theme](https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-dark.png) |
 
@@ -28,26 +28,26 @@ Academic is available in different color themes and font themes.
 
 ## Install
 
-You can choose from one of the following four methods to install:
+您可以选择以下四种方法之一进行安装:
 
 * one-click install using your web browser (recommended)
 * install on your computer using Git with the Command Prompt/Terminal app
 * install on your computer by downloading the ZIP files
 * install on your computer with RStudio
 
-### Quick install using your web browser
+### 使用浏览器
 
 1. [Install Academic with Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart)
     * Netlify will provide you with a customizable URL to access your new site
 2. On GitHub, go to your newly created `academic-kickstart` repository and edit `config.toml` to personalize your site. Shortly after saving the file, your site will automatically update
 3. Read the [Quick Start Guide](https://sourcethemes.com/academic/docs/) to learn how to add Markdown content. For inspiration, refer to the [Markdown content](https://github.com/gcushen/hugo-academic/tree/master/exampleSite) which powers the [Demo](https://themes.gohugo.io/theme/academic/)
 
-### Install with Git
+### 使用 Git
 
-Prerequisites:
+要求:
 
-* [Download and install Git](https://git-scm.com/downloads)
-* [Download and install Hugo](https://gohugo.io/getting-started/installing/#quick-install)
+* 下载并安装 [Git](https://git-scm.com/downloads)
+* 下载并安装 [Hugo](https://gohugo.io/getting-started/installing/#quick-install)
 
 1. [Fork](https://github.com/sourcethemes/academic-kickstart#fork-destination-box) the *Academic Kickstart* repository and clone your fork with Git: 
 
@@ -55,17 +55,17 @@ Prerequisites:
     
     *Note that if you forked Academic Kickstart, the above command should be edited to clone your fork, i.e. replace `sourcethemes` with your GitHub username.*
 
-2. Initialize the theme:
+2. 初始化 academic 主题:
 
        cd My_Website
        git submodule update --init --recursive
 
-### Install with ZIP
+### 通过 ZIP 安装
 
 1. [Download](https://github.com/sourcethemes/academic-kickstart/archive/master.zip) and extract *Academic Kickstart*
 2. [Download](https://github.com/gcushen/hugo-academic/archive/master.zip) and extract the *Academic theme* to the `themes/academic/` folder from the above step
 
-### Install with RStudio
+### 使用 RStudio 安装
 
 [View the guide to installing Academic with RStudio](https://sourcethemes.com/academic/docs/install/#install-with-rstudio)
 
@@ -81,7 +81,7 @@ Prerequisites:
 
 3. Build your site by running the `hugo` command. Then [host it for free using Github Pages](https://georgecushen.com/create-your-website-with-hugo/) or Netlify (refer to the first installation method). Alternatively, copy the generated `public/` directory (by FTP, Rsync, etc.) to your production web server (such as a university's hosting service).
 
-## Updating
+## 更新
 
 Feel free to *star* the project on [Github](https://github.com/gcushen/hugo-academic/) to help keep track of updates and check out the [release notes](https://sourcethemes.com/academic/updates) prior to updating your site.
 
@@ -95,7 +95,7 @@ git submodule update --remote --merge
 
 [Check out the update guide](https://sourcethemes.com/academic/docs/update/) for full instructions and alternative methods.
 
-## Feedback & Contributing
+## 反馈 & 贡献
 
 Please use the [issue tracker](https://github.com/gcushen/hugo-academic/issues) to let me know about any bugs or feature requests, or alternatively make a pull request.
 
