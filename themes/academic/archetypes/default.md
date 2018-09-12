@@ -3,13 +3,13 @@ title = "{{ replace .TranslationBaseName "-" " " | title }}"
 date = {{ .Date }}
 draft = false
 
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
+# 标签和类别
+# 例如, 无标签请用 `tags = []` , 对于一个或多个标签使用 `tags = ["A Tag", "Another Tag"]` .
 tags = []
 categories = []
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
+# 指定图片
+# 图片请放在 `static/img/` 文件夹， 以当前目录指定引用文件名, e.g. `image = "example.jpg"`.
 [header]
 image = ""
 caption = ""

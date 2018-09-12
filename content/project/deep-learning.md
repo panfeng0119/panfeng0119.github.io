@@ -5,23 +5,23 @@ date = 2016-04-27T00:00:00
 # Project title.
 title = "Deep Learning"
 
-# Project summary to display on homepage.
+# 在Home中显示的 简介
 summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
-# Optional image to display on homepage (relative to `static/img/` folder).
+# 在Home中显示的 简介图片(相应的文件夹 `static/img/` ).
 image_preview = "bubbles.jpg"
 
 # Tags: can be used for filtering projects.
 # Example: `tags = ["machine-learning", "deep-learning"]`
-tags = ["Deep Learning"]
+tags = ["Deep Learning","asdf"]
 
 # Optional external URL for project (replaces project detail page).
 external_link = ""
 
-# Does the project detail page use math formatting?
+# project 细节页面是否使用数学格式?
 math = false
 
-# Optional featured image (relative to `static/img/` folder).
+# Optional featured image (对应文件夹 `static/img/` ).
 [header]
 image = "headers/bubbles-wide.jpg"
 caption = "My caption :smile:"

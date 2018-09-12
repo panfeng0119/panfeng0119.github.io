@@ -5,7 +5,7 @@ alias log='echo ${Date} INFO'
 log "当前目录：${work_path}"
 # begin
 log "正在生成网站."
-hugo -b http://panfeng0119.github.io
+hugo
 
 log "克隆master分支."
 rm -rf master

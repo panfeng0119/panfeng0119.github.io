@@ -1,13 +1,13 @@
 +++
-# Custom widget.
+# 自定义小部件.
 widget = "custom"
 active = true
 date = {{ .Date }}
 
-# Note: a full width section format can be enabled by commenting out the `title` and `subtitle` with a `#`.
+# 主意: 通过用 `#` 来标记 `title` 和 `subtitle` , 可以开启 宽屏 格式（full width section）.
 title = "{{ replace .TranslationBaseName "-" " " | title }}"
 subtitle = ""
 
-# Order that this section will appear in.
+# 使用命令来控制显示宽度.
 weight = 100
 +++

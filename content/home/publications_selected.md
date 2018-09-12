@@ -29,5 +29,8 @@ list_format = 1
 #  5: Book
 #  6: Book chapter
 publication_type = "-1"
+
+# 是否显示，draft = true 表示“是草稿，不显示”
+draft = true
 +++
 

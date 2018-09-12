@@ -9,3 +9,15 @@ If this is a GUI change, try to include screenshots of the change. If not, pleas
 ### Documentation
 
 If this is an enhancement, add a link here to the corresponding pull request on https://github.com/sourcethemes/academic-www or describe the documentation changes necessary.
+
+###目的
+
+描述这种变化的目的。 如果此拉取请求解决了现有问题，请以`修复＃1234`的形式引用它，其中1234是相关的问题编号。
+
+###截图
+
+如果这是GUI更改，请尝试包含更改的屏幕截图。 如果没有，请删除此部分。
+
+###文档
+
+如果这是一项增强功能，请在此处在 https://github.com/sourcethemes/academic-www 上添加相应的拉取请求，或者说明必要的文档更改。
