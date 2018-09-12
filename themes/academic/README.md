@@ -1,6 +1,6 @@
-# [Academic](https://github.com/gcushen/hugo-academic): the website designer for [Hugo](https://gohugo.io)
+# [Hugo](https://gohugo.io) 主题: [Academic](https://github.com/gcushen/hugo-academic) 
 
-**Academic** 是一个框架，它可以帮助你迅速创建漂亮的网站. 适用于个人站点、博客或商业/项目网站. 不超过10分钟即可浏览[最新的演示](https://themes.gohugo.io/theme/academic/). 然后跳转到 [快速入门指南](https://sourcethemes.com/academic/docs/) 或者查看[发行说明](https://sourcethemes.com/academic/updates/).
+[**Academic**](https://sourcethemes.com/academic) 是一个框架，它可以帮助你迅速创建漂亮的网站. 适用于个人站点、博客或商业/项目网站. 不超过10分钟即可浏览[最新的演示](https://themes.gohugo.io/theme/academic/). 然后跳转到 [快速入门指南](https://sourcethemes.com/academic/docs/) 或者查看[发行说明](https://sourcethemes.com/academic/updates/).
 
 [![Screenshot](https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png)](https://github.com/gcushen/hugo-academic/)
 
