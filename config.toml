@@ -3,7 +3,7 @@
 #
 # This file is formatted using TOML syntax - learn more at https://learnxinyminutes.com/docs/toml/
 
-baseurl = "/"  # The URL of your website.
+baseurl = "panfeng0119.github.io"  # The URL of your website.
 title = "Pan Feng"  # Title of your site
 copyright = "&copy; 2018"  # 版权符号©: &copy 
 
@@ -11,8 +11,8 @@ theme = "academic"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"  # 脚注返回
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-preserveTaxonomyNames = true
-paginate = 10
+preserveTaxonomyNames = true  # 保留分类名称
+paginate = 10  # 好像没什么用
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = ""
@@ -21,9 +21,9 @@ disqusShortname = ""
 googleAnalytics = "UA-125636375-1"
 
 # Default language to use (if you setup multilingual support)
-defaultContentLanguage = "en"
+defaultContentLanguage = "en"  # 最好在后面单加内容，不要改这个
 hasCJKLanguage = true  # Set `true` for Chinese/Japanese/Korean languages.
-defaultContentLanguageInSubdir = false
+defaultContentLanguageInSubdir = false # 子目录中 默认的内容语言
 
 enableGitInfo = true # Get last modified date for content from Git?
 
@@ -31,17 +31,18 @@ enableGitInfo = true # Get last modified date for content from Git?
   home = [ "HTML", "CSS", "RSS", "JSON" ]
   section = [ "HTML", "RSS" ]
 
-# Configure BlackFriday Markdown rendering.
+# Configure BlackFriday Markdown rendering. 配置BlackFriday Markdown渲染。
 #   See: https://gohugo.io/getting-started/configuration/#configure-blackfriday
 [blackfriday]
   hrefTargetBlank = true  # `true` opens external links in a new tab.
   fractions = true  # `false` disables smart fractions (e.g. 5/12 formatted as a fraction).
   smartypants = true  # `false` disables all smart punctuation substitutions (e.g. smart quotes, dashes, fractions).
 
-[params]
+# 主要参数变量
 
-  color_theme = "default" # 颜色主题 有`default`, `ocean`, `forest`, `coffee`, `dark`,  `1950s
-  font = "default"   # Choose from `default`, `classic`, or `playfair`.
+[params]
+  color_theme = "1950s" # 颜色主题 有`default`, `ocean`, `forest`, `coffee`, `dark`,  `1950s`
+  font = "classic"   # Choose from `default`, `classic`, or `playfair`.
 
   # Your details.
   name = "Pan Feng"
@@ -238,45 +239,46 @@ enableGitInfo = true # Get last modified date for content from Git?
   #   icon_pack = "ai"
   #   link = "files/cv.pdf"
 
-# Navigation Links  导航链接
-#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
-#     desired widget in your `content/home/` folder.
-#   The weight parameter defines the order that the links will appear in.
-#   要链接主页窗口小部件，请将URL指定为哈希“＃”，后跟`content / home /`文件夹中所需窗口小部件的文件名。
-#   weight参数定义链接显示的顺序
-[params.menus]
-  # 主菜单向右对齐? (true/false)
-  align_right = true
 
+# 导航链接（Navigation Links）
+[params.menus]
+  align_right = true # 主菜单向右对齐? (true/false)
+
+# 索引菜单跳转，样例:
+# [[menu.main]]  关键字
+#   name = "Home"  名字：导航栏显示的内容
+#   url = "#about"  跳转链接：用 `#` 标记 `content/home/`中的文件名
+#   weight = 1   位置：显示顺序
 [[menu.main]]
   name = "Home"
   url = "#about"
   weight = 1
 
 [[menu.main]]
-  name = "Publications"
-  url = "#publications_selected"
+  name = "Posts"
+  url = "#posts"
   weight = 2
 
 [[menu.main]]
-  name = "Posts"
-  url = "#posts"
+  name = "Tags"
+  url = "#tags"
   weight = 3
+
+[[menu.main]]
+  name = "Publications"
+  url = "#publications"
+  weight = 4
 
 [[menu.main]]
   name = "Projects"
   url = "#projects"
-  weight = 4
+  weight = 5
 
-# [[menu.main]]
-#   name = "Teaching"
-#   url = "#teaching"
-#   weight = 5
+[[menu.main]]
+  name = "Search"
+  url = "#search"
+  weight = 5
 
-# [[menu.main]]
-#   name = "Contact"
-#   url = "#contact"
-#   weight = 6
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
@@ -285,22 +287,21 @@ enableGitInfo = true # Get last modified date for content from Git?
 #    url = "files/cv.pdf"
 #    weight = 7
 
-
-# Search. 搜索
+# 搜索设置（Search）
 [params.search]
   # Search provider:
   #   0: No search engine
-  #   1: Built-in (Fuse)
-  #   2: Algolia (https://www.algolia.com)
-  engine = 1
+  #   1: Built-in (Fuse)  内置
+  #   2: Algolia (https://www.algolia.com) 插件
+  engine = 2
 
   # Algolia 搜索引擎配置.
   # Paste the values from your Algolia dashboard.
   [params.search.algolia]
-    app_id = ""
-    api_key = ""
-    index_name = ""
-    show_logo = false
+    app_id = "Z0NAQ2HAUI"
+    api_key = "62f8c35d5dbcb26778632a49c6abe76f"
+    index_name = "panfeng-blog"
+    show_logo = true
 
 # 分类.
 [taxonomies]
@@ -312,18 +313,20 @@ enableGitInfo = true # Get last modified date for content from Git?
 #   创建你想要的语言快[languages.X], 其中X是语言的ID.
 #   参考 https://sourcethemes.com/academic/docs/language/
 
-# Configure the English version of the website. 配置英文版的块
+# 英文版网站配置Configure the English version of the website. 配置英文版的块
 [languages.en]
   languageCode = "en-us"
 
+
 # Uncomment the lines below to configure your website in a second language.
-#[languages.zh]
-#  languageCode = "zh-Hans"
-#  title = "Chinese website title..."
-#  [languages.zh.params]
-#    name = "Your name in Chinese..."
-#    role = "Your role in Chinese..."
-#  [[languages.zh.menu.main]]
-#    name = "Wo"
+
+# [languages.zh]
+#   languageCode = "zh-Hans"
+#   title = "潘峰的博客"
+# [languages.zh.params]
+#    name = "潘峰"
+#    role = "推荐算法工程师"
+# [[languages.zh.menu.main]]
+#    name = "主页"
 #    url = "#about"
 #    weight = 1

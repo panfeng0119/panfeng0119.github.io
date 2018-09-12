@@ -1,9 +1,9 @@
 +++
-# Feature/Skill widget.
-widget = "featurette"  # Do not modify this line!
+# Feature/Skill 部件.
+widget = "featurette"  # 不要修改!
 date = 2017-09-20T00:00:00
 
-# Activate this widget? true/false
+# 是否激活? true/false
 active = false
 
 title = ""
@@ -12,9 +12,8 @@ subtitle = ""
 # Order that this section will appear in.
 weight = 20
 
-# Add/remove as many `[[feature]]` blocks below as you like.
-# See `config.toml` for more info on available icons.
-
+# 根据需要进行添加/删除 `[[feature]]` .
+# 有关更多的图标信息，请参与 `config.toml` .
 [[feature]]
   icon = "files-o"
   icon_pack = "fa"

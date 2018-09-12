@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # 脚本：自动将public文件夹push到master分支
 work_path=`pwd`
 Date=`date "+%Y-%m-%d %H:%M:%S"`

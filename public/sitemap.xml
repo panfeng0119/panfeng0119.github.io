@@ -4,7 +4,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/privacy/</loc>
+      <loc>panfeng0119.github.io/talk/example-talk/</loc>
       <lastmod>2018-09-12T16:13:06+08:00</lastmod>
     </url>
     
@@ -12,15 +12,15 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/talk/example-talk/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
+      <loc>panfeng0119.github.io/post/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>http://panfeng0119.github.io/post/</loc>
+      <loc>panfeng0119.github.io/publication/</loc>
       <lastmod>2018-09-10T01:35:10+08:00</lastmod>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/publication/</loc>
+      <loc>panfeng0119.github.io/talk/</loc>
       <lastmod>2018-09-10T01:35:10+08:00</lastmod>
     </url>
     
@@ -36,48 +36,246 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/talk/</loc>
+      <loc>panfeng0119.github.io/project/deep-learning/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/project/example-external-project.1/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/project/example-external-project.2/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/project/example-external-project.3/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/project/example-external-project.4/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/project/example-external-project.5/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/project/example-external-project/</loc>
+      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.1/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.10/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.2/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.3/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.4/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.5/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.6/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.7/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.8/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started.9/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/post/getting-started/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/publication/person-re-identification/</loc>
+      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/publication/clothing-search.1/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/publication/clothing-search.2/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/publication/clothing-search/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/publication_types/1/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/publication_types/2/</loc>
+      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/tags/academic/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/tags/asdf/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/tags/deep-learning/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/tags/demo/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>panfeng0119.github.io/</loc>
       <lastmod>2018-09-10T01:35:10+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/project/deep-learning/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/project/example-external-project/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/publication/person-re-identification/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/publication/clothing-search/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/publication_types/1/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -85,8 +283,8 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/publication_types/2/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
+      <loc>panfeng0119.github.io/project/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -94,7 +292,8 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/categories/</loc>
+      <loc>panfeng0119.github.io/publication_types/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -102,53 +301,8 @@
     
     <url>
     
-      <loc>http://panfeng0119.github.io/tags/deep-learning/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/tags/demo/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/</loc>
-      <lastmod>2018-09-10T01:35:10+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/project/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/publication_types/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>http://panfeng0119.github.io/tags/</loc>
-      <lastmod>2018-09-12T16:13:06+08:00</lastmod>
+      <loc>panfeng0119.github.io/tags/</loc>
+      <lastmod>2018-09-12T23:52:03+08:00</lastmod>
       <priority>0</priority>
     </url>
     
