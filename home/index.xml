@@ -77,6 +77,15 @@ To remove this section, either delete content/home/teaching.md or edit the front
     </item>
     
     <item>
+      <title>Recent Publications</title>
+      <link>panfeng0119.github.io/home/publications/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/home/publications/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Selected Talks</title>
       <link>panfeng0119.github.io/home/talks_selected/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
@@ -91,15 +100,6 @@ To remove this section, either delete content/home/teaching.md or edit the front
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
       
       <guid>panfeng0119.github.io/home/talks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Recent Publications</title>
-      <link>panfeng0119.github.io/home/publications/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
-      
-      <guid>panfeng0119.github.io/home/publications/</guid>
       <description></description>
     </item>
     
