@@ -1,4 +1,4 @@
-# 配置文件  Academic 
+# Academic主题的配置文件
 # 官网: https://sourcethemes.com/academic/
 #
 # This file is formatted using TOML syntax - learn more at https://learnxinyminutes.com/docs/toml/
@@ -20,7 +20,7 @@ disqusShortname = ""
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = "UA-125636375-1"
 
-# Default language to use (if you setup multilingual support)
+# 使用的默认语言(如果有多语言支持)
 defaultContentLanguage = "en"  # 最好在后面单加内容，不要改这个
 hasCJKLanguage = true  # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false # 子目录中 默认的内容语言
@@ -53,7 +53,7 @@ enableGitInfo = true # Get last modified date for content from Git?
 
   # 头像
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
-  avatar = "touxiang.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
+  avatar = "mylove.jpg"  # 指定文件夹 `static/img/` 中的头像图片，或者设置空值表示不用头像.
   email = "312887499@qq.com"
   address = "北京市 海淀区"
   office_hours = "Monday 10:00 to 13:00 or email for appointment"
@@ -172,27 +172,27 @@ enableGitInfo = true # Get last modified date for content from Git?
   ]
 
   # Configuration of talk pages.
-  [params.talks]
-    # Show talk time?
-    time = true
+  # [params.talks]
+  #   # Show talk time?
+  #   time = true
 
   # Configuration of publication pages.
-  [params.publications]
-    # Date format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
-    #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
-    date_format = "January, 2006"
+  # [params.publications]
+  #   # Date format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
+  #   #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
+  #   date_format = "January, 2006"
 
-  # Configuration of project pages.
-  [params.projects]
-    # List publications and talks related to the project?
-    list_children = true
+  # # Configuration of project pages.
+  # [params.projects]
+  #   # List publications and talks related to the project?
+  #   list_children = true
 
     # Publication list format.
     #   0 = Simple
     #   1 = Detailed
     #   2 = APA
     #   3 = MLA
-    publication_format = 3
+    # publication_format = 3
 
   # Social/Academic Networking   主页下面的联系图标
   #
@@ -201,8 +201,10 @@ enableGitInfo = true # Get last modified date for content from Git?
   #   twitter, weibo, linkedin, github, facebook, pinterest, google-plus,
   #   youtube, instagram, soundcloud
   #
-  #   For email icon, use "fas" icon pack, "envelope" icon, and
-  #   "mailto:your@email.com" as the link.
+  #   邮箱图标
+  #   icon = "envelope" 
+  #   icon_pack = "fas"
+  #   link = "mailto:your@email.com"
   #
   #   Full list: https://fontawesome.com/icons
   #
@@ -212,25 +214,21 @@ enableGitInfo = true # Get last modified date for content from Git?
   #
   #   Full list: https://jpswalsh.github.io/academicons/
 
-  [[params.social]]
-    icon = "envelope"
-    icon_pack = "fas"
-    link = "312887499@qq.com"
+    [[params.social]]
+      icon = "envelope"
+      icon_pack = "fas"
+      link = "mailto:312887499@qq.com"
 
-  # [[params.social]]
-  #   icon = "twitter"
-  #   icon_pack = "fab"
-  #   link = "//twitter.com/GeorgeCushen"
+    [[params.social]]
+      icon = "weibo"
+      icon_pack = "fab"
+      link = "https://weibo.com/523499466"
 
-  [[params.social]]
-    icon = "google-scholar"
-    icon_pack = "ai"
-    link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
+    [[params.social]]
+      icon = "linkedin"
+      icon_pack = "fab"
+      link = "https://www.linkedin.com/in/%E5%B3%B0-%E6%BD%98-0a0937144/"
 
-  [[params.social]]
-    icon = "github"
-    icon_pack = "fab"
-    link = "//github.com/gcushen"
 
   # Link to a PDF of your resume/CV from the About widget.
   # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
@@ -293,7 +291,7 @@ enableGitInfo = true # Get last modified date for content from Git?
   #   0: No search engine
   #   1: Built-in (Fuse)  内置
   #   2: Algolia (https://www.algolia.com) 插件
-  engine = 2
+  engine = 1
 
   # Algolia 搜索引擎配置.
   # Paste the values from your Algolia dashboard.

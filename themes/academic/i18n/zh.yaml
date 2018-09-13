@@ -74,6 +74,11 @@
 - id: more_publications
   translation: 更多出版物
 
+# 自定义 widget
+
+- id: more
+  translation: 更多
+
 # Posts widget
 
 - id: continue_reading
