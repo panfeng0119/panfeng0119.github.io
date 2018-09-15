@@ -14,11 +14,11 @@
     
     <item>
       <title>Hugo &#43; GitHub 部署个人站点</title>
-      <link>panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/</link>
+      <link>panfeng0119.github.io/post/host_on_github/</link>
       <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/</guid>
-      <description>完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 在 GitHub 中</description>
+      <guid>panfeng0119.github.io/post/host_on_github/</guid>
+      <description>完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发</description>
     </item>
     
     <item>

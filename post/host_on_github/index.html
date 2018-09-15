@@ -18,7 +18,7 @@
   <meta name="description" content="在 GitHub 上部署个人网站.">
 
   
-  <link rel="alternate" hreflang="en-us" href="panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/">
+  <link rel="alternate" hreflang="en-us" href="panfeng0119.github.io/post/host_on_github/">
 
   
 
@@ -28,7 +28,7 @@
   
   
   
-  <meta name="theme-color" content="#EF525B">
+  <meta name="theme-color" content="#3f51b5">
   
 
   
@@ -96,12 +96,12 @@
   <link rel="icon" type="image/png" href="/panfeng0119.github.io/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/panfeng0119.github.io/img/icon-192.png">
 
-  <link rel="canonical" href="panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/">
+  <link rel="canonical" href="panfeng0119.github.io/post/host_on_github/">
 
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="Pan Feng">
-  <meta property="og:url" content="panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/">
+  <meta property="og:url" content="panfeng0119.github.io/post/host_on_github/">
   <meta property="og:title" content="Hugo &#43; GitHub 部署个人站点 | Pan Feng">
   <meta property="og:description" content="在 GitHub 上部署个人网站.">
   <meta property="og:locale" content="en-us">
@@ -306,7 +306,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    3 min read
   </span>
   
 
@@ -321,35 +321,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9&amp;url=panfeng0119.github.io%2fpost%2f%25E6%2589%2598%25E7%25AE%25A1%25E5%259C%25A8github%2f"
+         href="https://twitter.com/intent/tweet?text=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9&amp;url=panfeng0119.github.io%2fpost%2fhost_on_github%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=panfeng0119.github.io%2fpost%2f%25E6%2589%2598%25E7%25AE%25A1%25E5%259C%25A8github%2f"
+         href="https://www.facebook.com/sharer.php?u=panfeng0119.github.io%2fpost%2fhost_on_github%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=panfeng0119.github.io%2fpost%2f%25E6%2589%2598%25E7%25AE%25A1%25E5%259C%25A8github%2f&amp;title=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=panfeng0119.github.io%2fpost%2fhost_on_github%2f&amp;title=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=panfeng0119.github.io%2fpost%2f%25E6%2589%2598%25E7%25AE%25A1%25E5%259C%25A8github%2f&amp;title=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9"
+         href="http://service.weibo.com/share/share.php?url=panfeng0119.github.io%2fpost%2fhost_on_github%2f&amp;title=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9&amp;body=panfeng0119.github.io%2fpost%2f%25E6%2589%2598%25E7%25AE%25A1%25E5%259C%25A8github%2f">
+         href="mailto:?subject=Hugo%20%2b%20GitHub%20%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9&amp;body=panfeng0119.github.io%2fpost%2fhost_on_github%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -371,39 +371,61 @@
 
 <ol>
 <li>已安装 <a href="https://git-scm.com/downloads" target="_blank">Git</a> 版本 2.8 以上.</li>
+<li>需要发布的Hugo网站，起码已完成<a href="https://gohugo.io/getting-started/quick-start/" target="_blank">快速入门</a>.</li>
 <li>在 <a href="https://github.com/" target="_blank">GitHub</a> 中创建好了仓库: &lt;USERNAME&gt;.github.io.</li>
-<li>有一个即将发布的Hugo网站，起码已完成<a href="https://gohugo.io/getting-started/quick-start/" target="_blank">快速入门</a>步骤.</li>
+</ol>
+
+<h2 id="b-准备工作-b"><b>准备工作</b></h2>
+
+<p>不同的仓库类型，需要托管的分支是不同的。具体描述，请参阅文档 <a href="https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages" target="_blank">GitHub Pages doc</a>，以确定您要创建哪种类型的站点.</p>
+
+<p>从逻辑上，常用两种类型的仓库，对应的分支为</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"><code>https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io</code></th>
+<th align="left"><code>https://&lt;USERNAME&gt;.github.io</code></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">网站分支 -&gt; <font face="Aria"><b>gh-pages</b></font></td>
+<td align="left">网站分支 -&gt; <font face="Aria"><b>master</b></font></td>
+</tr>
+
+<tr>
+<td align="left">源码分支 -&gt; <font face="微软雅黑"><b>任意</b> </font></td>
+<td align="left">源码分支 -&gt; <font face="微软雅黑"><b>任意</b></font></td>
+</tr>
+</tbody>
+</table>
+
+<p>我们用第二种类型，需要注意两点：</p>
+
+<ol>
+<li>仓库名必须用&lt;USERNAME&gt;.github.io <br></li>
+<li>网站内容必须存放在 master 分支</li>
 </ol>
 
 <hr />
 
 <h2 id="一-b-通过两个仓库来创建-github-pages-b">一、<b>通过两个仓库来创建 GitHub Pages</b></h2>
 
-<p>具体描述，请参阅文档 <a href="https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages" target="_blank">GitHub Pages documentation</a>，以确定您要创建哪种类型的站点.</p>
-
-<p>注意：</p>
-
-<ol>
-<li>仓库名必须用&lt;USERNAME&gt;.github.io</li>
-<li>网站内容必须存放在 master 分支</li>
-</ol>
-
-<h3 id="步骤">步骤</h3>
-
 <p>最简单的方法就是将 Hugo 文件和生成的内容分别发布到两个不同的仓库(Repositoriy)中。</p>
 
 <ol>
-<li>创建两个仓库 <p> 一个存放源码的仓库： <code>&lt;YOUR-PROJECT&gt;</code>  <font color=#C0C0C0>（如：blog）</font> </br> 一个托管Hugo网站的仓库： <code>&lt;USERNAME&gt;.github.io</code> </p></li>
+<li>创建两个仓库 <p> 一个存放源码的仓库： <code>&lt;YOUR-PROJECT&gt;</code>  <font color=#F08080>（如：blog）</font> </br> 一个托管Hugo网站的仓库： <code>&lt;USERNAME&gt;.github.io</code> </p></li>
 <li>克隆源码仓库到本地 <p> git clone &lt;OUR-PROJECT-URL&gt; </br> cd &lt;YOUR-PROJECT&gt; </p></li>
 <li>启动网站服务，确保网站能正常运行 <p> hugo server </br> 访问网站 <a href="http://localhost:1313" target="_blank">http://localhost:1313</a></li>
-<li>创建 git 子模块，命名为 <em>public</em> <font color=#C0C0C0>（用来托管网站）</font> <p> git submodule add -b master <code>git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public</code> <em>public</em></li>
+<li>创建 git 子模块，命名为 <em>public</em> <font color=#F08080>（用来托管网站）</font> <p> git submodule add -b master <code>git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public</code> <em>public</em></li>
 <li>运行脚本，将网站 push 到<code>&lt;USERNAME&gt;.github.io</code> <p> chmod +x deploy.sh  ./deploy.sh&rdquo;提交消息(可选)&rdquo; </p></li>
 <li>将源代码 push 到 <code>&lt;YOUR-PROJECT&gt;</code></li>
 </ol>
 
-<p>deploy.sh脚本：</p>
-
 <pre><code>#!/bin/bash
+# 文件名：deploy.sh
 echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
 Date=`date &quot;+%Y-%m-%d %H:%M:%S&quot;`
 
@@ -430,7 +452,7 @@ git push origin master
 cd ..
 </code></pre>
 
-<p>现在！您的个人页面成功地部署在 <code>https//&lt;USERNAME&gt;.github.io</code></p>
+<p>现在！您的个人页面成功地部署在 <code>https://&lt;USERNAME&gt;.github.io</code></p>
 
 <p><font color=#778899>补充：如果需要指定 Hugo 生成网站的输出目录，可以在配置文件中 config.toml 中设置变量 publishDir = "docs". </font></p>
 
@@ -443,115 +465,91 @@ cd ..
 <li>直接使用默认的 <em>public</em> 目录，不必指定 Git 子模块或输出目录</li>
 </ul>
 
-<p>不同的仓库类型，需要托管的分支是不同的</p>
-
-<ul>
-<li>如果仓库在 <code>https//github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io</code> ，托管分支是 <strong>gh-pages</strong></li>
-<li>如果仓库在 <code>https//&lt;USERNAME&gt;.github.io</code> ，托管分支是 <strong>master</strong></li>
-</ul>
-
-<p>第二种情况需要到仓库中设置默认分支<font color=#F08080>（非 master 分支）</font>，设置方法如下</p>
+<p>我们需要到仓库中新建一个托管源代码的分支，并设置为默认分支<font color=#F08080>（非 master 分支）</font>，设置方法如下</p>
 
 <ol>
-<li><p>进入仓库 <code>https//&lt;USERNAME&gt;.github.io</code></p></li>
+<li><p>进入仓库 <code>https://&lt;USERNAME&gt;.github.io</code> ，点击导航栏的设置 <font face="woff2"><strong>Settings</strong><font></p></li>
 
-<li><p>点击设置 <strong>Settings</strong> 导航栏</p></li>
+<li><p>在左侧 <font face="woff2"><strong>Options</strong><font> 找到 <font face="woff2"><strong>Branches</strong><font></p></li>
 
-<li><p>在左侧 <strong>Options</strong> 找到 <strong>Branches</strong></p></li>
-
-<li><p>选择 <strong>Default branch</strong></p></li>
+<li><p><font face="woff2"><strong>Default branch</strong><font> 选择源码托管的分支 <font color=#F08080>（如 hugo）</font></p></li>
 </ol>
 
-<p>您还可以告诉GitHub页面将主分支视为已发布的站点或指向单独的gh-pages分支。后一种方法有点复杂但有一些优点：</p>
+<h3 id="2-1-初始化">2.1 初始化</h3>
 
-<p>这些步骤只需要完成一次。将 upstream 替换为remote的名称; 例如，origin：</p>
+<p>接下来的步骤在每次 clone 下来后只需要完成一次。默认的 <code>（upstream</code> 的名称 origin
+<font color=#F08080>（upstream 是远程仓库在本地的简写名称，可以通过 git remote -v 来查看 ）</font></p>
 
-<p>Preparations for gh-pages Branch
-These steps only need to be done once. Replace upstream with the name of your remote; e.g., origin:</p>
+<p>现在，我们用 <code>https://&lt;USERNAME&gt;.github.io</code> 仓库，源码分支为 <strong>hugo</strong> ，发布网站的分支为 <strong>master</strong></p>
 
-<p>Add the public Folder</p>
+<ol>
+<li>克隆仓库到本地，默认分支是 <strong>hugo</strong> <p> git clone &lt;Repositoriy-URL&gt; </br> cd &lt;Repositoriy&gt; </p></li>
+<li>切换到 <strong>master</strong> 分支，进行设置 <p>
+git checkout master </br>
+git reset &ndash;hard </br>
+git commit &ndash;allow-empty -m &ldquo;Initializing master branch&rdquo; </br>
+git push origin master</br>
+git checkout master </p></li>
+<li>切换到 <strong>hugo</strong> 分支<p>
+echo public &gt;&gt; .gitignore </br>
+rm -rf public</br>
+rm -rf .git/worktrees/public/&rdquo; </br>
+git worktree add -B master public origin/master </br></p></li>
+</ol>
 
-<p>添加public文件夹
-首先，将public文件夹添加到项目根目录下的.gitignore文件中，以便在主分支上忽略该目录</p>
+<h3 id="2-2-启动服务并push到分支">2.2 启动服务并push到分支</h3>
 
-<p>echo &ldquo;public&rdquo; &gt;&gt; .gitignore</p>
+<p>现在我们只需要启动服务，检查网站正常运行，就可以通过脚本来push了  <font color=#F08080>（脚本需要 chmod +x deploy.sh）</font></p>
 
-<p>初始化 gh-pages 分支
-You can now initialize your gh-pages branch as an empty <a href="https://git-scm.com/docs/git-checkout/#git-checkout---orphanltnewbranchgt" target="_blank">独立分支（orphan branch）</a>:</p>
+<pre><code>#!/bin/bash
+# 文件名：deploy.sh
+# 脚本：自动将public文件夹push到master分支
+# 如果是用 gh-branch，将 master 替换为 gh-branch 就可以
 
-<p>git checkout &ndash;orphan gh-pages
-git reset &ndash;hard
-git commit &ndash;allow-empty -m &ldquo;Initializing gh-pages branch&rdquo;
-git push upstream gh-pages
-git checkout master
-Build and Deployment
-Now check out the gh-pages branch into your public folder using git’s worktree feature. Essentially, the worktree allows you to have multiple branches of the same local repository to be checked out in different directories:</p>
+# 日志信息
+Date=`date &quot;+%Y-%m-%d %H:%M:%S&quot;`
+alias log='echo ${Date} INFO'
 
-<p>rm -rf public
-git worktree add -B gh-pages public upstream/gh-pages
-Regenerate the site using the hugo command and commit the generated files on the gh-pages branch:</p>
+# 标记当前路径
+DIR=`pwd`
+log &quot;当前目录：${DIR}&quot;
 
-<p>commit-gh-pages-files.sh</p>
-
-<p>hugo
-cd public &amp;&amp; git add &ndash;all &amp;&amp; git commit -m &ldquo;Publishing to gh-pages&rdquo; &amp;&amp; cd ..
-If the changes in your local gh-pages branch look alright, push them to the remote repo:</p>
-
-<p>git push upstream gh-pages
-Set gh-pages as Your Publish Branch
-In order to use your gh-pages branch as your publishing branch, you’ll need to configure the repository within the GitHub UI. This will likely happen automatically once GitHub realizes you’ve created this branch. You can also set the branch manually from within your GitHub project:</p>
-
-<p>Go to Settings → GitHub Pages
-From Source, select “gh-pages branch” and then Save. If the option isn’t enabled, you likely have not created the branch yet OR you have not pushed the branch from your local machine to the hosted repository on GitHub.
-After a short while, you’ll see the updated contents on your GitHub Pages site.</p>
-
-<p>Put it Into a Script
-To automate these steps, you can create a script with the following contents:</p>
-
-<p>publish_to_ghpages.sh</p>
-
-<p>#!/bin/sh</p>
-
-<p>DIR=$(dirname &ldquo;$0&rdquo;)</p>
-
-<p>cd $DIR/..</p>
-
-<p>if [[ $(git status -s) ]]
-then
-    echo &ldquo;The working directory is dirty. Please commit any pending changes.&rdquo;
-    exit 1;
-fi</p>
-
-<p>echo &ldquo;Deleting old publication&rdquo;
+log &quot;标记 public 文件夹为 master 分支&quot;
 rm -rf public
-mkdir public
-git worktree prune
-rm -rf .git/worktrees/public/</p>
+rm -rf .git/worktrees/public/
 
-<p>echo &ldquo;Checking out gh-pages branch into public&rdquo;
-git worktree add -B gh-pages public upstream/gh-pages</p>
+git worktree add -B master public origin/master
+# 清除原来的内容
+rm -rf public/*
 
-<p>echo &ldquo;Removing existing files&rdquo;
-rm -rf public/*</p>
+# 编译
+log &quot;正在生成网站.&quot;
+hugo
 
-<p>echo &ldquo;Generating site&rdquo;
-hugo</p>
+log &quot;正在提交更新&quot;
+msg=&quot;Rebuilding site ${Date} (publish.sh)&quot;
 
-<p>echo &ldquo;Updating gh-pages branch&rdquo;
-cd public &amp;&amp; git add &ndash;all &amp;&amp; git commit -m &ldquo;Publishing to gh-pages (publish.sh)&rdquo;
-This will abort if there are pending changes in the working directory and also makes sure that all previously existing output files are removed. Adjust the script to taste, e.g. to include the final push to the remote repository if you don’t need to take a look at the gh-pages branch before pushing. Or adding echo yourdomainname.com &gt;&gt; CNAME if you set up for your gh-pages to use customize domain.</p>
+# 提交
+cd public &amp;&amp; git add --all &amp;&amp; git commit -m &quot;${msg}&quot;
 
-<p>Deployment of Project Pages from Your master Branch
-To use master as your publishing branch, you’ll need your rendered website to live at the root of the GitHub repository. Steps should be similar to that of the gh-pages branch, with the exception that you will create your GitHub repository with the public directory as the root. Note that this does not provide the same benefits of the gh-pages branch in keeping your source and output in separate, but version controlled, branches within the same repo.</p>
+log &quot;正在 push&quot;
+git push origin master
 
-<p>You will also need to set master as your publishable branch from within the GitHub UI:</p>
+log &quot;Down!&quot;
 
-<p>Go to Settings → GitHub Pages
-From Source, select “master branch” and then Save.
-Use a Custom Domain
-If you’d like to use a custom domain for your GitHub Pages site, create a file static/CNAME. Your custom domain name should be the only contents inside CNAME. Since it’s inside static, the published site will contain the CNAME file at the root of the published site, which is a requirements of GitHub Pages.</p>
+</code></pre>
 
-<p>Refer to the official documentation for custom domains for further information.</p>
+<hr />
+
+<h3 id="附录">附录</h3>
+
+<p>知识点：</p>
+
+<p>git worktree</p>
+
+<p>利用 upstream 标记更多的远程仓库地址</p>
+
+<p>脚本中获取相对路径 DIR=$(dirname &ldquo;$0&rdquo;)</p>
 
     </div>
 
