@@ -11,9 +11,9 @@ weight = 5
 [interests]
   interests = [
     "Artificial Intelligence",
-    "Computational Linguistics",
     "Information Retrieval",
-    "Machine Learning"
+    "Machine Learning",
+    "Recommand System"
   ]
 
 # List your qualifications (such as academic degrees).
@@ -31,12 +31,9 @@ weight = 5
 
 # Biography
 
-大家好
+大家好，
 我是潘峰!
 
+刚开始我的博客之旅，准备用零碎的时间记一记笔记，熟悉一下博客的从 0 到 1
 
-
-
-
-
-
+重点目的是为了学习机器学习和深度学习，因为攒了太多的学习资源一个都不看，太浪费太罪恶了

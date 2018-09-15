@@ -3,7 +3,7 @@
 date = 2016-04-27T00:00:00
 
 # Project title.
-title = "Deep Learning"
+title = "example - Deep Learning"
 
 # 在Home中显示的 简介
 summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

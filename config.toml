@@ -41,7 +41,7 @@ enableGitInfo = true # Get last modified date for content from Git?
 # 主要参数变量
 
 [params]
-  color_theme = "1950s" # 颜色主题 有`default`, `ocean`, `forest`, `coffee`, `dark`,  `1950s`
+  color_theme = "ocean" # 颜色主题 有`default`, `ocean`, `forest`, `coffee`, `dark`,  `1950s`
   font = "classic"   # Choose from `default`, `classic`, or `playfair`.
 
   # Your details.
