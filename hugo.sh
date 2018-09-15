@@ -17,7 +17,12 @@ cd master
 git rm -rf .
 cp -rf ../public/* ./
 git add -A
-git commit -m"site update ${Date}"
+
+msg="rebuilding site ${Date}"
+if [ $# -eq 1 ]
+  then msg="$1"
+fi
+git commit -m"${msg}"
 log "正在push."
 git push -u origin master
 log "Down!"
