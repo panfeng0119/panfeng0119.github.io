@@ -1,14 +1,16 @@
 #!/bin/sh
 
 DIR=$(dirname "$0")
+work_path=`pwd`
 
-cd $DIR/..
+cd $DIR
 echo $DIR
-if [[ $(git status -s) ]]
-then
-    echo "当前目录存在更改，请先提交. 详细请输入命令 git status -s."
-    exit 1;
-fi
+echo ${work_path}
+# if [[ $(git status -s) ]]
+# then
+#     echo "当前目录存在更改，请先提交. 详细请输入命令 git status -s."
+#     exit 1;
+# fi
 
 echo "Deleting old publication"
 rm -rf public
