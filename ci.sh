@@ -5,7 +5,6 @@ work_path=`pwd`
 
 # 日志信息
 Date=`date "+ %Y,%m,%d %H:%M"`
-alias log='echo ${Date} INFO'
 
 # 标记当前路径
 DIR=`pwd`
@@ -26,7 +25,7 @@ fi
 # 提交
 git add --all && git commit -m "${msg}"
 
-printlog "正在 push"
+echo "正在 push"
 git push origin hugo
 
-printlog "Down!"
+echo "Down!"
