@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Pan Feng</title>
+    <link>panfeng0119.github.io/post/</link>
+    <description>Recent content in Posts on Pan Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="panfeng0119.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo &#43; GitHub 部署个人站点</title>
+      <link>panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/</link>
+      <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/%E6%89%98%E7%AE%A1%E5%9C%A8github/</guid>
+      <description>完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 在 GitHub 中</description>
+    </item>
+    
+    <item>
+      <title>Page Resources</title>
+      <link>panfeng0119.github.io/post/pagesource/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/pagesource/</guid>
+      <description>CONTENT MANAGEMENT
+Page Resources ResourceType The main type of the resource. For example, a file of MIME type image/jpg has for ResourceType image. Name Default value is the filename (relative to the owning page). Can be set in front matter. Title Default blank. Can be set in front matter. Permalink The absolute URL to the resource. Resources of type page will have no value. RelPermalink The relative URL to the resource.</description>
+    </item>
+    
+    <item>
+      <title>Academic: the website designer for Hugo</title>
+      <link>panfeng0119.github.io/post/getting-started/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/getting-started/</guid>
+      <description>Academic is a framework to help you create a beautiful website quickly. Perfect for personal sites, blogs, or business/project sites. Check out the latest demo of what you&amp;rsquo;ll get in less than 10 minutes. Then head on over to the Quick Start guide or take a look at the Release Notes.
+
+Key features:
+ Easily manage various content including homepage, blog posts, publications, talks, and projects Extensible via color themes and widgets/plugins Write in Markdown for easy formatting and code highlighting, with LaTeX for mathematical expressions Social/academic network linking, Google Analytics, and Disqus comments Responsive and mobile friendly Simple and refreshing one page design Multilingual and easy to customize  Color Themes Academic is available in different color themes and font themes.</description>
+    </item>
+    
+  </channel>
+</rss>
