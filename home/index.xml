@@ -37,7 +37,7 @@ To remove this section, either delete content/home/teaching.md or edit the front
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
       
       <guid>panfeng0119.github.io/home/about/</guid>
-      <description>Biography 大家好 我是潘峰!</description>
+      <description>Biography 大家好， 我是潘峰! 刚开始我的博客之旅，准备用零碎的时间记一记笔记，熟悉一下博客的从 0 到 1 重点目的是为了学习机器学习和深度学习，因为攒了太多</description>
     </item>
     
     <item>
@@ -77,7 +77,7 @@ To remove this section, either delete content/home/teaching.md or edit the front
     </item>
     
     <item>
-      <title>Recent Publications</title>
+      <title>Publications</title>
       <link>panfeng0119.github.io/home/publications/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
       
