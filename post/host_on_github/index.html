@@ -508,13 +508,13 @@ git worktree add -B master public origin/master </br></p></li>
 
 # 日志信息
 Date=`date &quot;+%Y-%m-%d %H:%M:%S&quot;`
-alias log='echo ${Date} INFO'
+alias printlog='echo ${Date} INFO'
 
 # 标记当前路径
 DIR=`pwd`
-log &quot;当前目录：${DIR}&quot;
+printlog &quot;当前目录：${DIR}&quot;
 
-log &quot;标记 public 文件夹为 master 分支&quot;
+printlog &quot;标记 public 文件夹为 master 分支&quot;
 rm -rf public
 rm -rf .git/worktrees/public/
 
@@ -523,19 +523,19 @@ git worktree add -B master public origin/master
 rm -rf public/*
 
 # 编译
-log &quot;正在生成网站.&quot;
+printlog &quot;正在生成网站.&quot;
 hugo
 
-log &quot;正在提交更新&quot;
+printlog &quot;正在提交更新&quot;
 msg=&quot;Rebuilding site ${Date} (publish.sh)&quot;
 
 # 提交
 cd public &amp;&amp; git add --all &amp;&amp; git commit -m &quot;${msg}&quot;
 
-log &quot;正在 push&quot;
+printlog &quot;正在 push&quot;
 git push origin master
 
-log &quot;Down!&quot;
+printlog &quot;Down!&quot;
 
 </code></pre>
 
