@@ -7,7 +7,7 @@ draft = false
 
 authors = ['潘峰']
 
-tags = ["design pattern"，"go"]
+tags = ["design pattern","go"]
 summary = "Go语言设计模式"
 +++
 
