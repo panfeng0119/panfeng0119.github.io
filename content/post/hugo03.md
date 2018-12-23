@@ -1,14 +1,14 @@
 +++
-title = "Hugo 02 | Hugo 模板介绍"
+title = "Hugo 03 | Hugo 查询顺序"
 
-date = 2018-09-28T23:59:00 
+date = 2018-12-23T18:31:00 
 
 draft = false
 
 authors = ['潘峰']
 
 tags = ["Hugo"]
-summary = ""
+summary = "Hugo searches for the layout to use for a given page in a well defined order, starting from the most specific."
 +++
 
 Hugo 使用Go的 html/template 和 text/template. 详情请看[Go docs](http://golang.org/pkg/html/template/).
