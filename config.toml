@@ -110,7 +110,7 @@ enableGitInfo = true # Get last modified date for content from Git?
 
   # Enable global LaTeX math rendering?
   #   If false, you can enable it locally on a per page basis.
-  math = false
+  math = true
 
   # Highlight.js options  代码高亮选项
   #   highlight
