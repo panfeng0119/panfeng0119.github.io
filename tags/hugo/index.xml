@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Fri, 28 Sep 2018 23:59:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Dec 2018 18:31:00 +0800</lastBuildDate>
     
 	<atom:link href="panfeng0119.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo 03 | Hugo 查询顺序</title>
+      <link>panfeng0119.github.io/post/hugo03/</link>
+      <pubDate>Sun, 23 Dec 2018 18:31:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugo03/</guid>
+      <description>Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 // 可以是当前作用域中已存在的变量 {{ .Title</description>
+    </item>
     
     <item>
       <title>Hugo 02 | Hugo 模板介绍</title>

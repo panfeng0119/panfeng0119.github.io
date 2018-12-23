@@ -11,6 +11,486 @@
     <atom:link href="panfeng0119.github.io/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Hugo 03 | Hugo 查询顺序</title>
+      <link>panfeng0119.github.io/post/hugo03/</link>
+      <pubDate>Sun, 23 Dec 2018 18:31:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugo03/</guid>
+      <description>
+
+&lt;p&gt;Hugo 使用Go的 html/template 和 text/template. 详情请看&lt;a href=&#34;http://golang.org/pkg/html/template/&#34; target=&#34;_blank&#34;&gt;Go docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;基本语法-basic-syntax&#34;&gt;&lt;strong&gt;基本语法 Basic Syntax&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;模板主要由 &lt;code&gt;variables&lt;/code&gt; 和 &lt;code&gt;functions&lt;/code&gt;组成，在 &lt;code&gt;{{ }}&lt;/code&gt; 内中使用&lt;/p&gt;
+
+&lt;p&gt;访问变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 可以是当前作用域中已存在的变量
+{{ .Title }}
+
+// 或者自定义变量
+{{ $address }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;函数参数用空格分割&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ FUNCTION ARG1 ARG2 .. }}
+
+// 例如
+{{ add 1 2 }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;方法调用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 方法和字段用&amp;quot;.&amp;quot;来访问
+{{ .Params.bar }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用括号组织&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if or (isset .Params &amp;quot;alt&amp;quot;) (isset .Params &amp;quot;caption&amp;quot;) }} Caption {{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;变量&#34;&gt;&lt;strong&gt;变量&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;每个Go Template都会获取一个data对象。而在Hugo中，每个Template都传递一个Page&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.Title&lt;/code&gt; 就是 &lt;a href=&#34;https://gohugo.io/variables/page/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;Page&lt;/code&gt;&lt;/a&gt; 变量中可访问的元素之一，通过 &amp;ldquo;.&amp;rdquo; 访问：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;title&amp;gt;{{ .Title }}&amp;lt;/title&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;变量赋值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ $address := &amp;quot;123 Main St.&amp;quot; }}
+{{ $address }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;下面的示例仅适用于 Hugov0.48 或更新的版本&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;在主页上打印“Var is Hugo Home”，在所有其他页面上打印“Var is Hugo Page”：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ $var := &amp;quot;Hugo Page&amp;quot; }}
+{{ if .IsHome }}
+    {{ $var = &amp;quot;Hugo Home&amp;quot; }}
+{{ end }}
+Var is {{ $var }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;函数&#34;&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Hugo Template 的&lt;a href=&#34;https://gohugo.io/functions/&#34; target=&#34;_blank&#34;&gt;自带函数&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;新的函数需要编译后才能使用&lt;/p&gt;
+
+&lt;p&gt;Example 1: Adding Numbers&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ add 1 2 }}
+&amp;lt;!-- prints 3 --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 2: Comparing Numbers&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ lt 1 2 }}
+&amp;lt;!-- prints true (i.e., since 1 is less than 2) --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这两个示例都使用了 &lt;a href=&#34;https://gohugo.io/functions/math/&#34; target=&#34;_blank&#34;&gt;math functions&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;includes&#34;&gt;&lt;strong&gt;Includes&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;模板的位置从 &lt;code&gt;layouts/&lt;/code&gt; 目录开始&lt;/p&gt;
+
+&lt;h2 id=&#34;partial-函数&#34;&gt;&lt;strong&gt;Partial 函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;用来调用 partial templates&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 使用方法
+{{ partial &amp;quot;&amp;lt;PATH&amp;gt;/&amp;lt;PARTIAL&amp;gt;.&amp;lt;EXTENSION&amp;gt;&amp;quot; . }}
+
+// 例如:  调用 layouts/partials/header.html partial
+{{ partial &amp;quot;header.html&amp;quot; . }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;template-函数&#34;&gt;&lt;strong&gt;Template 函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;仅用于调用 &lt;a href=&#34;https://gohugo.io/templates/internal/&#34; target=&#34;_blank&#34;&gt;internal templates&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;可用模板在&lt;a href=&#34;https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;找&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 语法为
+{{template“_internal / &amp;lt;TEMPLATE&amp;gt;.&amp;lt;EXTENSION&amp;gt;”. }}
+
+// 例如： 调用 internal opengraph.html template:
+{{ template &amp;quot;_internal/opengraph.html&amp;quot; . }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;逻辑&#34;&gt;&lt;strong&gt;逻辑&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;// Example 1: Using Context (.) 
+{{ range $array }}
+    {{ . }} &amp;lt;!--  . 表示 $array 中的一个元素 --&amp;gt;
+{{ end }}
+
+// Example 2: 给元素声明一个变量名
+{{ range $elem_val := $array }}
+    {{ $elem_val }}
+{{ end }}
+
+// Example 3: array 和 slice 的索引和变量
+{{ range $elem_index, $elem_val := $array }}
+   {{ $elem_index }} -- {{ $elem_val }}
+{{ end }}
+// Example 4: map 的 key 和 value
+{{ range $elem_key, $elem_val := $map }}
+   {{ $elem_key }} -- {{ $elem_val }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;条件语句&#34;&gt;&lt;strong&gt;条件语句&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;每个语句用 &lt;code&gt;{{ end }}&lt;/code&gt; 结束&lt;/p&gt;
+
+&lt;p&gt;可以用到的关键字：&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;, &lt;code&gt;with&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt;, &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;range&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;作为 false 的值可以是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;false (boolean)&lt;/li&gt;
+&lt;li&gt;0 (integer)&lt;/li&gt;
+&lt;li&gt;任何 zero-length array, slice, map, 或者 string&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;example-1-with&#34;&gt;Example 1: with&lt;/h3&gt;
+
+&lt;p&gt;功能：如果变量存在，则&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 如果变量不存在，或判定为 false 则跳过
+{{ with .Params.title }}
+    &amp;lt;h4&amp;gt;{{ . }}&amp;lt;/h4&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-2-with-else&#34;&gt;Example 2: with .. else&lt;/h3&gt;
+
+&lt;p&gt;如果设置了参数 &lt;code&gt;“description”&lt;/code&gt; 的值，执行&lt;code&gt;.&lt;/code&gt;命令&lt;/p&gt;
+
+&lt;p&gt;否则使用&lt;code&gt;.Summary&lt;/code&gt;的变量值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ with .Param &amp;quot;description&amp;quot; }}
+    {{ . }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-3-if&#34;&gt;Example 3: if&lt;/h3&gt;
+
+&lt;p&gt;一种更长（冗余）的写法是用if，下面给出Example1重写的代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if isset .Params &amp;quot;title&amp;quot; }}
+    &amp;lt;h4&amp;gt;{{ index .Params &amp;quot;title&amp;quot; }}&amp;lt;/h4&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-4-if-else&#34;&gt;Example 4: if .. else&lt;/h3&gt;
+
+&lt;p&gt;Below example is “Example 2” rewritten using if .. else, and using isset function + .Params variable (different from the .Param function) instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if (isset .Params &amp;quot;description&amp;quot;) }}
+    {{ index .Params &amp;quot;description&amp;quot; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 5: if .. else if .. else
+Unlike with, if can contain else if clauses too.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if (isset .Params &amp;quot;description&amp;quot;) }}
+    {{ index .Params &amp;quot;description&amp;quot; }}
+{{ else if (isset .Params &amp;quot;summary&amp;quot;) }}
+    {{ index .Params &amp;quot;summary&amp;quot; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-6-and-or&#34;&gt;Example 6: and &amp;amp; or&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if (and (or (isset .Params &amp;quot;title&amp;quot;) (isset .Params &amp;quot;caption&amp;quot;)) (isset .Params &amp;quot;attr&amp;quot;)) }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;未完待续&lt;/p&gt;
+
+&lt;h2 id=&#34;管道符号-pipes&#34;&gt;&lt;strong&gt;管道符号（Pipes）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;概念：每个管道（pipe）的输出都成为后续管道的输入&lt;/p&gt;
+
+&lt;p&gt;限制：只能使用一个值作为传递参数&lt;/p&gt;
+
+&lt;h3 id=&#34;example-1-shuffle&#34;&gt;Example 1: shuffle&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;//两条语句功能一样
+{{ shuffle (seq 1 5) }}
+{{ (seq 1 5) | shuffle }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-2-index&#34;&gt;Example 2: index&lt;/h3&gt;
+
+&lt;p&gt;以下访问名为“disqus_url”的页面参数并转义HTML。此示例还使用index函数，(内置在 Go Templates中)：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ index .Params &amp;quot;disqus_url&amp;quot; | html }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-3-or-with-isset&#34;&gt;Example 3: or with isset&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if or (or (isset .Params &amp;quot;title&amp;quot;) (isset .Params &amp;quot;caption&amp;quot;)) (isset .Params &amp;quot;attr&amp;quot;) }}
+Stuff Here
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;改写为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if isset .Params &amp;quot;caption&amp;quot; | or isset .Params &amp;quot;title&amp;quot; | or isset .Params &amp;quot;attr&amp;quot; }}
+Stuff Here
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-4-internet-explorer-conditional-comments&#34;&gt;Example 4: Internet Explorer Conditional Comments&lt;/h3&gt;
+
+&lt;p&gt;Go Templates 默认会删除HTML注释&lt;/p&gt;
+
+&lt;p&gt;这有不幸的副作用是删除Internet Explorer条件注释。作为解决办法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ &amp;quot;&amp;lt;!--[if lt IE 9]&amp;gt;&amp;quot; | safeHTML }}
+  &amp;lt;script src=&amp;quot;html5shiv.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+{{ &amp;quot;&amp;lt;![endif]--&amp;gt;&amp;quot; | safeHTML }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者使用反勾号（`）来引用IE条件注释，避免转义内部每个双引号（&amp;rdquo;）的繁琐任务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ `&amp;lt;!--[if lt IE 7]&amp;gt;&amp;lt;html class=&amp;quot;no-js lt-ie9 lt-ie8 lt-ie7&amp;quot;&amp;gt;&amp;lt;![endif]--&amp;gt;` | safeHTML }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;context-aka-the-dot&#34;&gt;&lt;strong&gt;Context (aka “the dot”)&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;在最顶层，这是可用的数据集合
+在迭代循环内，它具有当前值（.在循环内不会引用整个页面的数据）
+如果需要访问页面数据，有以下方法&lt;/p&gt;
+
+&lt;h3 id=&#34;1-定义一个变量&#34;&gt;1.定义一个变量&lt;/h3&gt;
+
+&lt;p&gt;下面展示了如何定义变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//tags-range-with-page-variable.html
+
+{{ $title := .Site.Title }}
+&amp;lt;ul&amp;gt;
+{{ range .Params.tags }}
+    &amp;lt;li&amp;gt;
+        &amp;lt;a href=&amp;quot;/tags/{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
+        - {{ $title }}
+    &amp;lt;/li&amp;gt;
+{{ end }}
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意: 一旦我们进入循环（如 range），值{{.}}已更改。
+由于已经在循环外部定义了一个变量（{{$title}}），并分配了一个值，因此我们也可以从循环内部访问该值。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-使用全局变量参数&#34;&gt;2.使用全局变量参数 $.&lt;/h3&gt;
+
+&lt;p&gt;$.可以从任何地方访问全局上下文。&lt;/p&gt;
+
+&lt;p&gt;使用$从全局上下文中获取.Site.Title：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//range-through-tags-w-global.html
+
+&amp;lt;ul&amp;gt;
+{{ range .Params.tags }}
+  &amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;quot;/tags/{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
+            - {{ $.Site.Title }}
+  &amp;lt;/li&amp;gt;
+{{ end }}
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果重定义&lt;code&gt;$&lt;/code&gt;, &lt;code&gt;{{$：=.Site}}&lt;/code&gt;, 那么内置的&lt;code&gt;$&lt;/code&gt;将停止工作。您可以通过使用&lt;code&gt;{{$: =.}}&lt;/code&gt; 来将&lt;code&gt;$&lt;/code&gt;重置为其默认值。&lt;/p&gt;
+
+&lt;h2 id=&#34;空白-whitespace&#34;&gt;&lt;strong&gt;空白（Whitespace）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;使用连字符（hyphen, &amp;ldquo;-&amp;ldquo;）可以去掉空白（类似 trim），如&lt;code&gt;{{- XXXX -}}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;可以去掉的有：
+- 空格 （space）
+- 当前行的Tab（horizontal tab）
+- 回车（carriage return）
+- 换行符 （newline）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
+  {{ .Title }}
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+  {{- .Title -}}
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输出:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
+  Hello, World!
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;Hello, World!&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;注释-comments&#34;&gt;&lt;strong&gt;注释（Comments）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;h3 id=&#34;go-templates-的注释&#34;&gt;Go Templates 的注释&lt;/h3&gt;
+
+&lt;p&gt;注释块用 &lt;code&gt;{{/*&lt;/code&gt; 和 &lt;code&gt;*/}}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;html-注释&#34;&gt;HTML 注释&lt;/h3&gt;
+
+&lt;p&gt;注释用 &lt;code&gt;&amp;lt;!--xxx --&amp;gt;&lt;/code&gt;
+如果需要构造 html 注释块，可以用管道符导入到safeHTML&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ printf &amp;quot;&amp;lt;!-- Our website is named: %s --&amp;gt;&amp;quot; .Site.Title | safeHTML }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;包含go模板的html注释&#34;&gt;包含Go模板的HTML注释&lt;/h3&gt;
+
+&lt;p&gt;不要用 HTML 注释来注释 GO 模板
+引擎默认先编译 Go 模板代码，如果HTML注释中代码出错，编译就会失败。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- {{ $author := &amp;quot;Emma Goldman&amp;quot; }} was a great woman. --&amp;gt;
+{{ $author }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;hugo-parameters&#34;&gt;&lt;strong&gt;Hugo Parameters&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;网页范围的参数配置，通过特定的内容片断来指定一些特定的渲染（如当前网站不需要用到的）传递到模板中&lt;/p&gt;
+
+&lt;p&gt;You can define any values of any type and use them however you want in your templates, as long as the values are supported by the front matter format specified via metaDataFormat in your configuration file.&lt;/p&gt;
+
+&lt;p&gt;您可以定义任何类型的值，并在模板中根据需要使用它们，只要这些值由配置文件中通过metaDataFormat指定的前置事项格式支持。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用content-page-参数&#34;&gt;使用Content (Page) 参数&lt;/h3&gt;
+
+&lt;p&gt;全局都使用变量 notoc ，但有时我们不需要内容表。此时，我们在文件头设置为true，它将阻止内容表呈现。&lt;/p&gt;
+
+&lt;p&gt;Here is the example front matter (YAML):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+title: Roadmap
+lastmod: 2017-03-05
+date: 2013-11-18
+notoc: true
+---
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对应的模板中要加上处理的代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//layouts/partials/toc.html
+
+{{ if not .Params.notoc }}
+&amp;lt;aside&amp;gt;
+  &amp;lt;header&amp;gt;
+    &amp;lt;a href=&amp;quot;#{{.Title | urlize}}&amp;quot;&amp;gt;
+    &amp;lt;h3&amp;gt;{{.Title}}&amp;lt;/h3&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/header&amp;gt;
+  {{.TableOfContents}}
+&amp;lt;/aside&amp;gt;
+&amp;lt;a href=&amp;quot;#&amp;quot; id=&amp;quot;toc-toggle&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;
+{{ end }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We want the default behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the notoc: field in this page’s front matter is not true.
+我们希望页面的默认行为包括TOC，除非另有指定。此模板检查以确保此页’s前端中的notoc:字段不正确。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用-全局参数-来判断代码块是否执行&#34;&gt;使用 全局参数 来判断代码块是否执行&lt;/h3&gt;
+
+&lt;p&gt;这些参数在模板中是全局可用的。&lt;/p&gt;
+
+&lt;p&gt;如：版权copyrighthtml这个内容，需要在全局使用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[params]
+  copyrighthtml = &amp;quot;Copyright &amp;amp;#xA9; 2017 John Doe. All Rights Reserved.&amp;quot;
+  sidebarrecentlimit = 5
+  twitteruser = &amp;quot;spf13&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后，在页脚中声明一个&lt;code&gt;&amp;lt;footer&amp;gt;&lt;/code&gt;，只有当提供了copyrightml参数时才会呈现它。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if .Site.Params.copyrighthtml }}
+    &amp;lt;footer&amp;gt;
+        &amp;lt;div class=&amp;quot;text-center&amp;quot;&amp;gt;{{.Site.Params.CopyrightHTML | safeHTML}}&amp;lt;/div&amp;gt;
+    &amp;lt;/footer&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者用 &lt;code&gt;with&lt;/code&gt; 来替换 &lt;code&gt;if&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// layouts/partials/twitter.html
+
+{{ with .Site.Params.twitteruser }}
+    &amp;lt;div&amp;gt;
+        &amp;lt;a href=&amp;quot;https://twitter.com/{{.}}&amp;quot; rel=&amp;quot;author&amp;quot;&amp;gt;
+        &amp;lt;img src=&amp;quot;/images/twitter.png&amp;quot; width=&amp;quot;48&amp;quot; height=&amp;quot;48&amp;quot; title=&amp;quot;Twitter: {{.}}&amp;quot; alt=&amp;quot;Twitter&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;layout 中可以使用“magic constants”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;nav&amp;gt;
+  &amp;lt;h1&amp;gt;Recent Posts&amp;lt;/h1&amp;gt;
+  &amp;lt;ul&amp;gt;
+  {{- range first .Site.Params.SidebarRecentLimit .Site.Pages -}}
+      &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;{{.RelPermalink}}&amp;quot;&amp;gt;{{.Title}}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+  {{- end -}}
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/nav&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-show-only-upcoming-events-只显示即将发生的事件&#34;&gt;Example: Show Only Upcoming Events 只显示即将发生的事件&lt;/h3&gt;
+
+&lt;p&gt;Go allows you to do more than what’s shown here. Using Hugo’s &lt;code&gt;where function&lt;/code&gt; and Go built-ins, we can list only the items from content/events/ whose date (set in a content file’s front matter) is in the future. The following is an example partial template:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;layouts/partials/upcoming-events.html
+
+&amp;lt;h4&amp;gt;Upcoming Events&amp;lt;/h4&amp;gt;
+&amp;lt;ul class=&amp;quot;upcoming-events&amp;quot;&amp;gt;
+{{ range where .Pages.ByDate &amp;quot;Section&amp;quot; &amp;quot;events&amp;quot; }}
+    {{ if ge .Date.Unix now.Unix }}
+        &amp;lt;li&amp;gt;
+        &amp;lt;!-- add span for event type --&amp;gt;
+          &amp;lt;span&amp;gt;{{ .Type | title }} —&amp;lt;/span&amp;gt;
+          {{ .Title }} on
+        &amp;lt;!-- add span for event date --&amp;gt;
+          &amp;lt;span&amp;gt;{{ .Date.Format &amp;quot;2 January at 3:04pm&amp;quot; }}&amp;lt;/span&amp;gt;
+          at {{ .Params.place }}
+        &amp;lt;/li&amp;gt;
+    {{ end }}
+{{ end }}
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://gohugo.io/templates/introduction/#basic-syntax&#34; target=&#34;_blank&#34;&gt;https://gohugo.io/templates/introduction/#basic-syntax&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Hugo 02 | Hugo 模板介绍</title>
       <link>panfeng0119.github.io/post/hugo02/</link>
       <pubDate>Fri, 28 Sep 2018 23:59:00 +0800</pubDate>
@@ -263,215 +743,228 @@ Stuff Here
 
 &lt;h3 id=&#34;example-4-internet-explorer-conditional-comments&#34;&gt;Example 4: Internet Explorer Conditional Comments&lt;/h3&gt;
 
-&lt;p&gt;By default, Go Templates remove HTML comments from output. This has the unfortunate side effect of removing Internet Explorer conditional comments. As a workaround, use something like this:&lt;/p&gt;
+&lt;p&gt;Go Templates 默认会删除HTML注释&lt;/p&gt;
 
-&lt;p&gt;{{ &amp;ldquo;&lt;!--[if lt IE 9]&gt;&#34; | safeHTML }}
-  &lt;script src=&#34;html5shiv.js&#34;&gt;&lt;/script&gt;
-{{ &#34;&lt;![endif]--&gt;&amp;rdquo; | safeHTML }}
-Alternatively, you can use the backtick (`) to quote the IE conditional comments, avoiding the tedious task of escaping every double quotes (&amp;ldquo;) inside, as demonstrated in the examples in the Go text/template documentation:&lt;/p&gt;
+&lt;p&gt;这有不幸的副作用是删除Internet Explorer条件注释。作为解决办法：&lt;/p&gt;
 
-&lt;h2 id=&#34;if-lt-ie-7-html-class-no-js-lt-ie9-lt-ie8-lt-ie7-endif-safehtml&#34;&gt;{{ &lt;code&gt;&amp;lt;!--[if lt IE 7]&amp;gt;&amp;lt;html class=&amp;quot;no-js lt-ie9 lt-ie8 lt-ie7&amp;quot;&amp;gt;&amp;lt;![endif]--&amp;gt;&lt;/code&gt; | safeHTML }}&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;{{ &amp;quot;&amp;lt;!--[if lt IE 9]&amp;gt;&amp;quot; | safeHTML }}
+  &amp;lt;script src=&amp;quot;html5shiv.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+{{ &amp;quot;&amp;lt;![endif]--&amp;gt;&amp;quot; | safeHTML }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者使用反勾号（`）来引用IE条件注释，避免转义内部每个双引号（&amp;rdquo;）的繁琐任务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ `&amp;lt;!--[if lt IE 7]&amp;gt;&amp;lt;html class=&amp;quot;no-js lt-ie9 lt-ie8 lt-ie7&amp;quot;&amp;gt;&amp;lt;![endif]--&amp;gt;` | safeHTML }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
 
 &lt;h2 id=&#34;context-aka-the-dot&#34;&gt;&lt;strong&gt;Context (aka “the dot”)&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;The most easily overlooked concept to understand about Go Templates is that {{ . }} always refers to the current context.&lt;/p&gt;
+&lt;p&gt;在最顶层，这是可用的数据集合
+在迭代循环内，它具有当前值（.在循环内不会引用整个页面的数据）
+如果需要访问页面数据，有以下方法&lt;/p&gt;
 
-&lt;p&gt;In the top level of your template, this will be the data set made available to it.
-Inside of an iteration, however, it will have the value of the current item in the loop; i.e., {{ . }} will no longer refer to the data available to the entire page.
-If you need to access page-level data (e.g., page params set in front matter) from within the loop, you will likely want to do one of the following:&lt;/p&gt;
+&lt;h3 id=&#34;1-定义一个变量&#34;&gt;1.定义一个变量&lt;/h3&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Define a Variable Independent of Context
-The following shows how to define a variable independent of the context.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;下面展示了如何定义变量&lt;/p&gt;
 
-&lt;p&gt;tags-range-with-page-variable.html&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//tags-range-with-page-variable.html
 
-&lt;p&gt;{{ $title := .Site.Title }}
-&lt;ul&gt;
+{{ $title := .Site.Title }}
+&amp;lt;ul&amp;gt;
 {{ range .Params.tags }}
-    &lt;li&gt;
-        &lt;a href=&#34;panfeng0119.github.io/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    &amp;lt;li&amp;gt;
+        &amp;lt;a href=&amp;quot;/tags/{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
         - {{ $title }}
-    &lt;/li&gt;
+    &amp;lt;/li&amp;gt;
 {{ end }}
-&lt;/ul&gt;
-Notice how once we have entered the loop (i.e. range), the value of {{ . }} has changed. We have defined a variable outside of the loop ({{$title}}) that we’ve assigned a value so that we have access to the value from within the loop as well.&lt;/p&gt;
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Use $. to Access the Global Context
-$ has special significance in your templates. $ is set to the starting value of . (“the dot”) by default. This is a documented feature of Go text/template. This means you have access to the global context from anywhere. Here is an equivalent example of the preceding code block but now using $ to grab .Site.Title from the global context:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;注意: 一旦我们进入循环（如 range），值{{.}}已更改。
+由于已经在循环外部定义了一个变量（{{$title}}），并分配了一个值，因此我们也可以从循环内部访问该值。&lt;/p&gt;
 
-&lt;p&gt;range-through-tags-w-global.html&lt;/p&gt;
+&lt;h3 id=&#34;2-使用全局变量参数&#34;&gt;2.使用全局变量参数 $.&lt;/h3&gt;
 
-&lt;ul&gt;
+&lt;p&gt;$.可以从任何地方访问全局上下文。&lt;/p&gt;
+
+&lt;p&gt;使用$从全局上下文中获取.Site.Title：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//range-through-tags-w-global.html
+
+&amp;lt;ul&amp;gt;
 {{ range .Params.tags }}
-  &lt;li&gt;
-    &lt;a href=&#34;panfeng0119.github.io/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+  &amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;quot;/tags/{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
             - {{ $.Site.Title }}
-  &lt;/li&gt;
+  &amp;lt;/li&amp;gt;
 {{ end }}
-&lt;/ul&gt;
-The built-in magic of $ would cease to work if someone were to mischievously redefine the special character; e.g. {{ $ := .Site }}. Don’t do it. You may, of course, recover from this mischief by using {{ $ := . }} in a global context to reset $ to its default value.
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-## **Whitespace**
+&lt;p&gt;如果重定义&lt;code&gt;$&lt;/code&gt;, &lt;code&gt;{{$：=.Site}}&lt;/code&gt;, 那么内置的&lt;code&gt;$&lt;/code&gt;将停止工作。您可以通过使用&lt;code&gt;{{$: =.}}&lt;/code&gt; 来将&lt;code&gt;$&lt;/code&gt;重置为其默认值。&lt;/p&gt;
 
-Go 1.6 includes the ability to trim the whitespace from either side of a Go tag by including a hyphen (-) and space immediately beside the corresponding {{ or }} delimiter.
+&lt;h2 id=&#34;空白-whitespace&#34;&gt;&lt;strong&gt;空白（Whitespace）&lt;/strong&gt;&lt;/h2&gt;
 
-For instance, the following Go Template will include the newlines and horizontal tab in its HTML output:
+&lt;p&gt;使用连字符（hyphen, &amp;ldquo;-&amp;ldquo;）可以去掉空白（类似 trim），如&lt;code&gt;{{- XXXX -}}&lt;/code&gt;&lt;/p&gt;
 
-&lt;div&gt;
+&lt;p&gt;可以去掉的有：
+- 空格 （space）
+- 当前行的Tab（horizontal tab）
+- 回车（carriage return）
+- 换行符 （newline）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
   {{ .Title }}
-&lt;/div&gt;
-Which will output:
-
-&lt;div&gt;
-  Hello, World!
-&lt;/div&gt;
-Leveraging the - in the following example will remove the extra white space surrounding the .Title variable and remove the newline:
-
-&lt;div&gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
   {{- .Title -}}
-&lt;/div&gt;
-Which then outputs:
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;div&gt;Hello, World!&lt;/div&gt;
-Go considers the following characters whitespace:
+&lt;p&gt;输出:&lt;/p&gt;
 
-space
-horizontal tab
-carriage return
-newline
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
+  Hello, World!
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;Hello, World!&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-## **Comments**
-In order to keep your templates organized and share information throughout your team, you may want to add comments to your templates. There are two ways to do that with Hugo.
+&lt;h2 id=&#34;注释-comments&#34;&gt;&lt;strong&gt;注释（Comments）&lt;/strong&gt;&lt;/h2&gt;
 
-Go Templates comments 
-Go Templates support {{/* and */}} to open and close a comment block. Nothing within that block will be rendered.
+&lt;h3 id=&#34;go-templates-的注释&#34;&gt;Go Templates 的注释&lt;/h3&gt;
 
-For example:
+&lt;p&gt;注释块用 &lt;code&gt;{{/*&lt;/code&gt; 和 &lt;code&gt;*/}}&lt;/code&gt;&lt;/p&gt;
 
-Bonsoir, {{/* {{ add 0 + 2 }} */}}Eliott.
-Will render Bonsoir, Eliott., and not care about the syntax error (add 0 + 2) in the comment block.
+&lt;h3 id=&#34;html-注释&#34;&gt;HTML 注释&lt;/h3&gt;
 
-HTML comments 
-If you need to produce HTML comments from your templates, take a look at the Internet Explorer conditional comments example. If you need variables to construct such HTML comments, just pipe printf to safeHTML. For example:
+&lt;p&gt;注释用 &lt;code&gt;&amp;lt;!--xxx --&amp;gt;&lt;/code&gt;
+如果需要构造 html 注释块，可以用管道符导入到safeHTML&lt;/p&gt;
 
-{{ printf &#34;&lt;!-- Our website is named: %s --&gt;&#34; .Site.Title | safeHTML }}
-HTML comments containing Go Templates 
-HTML comments are by default stripped, but their content is still evaluated. That means that although the HTML comment will never render any content to the final HTML pages, code contained within the comment may fail the build process.
+&lt;pre&gt;&lt;code&gt;{{ printf &amp;quot;&amp;lt;!-- Our website is named: %s --&amp;gt;&amp;quot; .Site.Title | safeHTML }}
+&lt;/code&gt;&lt;/pre&gt;
 
-Do not try to comment out Go Template code using HTML comments.
+&lt;h3 id=&#34;包含go模板的html注释&#34;&gt;包含Go模板的HTML注释&lt;/h3&gt;
 
-&lt;!-- {{ $author := &#34;Emma Goldman&#34; }} was a great woman. --&gt;
+&lt;p&gt;不要用 HTML 注释来注释 GO 模板
+引擎默认先编译 Go 模板代码，如果HTML注释中代码出错，编译就会失败。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- {{ $author := &amp;quot;Emma Goldman&amp;quot; }} was a great woman. --&amp;gt;
 {{ $author }}
-The templating engine will strip the content within the HTML comment, but will first evaluate any Go Template code if present within. So the above example will render Emma Goldman, as the $author variable got evaluated in the HTML comment. But the build would have failed if that code in the HTML comment had an error.
+&lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;hugo-parameters&#34;&gt;&lt;strong&gt;Hugo Parameters&lt;/strong&gt;&lt;/h2&gt;
 
+&lt;p&gt;网页范围的参数配置，通过特定的内容片断来指定一些特定的渲染（如当前网站不需要用到的）传递到模板中&lt;/p&gt;
 
+&lt;p&gt;You can define any values of any type and use them however you want in your templates, as long as the values are supported by the front matter format specified via metaDataFormat in your configuration file.&lt;/p&gt;
 
+&lt;p&gt;您可以定义任何类型的值，并在模板中根据需要使用它们，只要这些值由配置文件中通过metaDataFormat指定的前置事项格式支持。&lt;/p&gt;
 
-## **Hugo Parameters**
+&lt;h3 id=&#34;使用content-page-参数&#34;&gt;使用Content (Page) 参数&lt;/h3&gt;
 
+&lt;p&gt;全局都使用变量 notoc ，但有时我们不需要内容表。此时，我们在文件头设置为true，它将阻止内容表呈现。&lt;/p&gt;
 
-Hugo provides the option of passing values to your template layer through your site configuration (i.e. for site-wide values) or through the metadata of each specific piece of content (i.e. the front matter). You can define any values of any type and use them however you want in your templates, as long as the values are supported by the front matter format specified via metaDataFormat in your configuration file.
+&lt;p&gt;Here is the example front matter (YAML):&lt;/p&gt;
 
-Use Content (Page) Parameters 
-You can provide variables to be used by templates in individual content’s front matter.
-
-An example of this is used in the Hugo docs. Most of the pages benefit from having the table of contents provided, but sometimes the table of contents doesn’t make a lot of sense. We’ve defined a notoc variable in our front matter that will prevent a table of contents from rendering when specifically set to true.
-
-Here is the example front matter (YAML):
-
----
+&lt;pre&gt;&lt;code&gt;---
 title: Roadmap
 lastmod: 2017-03-05
 date: 2013-11-18
 notoc: true
 ---
-Here is an example of corresponding code that could be used inside a toc.html partial template:
+&lt;/code&gt;&lt;/pre&gt;
 
-layouts/partials/toc.html
+&lt;p&gt;对应的模板中要加上处理的代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//layouts/partials/toc.html
 
 {{ if not .Params.notoc }}
-&lt;aside&gt;
-  &lt;header&gt;
-    &lt;a href=&#34;#{{.Title | urlize}}&#34;&gt;
-    &lt;h3&gt;{{.Title}}&lt;/h3&gt;
-    &lt;/a&gt;
-  &lt;/header&gt;
+&amp;lt;aside&amp;gt;
+  &amp;lt;header&amp;gt;
+    &amp;lt;a href=&amp;quot;#{{.Title | urlize}}&amp;quot;&amp;gt;
+    &amp;lt;h3&amp;gt;{{.Title}}&amp;lt;/h3&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/header&amp;gt;
   {{.TableOfContents}}
-&lt;/aside&gt;
-&lt;a href=&#34;#&#34; id=&#34;toc-toggle&#34;&gt;&lt;/a&gt;
+&amp;lt;/aside&amp;gt;
+&amp;lt;a href=&amp;quot;#&amp;quot; id=&amp;quot;toc-toggle&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;
 {{ end }}
-We want the default behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the notoc: field in this page’s front matter is not true.
 
+&lt;/code&gt;&lt;/pre&gt;
 
-Use Site Configuration Parameters
-You can arbitrarily define as many site-level parameters as you want in your site’s configuration file. These parameters are globally available in your templates.
+&lt;p&gt;We want the default behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the notoc: field in this page’s front matter is not true.
+我们希望页面的默认行为包括TOC，除非另有指定。此模板检查以确保此页’s前端中的notoc:字段不正确。&lt;/p&gt;
 
-For instance, you might declare the following:
+&lt;h3 id=&#34;使用-全局参数-来判断代码块是否执行&#34;&gt;使用 全局参数 来判断代码块是否执行&lt;/h3&gt;
 
-config.
-yaml
-  toml
-  json
- 
-[params]
-  copyrighthtml = &#34;Copyright &amp;#xA9; 2017 John Doe. All Rights Reserved.&#34;
+&lt;p&gt;这些参数在模板中是全局可用的。&lt;/p&gt;
+
+&lt;p&gt;如：版权copyrighthtml这个内容，需要在全局使用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[params]
+  copyrighthtml = &amp;quot;Copyright &amp;amp;#xA9; 2017 John Doe. All Rights Reserved.&amp;quot;
   sidebarrecentlimit = 5
-  twitteruser = &#34;spf13&#34;
+  twitteruser = &amp;quot;spf13&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
-Within a footer layout, you might then declare a &lt;footer&gt; that is only rendered if the copyrighthtml parameter is provided. If it is provided, you will then need to declare the string is safe to use via the safeHTML function so that the HTML entity is not escaped again. This would let you easily update just your top-level config file each January 1st, instead of hunting through your templates.
+&lt;p&gt;然后，在页脚中声明一个&lt;code&gt;&amp;lt;footer&amp;gt;&lt;/code&gt;，只有当提供了copyrightml参数时才会呈现它。&lt;/p&gt;
 
-{{ if .Site.Params.copyrighthtml }}
-    &lt;footer&gt;
-        &lt;div class=&#34;text-center&#34;&gt;{{.Site.Params.CopyrightHTML | safeHTML}}&lt;/div&gt;
-    &lt;/footer&gt;
+&lt;pre&gt;&lt;code&gt;{{ if .Site.Params.copyrighthtml }}
+    &amp;lt;footer&amp;gt;
+        &amp;lt;div class=&amp;quot;text-center&amp;quot;&amp;gt;{{.Site.Params.CopyrightHTML | safeHTML}}&amp;lt;/div&amp;gt;
+    &amp;lt;/footer&amp;gt;
 {{ end }}
-An alternative way of writing the “if” and then referencing the same value is to use with instead. with rebinds the context (.) within its scope and skips the block if the variable is absent:
+&lt;/code&gt;&lt;/pre&gt;
 
-layouts/partials/twitter.html
+&lt;p&gt;或者用 &lt;code&gt;with&lt;/code&gt; 来替换 &lt;code&gt;if&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// layouts/partials/twitter.html
 
 {{ with .Site.Params.twitteruser }}
-    &lt;div&gt;
-        &lt;a href=&#34;https://twitter.com/{{.}}&#34; rel=&#34;author&#34;&gt;
-        &lt;img src=&#34;panfeng0119.github.io/images/twitter.png&#34; width=&#34;48&#34; height=&#34;48&#34; title=&#34;Twitter: {{.}}&#34; alt=&#34;Twitter&#34;&gt;&lt;/a&gt;
-    &lt;/div&gt;
+    &amp;lt;div&amp;gt;
+        &amp;lt;a href=&amp;quot;https://twitter.com/{{.}}&amp;quot; rel=&amp;quot;author&amp;quot;&amp;gt;
+        &amp;lt;img src=&amp;quot;/images/twitter.png&amp;quot; width=&amp;quot;48&amp;quot; height=&amp;quot;48&amp;quot; title=&amp;quot;Twitter: {{.}}&amp;quot; alt=&amp;quot;Twitter&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
 {{ end }}
-Finally, you can pull “magic constants” out of your layouts as well. The following uses the first function, as well as the .RelPermalink page variable and the .Site.Pages site variable.
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;nav&gt;
-  &lt;h1&gt;Recent Posts&lt;/h1&gt;
-  &lt;ul&gt;
+&lt;p&gt;layout 中可以使用“magic constants”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;nav&amp;gt;
+  &amp;lt;h1&amp;gt;Recent Posts&amp;lt;/h1&amp;gt;
+  &amp;lt;ul&amp;gt;
   {{- range first .Site.Params.SidebarRecentLimit .Site.Pages -}}
-      &lt;li&gt;&lt;a href=&#34;{{.RelPermalink}}&#34;&gt;{{.Title}}&lt;/a&gt;&lt;/li&gt;
+      &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;{{.RelPermalink}}&amp;quot;&amp;gt;{{.Title}}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
   {{- end -}}
-  &lt;/ul&gt;
-&lt;/nav&gt;
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/nav&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
+&lt;h3 id=&#34;example-show-only-upcoming-events-只显示即将发生的事件&#34;&gt;Example: Show Only Upcoming Events 只显示即将发生的事件&lt;/h3&gt;
 
-Example: Show Only Upcoming Events 
-Go allows you to do more than what’s shown here. Using Hugo’s where function and Go built-ins, we can list only the items from content/events/ whose date (set in a content file’s front matter) is in the future. The following is an example partial template:
+&lt;p&gt;Go allows you to do more than what’s shown here. Using Hugo’s &lt;code&gt;where function&lt;/code&gt; and Go built-ins, we can list only the items from content/events/ whose date (set in a content file’s front matter) is in the future. The following is an example partial template:&lt;/p&gt;
 
-layouts/partials/upcoming-events.html
+&lt;pre&gt;&lt;code&gt;layouts/partials/upcoming-events.html
 
-&lt;h4&gt;Upcoming Events&lt;/h4&gt;
-&lt;ul class=&#34;upcoming-events&#34;&gt;
-{{ range where .Pages.ByDate &#34;Section&#34; &#34;events&#34; }}
+&amp;lt;h4&amp;gt;Upcoming Events&amp;lt;/h4&amp;gt;
+&amp;lt;ul class=&amp;quot;upcoming-events&amp;quot;&amp;gt;
+{{ range where .Pages.ByDate &amp;quot;Section&amp;quot; &amp;quot;events&amp;quot; }}
     {{ if ge .Date.Unix now.Unix }}
-        &lt;li&gt;
-        &lt;!-- add span for event type --&gt;
-          &lt;span&gt;{{ .Type | title }} —&lt;/span&gt;
+        &amp;lt;li&amp;gt;
+        &amp;lt;!-- add span for event type --&amp;gt;
+          &amp;lt;span&amp;gt;{{ .Type | title }} —&amp;lt;/span&amp;gt;
           {{ .Title }} on
-        &lt;!-- add span for event date --&gt;
-          &lt;span&gt;{{ .Date.Format &#34;2 January at 3:04pm&#34; }}&lt;/span&gt;
+        &amp;lt;!-- add span for event date --&amp;gt;
+          &amp;lt;span&amp;gt;{{ .Date.Format &amp;quot;2 January at 3:04pm&amp;quot; }}&amp;lt;/span&amp;gt;
           at {{ .Params.place }}
-        &lt;/li&gt;
+        &amp;lt;/li&amp;gt;
     {{ end }}
 {{ end }}
-&lt;/ul&gt;
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://gohugo.io/templates/introduction/#basic-syntax&#34; target=&#34;_blank&#34;&gt;https://gohugo.io/templates/introduction/#basic-syntax&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 </description>
@@ -821,7 +1314,7 @@ $$\mathbf{S}^{-1}=\alpha \mathbf{I}+\beta\sum&lt;/em&gt;{n=1}^N\phi(x_n)\phi(x_n
 &lt;p&gt;1. 我们需要一个接口&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;type Shape interface {
-    Draw()
+	Draw()
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -832,7 +1325,7 @@ type Rectangle struct {
 }
 
 func (this Rectangle) Draw() {
-    fmt.Println(&amp;quot;Inside Rectangle::draw() method.&amp;quot;)
+	fmt.Println(&amp;quot;Inside Rectangle::draw() method.&amp;quot;)
 }
 
 // 实例2
@@ -840,7 +1333,7 @@ type Square struct {
 }
 
 func (this Square) Draw() {
-    fmt.Println(&amp;quot;Inside Square ::draw() method.&amp;quot;)
+	fmt.Println(&amp;quot;Inside Square ::draw() method.&amp;quot;)
 }
 
 // 实例3
@@ -848,7 +1341,7 @@ type Circle struct {
 }
 
 func (this Circle) Draw() {
-    fmt.Println(&amp;quot;Inside Circle  ::draw() method.&amp;quot;)
+	fmt.Println(&amp;quot;Inside Circle  ::draw() method.&amp;quot;)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -860,27 +1353,27 @@ func (this Circle) Draw() {
 //使用 getShape 方法获取形状类型的对象
 func (this ShapeFactory) getShape(shapeType string) Shape {
 
-    if shapeType == &amp;quot;&amp;quot; {
-        return nil
-    }
-    if shapeType == &amp;quot;CIRCLE&amp;quot; {
-        return Circle{}
-    } else if shapeType == &amp;quot;RECTANGLE&amp;quot; {
-        return Rectangle{}
-    } else if shapeType == &amp;quot;SQUARE&amp;quot; {
-        return Square{}
-    }
-    return nil
+	if shapeType == &amp;quot;&amp;quot; {
+		return nil
+	}
+	if shapeType == &amp;quot;CIRCLE&amp;quot; {
+		return Circle{}
+	} else if shapeType == &amp;quot;RECTANGLE&amp;quot; {
+		return Rectangle{}
+	} else if shapeType == &amp;quot;SQUARE&amp;quot; {
+		return Square{}
+	}
+	return nil
 }
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;4. 使用这个工厂&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;func main() {
-    factory := ShapeFactory{}
-    factory.getShape(&amp;quot;CIRCLE&amp;quot;).Draw()
-    factory.getShape(&amp;quot;RECTANGLE&amp;quot;).Draw()
-    factory.getShape(&amp;quot;SQUARE&amp;quot;).Draw()
+	factory := ShapeFactory{}
+	factory.getShape(&amp;quot;CIRCLE&amp;quot;).Draw()
+	factory.getShape(&amp;quot;RECTANGLE&amp;quot;).Draw()
+	factory.getShape(&amp;quot;SQUARE&amp;quot;).Draw()
 }
 &lt;/code&gt;&lt;/pre&gt;
 

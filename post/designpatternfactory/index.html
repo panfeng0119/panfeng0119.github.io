@@ -389,7 +389,7 @@
 <p>1. 我们需要一个接口</p>
 
 <pre><code>type Shape interface {
-    Draw()
+	Draw()
 }
 </code></pre>
 
@@ -400,7 +400,7 @@ type Rectangle struct {
 }
 
 func (this Rectangle) Draw() {
-    fmt.Println(&quot;Inside Rectangle::draw() method.&quot;)
+	fmt.Println(&quot;Inside Rectangle::draw() method.&quot;)
 }
 
 // 实例2
@@ -408,7 +408,7 @@ type Square struct {
 }
 
 func (this Square) Draw() {
-    fmt.Println(&quot;Inside Square ::draw() method.&quot;)
+	fmt.Println(&quot;Inside Square ::draw() method.&quot;)
 }
 
 // 实例3
@@ -416,7 +416,7 @@ type Circle struct {
 }
 
 func (this Circle) Draw() {
-    fmt.Println(&quot;Inside Circle  ::draw() method.&quot;)
+	fmt.Println(&quot;Inside Circle  ::draw() method.&quot;)
 }
 </code></pre>
 
@@ -428,27 +428,27 @@ func (this Circle) Draw() {
 //使用 getShape 方法获取形状类型的对象
 func (this ShapeFactory) getShape(shapeType string) Shape {
 
-    if shapeType == &quot;&quot; {
-        return nil
-    }
-    if shapeType == &quot;CIRCLE&quot; {
-        return Circle{}
-    } else if shapeType == &quot;RECTANGLE&quot; {
-        return Rectangle{}
-    } else if shapeType == &quot;SQUARE&quot; {
-        return Square{}
-    }
-    return nil
+	if shapeType == &quot;&quot; {
+		return nil
+	}
+	if shapeType == &quot;CIRCLE&quot; {
+		return Circle{}
+	} else if shapeType == &quot;RECTANGLE&quot; {
+		return Rectangle{}
+	} else if shapeType == &quot;SQUARE&quot; {
+		return Square{}
+	}
+	return nil
 }
 </code></pre>
 
 <p>4. 使用这个工厂</p>
 
 <pre><code>func main() {
-    factory := ShapeFactory{}
-    factory.getShape(&quot;CIRCLE&quot;).Draw()
-    factory.getShape(&quot;RECTANGLE&quot;).Draw()
-    factory.getShape(&quot;SQUARE&quot;).Draw()
+	factory := ShapeFactory{}
+	factory.getShape(&quot;CIRCLE&quot;).Draw()
+	factory.getShape(&quot;RECTANGLE&quot;).Draw()
+	factory.getShape(&quot;SQUARE&quot;).Draw()
 }
 </code></pre>
 
