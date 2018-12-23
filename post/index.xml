@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Pan Feng</title>
+    <link>panfeng0119.github.io/post/</link>
+    <description>Recent content in Posts on Pan Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="panfeng0119.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo 02 | Hugo 模板介绍</title>
+      <link>panfeng0119.github.io/post/hugo02/</link>
+      <pubDate>Fri, 28 Sep 2018 23:59:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugo02/</guid>
+      <description>Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 // 可以是当前作用域中已存在的变量 {{ .Title</description>
+    </item>
+    
+    <item>
+      <title>Hugo 01 | Documentation</title>
+      <link>panfeng0119.github.io/post/hugo01/</link>
+      <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugo01/</guid>
+      <description>Introduction to Hugo Templating Hugo 使用Go语言的 html/template and text/template 库作为模板. Content Organization Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。 Hugo&amp;rsquo;s Lookup Order Hugo searches for the layout to use for a given page in a well defined</description>
+    </item>
+    
+    <item>
+      <title>概率论</title>
+      <link>panfeng0119.github.io/post/prob/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/prob/</guid>
+      <description>原文连接 1.2 概率论回顾 概率，又称或然率、机会率、机率（几率）或可能性，是概率论的基本概念。概率是对随机事件发生的可能性的度量，一般以一个在0到</description>
+    </item>
+    
+    <item>
+      <title>设计模式：工厂模式（Factory Pattern）</title>
+      <link>panfeng0119.github.io/post/designpatternfactory/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/designpatternfactory/</guid>
+      <description>工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工</description>
+    </item>
+    
+    <item>
+      <title>Hugo &#43; GitHub 部署个人站点</title>
+      <link>panfeng0119.github.io/post/hugohost_on_github/</link>
+      <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugohost_on_github/</guid>
+      <description>完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 刷题笔记</title>
+      <link>panfeng0119.github.io/post/leetcode1-100/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/leetcode1-100/</guid>
+      <description>CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1]. 思</description>
+    </item>
+    
+    <item>
+      <title>Page Resources</title>
+      <link>panfeng0119.github.io/post/pagesource/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/pagesource/</guid>
+      <description>CONTENT MANAGEMENT Page Resources ResourceType The main type of the resource. For example, a file of MIME type image/jpg has for ResourceType image. Name Default value is the filename (relative to the owning page). Can be set in front matter. Title Default blank. Can be set in front matter. Permalink The absolute URL to the resource. Resources of type page will have no value. RelPermalink The relative URL to the</description>
+    </item>
+    
+    <item>
+      <title>Math Sample</title>
+      <link>panfeng0119.github.io/post/2017-03-05-math-sample/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>panfeng0119.github.io/post/2017-03-05-math-sample/</guid>
+      <description>&lt;p&gt;KaTeX can be used to generate complex math formulas server-side.&lt;/p&gt;
+
+&lt;p&gt;$$
+\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
+$$&lt;/p&gt;
+
+&lt;p&gt;Additional details can be found on &lt;a href=&#34;https://github.com/Khan/KaTeX&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; or on the &lt;a href=&#34;http://tiddlywiki.com/plugins/tiddlywiki/katex/&#34; target=&#34;_blank&#34;&gt;Wiki&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

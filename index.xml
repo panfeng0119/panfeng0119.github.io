@@ -1,0 +1,1437 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pan Feng on Pan Feng</title>
+    <link>panfeng0119.github.io/</link>
+    <description>Recent content in Pan Feng on Pan Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0800</lastBuildDate>
+    <atom:link href="panfeng0119.github.io/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo 02 | Hugo 模板介绍</title>
+      <link>panfeng0119.github.io/post/hugo02/</link>
+      <pubDate>Fri, 28 Sep 2018 23:59:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugo02/</guid>
+      <description>
+
+&lt;p&gt;Hugo 使用Go的 html/template 和 text/template. 详情请看&lt;a href=&#34;http://golang.org/pkg/html/template/&#34; target=&#34;_blank&#34;&gt;Go docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;基本语法-basic-syntax&#34;&gt;&lt;strong&gt;基本语法 Basic Syntax&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;模板主要由 &lt;code&gt;variables&lt;/code&gt; 和 &lt;code&gt;functions&lt;/code&gt;组成，在 &lt;code&gt;{{ }}&lt;/code&gt; 内中使用&lt;/p&gt;
+
+&lt;p&gt;访问变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 可以是当前作用域中已存在的变量
+{{ .Title }}
+
+// 或者自定义变量
+{{ $address }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;函数参数用空格分割&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ FUNCTION ARG1 ARG2 .. }}
+
+// 例如
+{{ add 1 2 }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;方法调用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 方法和字段用&amp;quot;.&amp;quot;来访问
+{{ .Params.bar }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用括号组织&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if or (isset .Params &amp;quot;alt&amp;quot;) (isset .Params &amp;quot;caption&amp;quot;) }} Caption {{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;变量&#34;&gt;&lt;strong&gt;变量&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;每个Go Template都会获取一个data对象。而在Hugo中，每个Template都传递一个Page&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.Title&lt;/code&gt; 就是 &lt;a href=&#34;https://gohugo.io/variables/page/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;Page&lt;/code&gt;&lt;/a&gt; 变量中可访问的元素之一，通过 &amp;ldquo;.&amp;rdquo; 访问：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;title&amp;gt;{{ .Title }}&amp;lt;/title&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;变量赋值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ $address := &amp;quot;123 Main St.&amp;quot; }}
+{{ $address }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;下面的示例仅适用于 Hugov0.48 或更新的版本&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;在主页上打印“Var is Hugo Home”，在所有其他页面上打印“Var is Hugo Page”：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ $var := &amp;quot;Hugo Page&amp;quot; }}
+{{ if .IsHome }}
+    {{ $var = &amp;quot;Hugo Home&amp;quot; }}
+{{ end }}
+Var is {{ $var }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;函数&#34;&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Hugo Template 的&lt;a href=&#34;https://gohugo.io/functions/&#34; target=&#34;_blank&#34;&gt;自带函数&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;新的函数需要编译后才能使用&lt;/p&gt;
+
+&lt;p&gt;Example 1: Adding Numbers&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ add 1 2 }}
+&amp;lt;!-- prints 3 --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 2: Comparing Numbers&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ lt 1 2 }}
+&amp;lt;!-- prints true (i.e., since 1 is less than 2) --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这两个示例都使用了 &lt;a href=&#34;https://gohugo.io/functions/math/&#34; target=&#34;_blank&#34;&gt;math functions&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;includes&#34;&gt;&lt;strong&gt;Includes&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;模板的位置从 &lt;code&gt;layouts/&lt;/code&gt; 目录开始&lt;/p&gt;
+
+&lt;h2 id=&#34;partial-函数&#34;&gt;&lt;strong&gt;Partial 函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;用来调用 partial templates&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 使用方法
+{{ partial &amp;quot;&amp;lt;PATH&amp;gt;/&amp;lt;PARTIAL&amp;gt;.&amp;lt;EXTENSION&amp;gt;&amp;quot; . }}
+
+// 例如:  调用 layouts/partials/header.html partial
+{{ partial &amp;quot;header.html&amp;quot; . }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;template-函数&#34;&gt;&lt;strong&gt;Template 函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;仅用于调用 &lt;a href=&#34;https://gohugo.io/templates/internal/&#34; target=&#34;_blank&#34;&gt;internal templates&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;可用模板在&lt;a href=&#34;https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;找&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 语法为
+{{template“_internal / &amp;lt;TEMPLATE&amp;gt;.&amp;lt;EXTENSION&amp;gt;”. }}
+
+// 例如： 调用 internal opengraph.html template:
+{{ template &amp;quot;_internal/opengraph.html&amp;quot; . }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;逻辑&#34;&gt;&lt;strong&gt;逻辑&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;// Example 1: Using Context (.) 
+{{ range $array }}
+    {{ . }} &amp;lt;!--  . 表示 $array 中的一个元素 --&amp;gt;
+{{ end }}
+
+// Example 2: 给元素声明一个变量名
+{{ range $elem_val := $array }}
+    {{ $elem_val }}
+{{ end }}
+
+// Example 3: array 和 slice 的索引和变量
+{{ range $elem_index, $elem_val := $array }}
+   {{ $elem_index }} -- {{ $elem_val }}
+{{ end }}
+// Example 4: map 的 key 和 value
+{{ range $elem_key, $elem_val := $map }}
+   {{ $elem_key }} -- {{ $elem_val }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;条件语句&#34;&gt;&lt;strong&gt;条件语句&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;每个语句用 &lt;code&gt;{{ end }}&lt;/code&gt; 结束&lt;/p&gt;
+
+&lt;p&gt;可以用到的关键字：&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;, &lt;code&gt;with&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt;, &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;range&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;作为 false 的值可以是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;false (boolean)&lt;/li&gt;
+&lt;li&gt;0 (integer)&lt;/li&gt;
+&lt;li&gt;任何 zero-length array, slice, map, 或者 string&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;example-1-with&#34;&gt;Example 1: with&lt;/h3&gt;
+
+&lt;p&gt;功能：如果变量存在，则&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 如果变量不存在，或判定为 false 则跳过
+{{ with .Params.title }}
+    &amp;lt;h4&amp;gt;{{ . }}&amp;lt;/h4&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-2-with-else&#34;&gt;Example 2: with .. else&lt;/h3&gt;
+
+&lt;p&gt;如果设置了参数 &lt;code&gt;“description”&lt;/code&gt; 的值，执行&lt;code&gt;.&lt;/code&gt;命令&lt;/p&gt;
+
+&lt;p&gt;否则使用&lt;code&gt;.Summary&lt;/code&gt;的变量值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ with .Param &amp;quot;description&amp;quot; }}
+    {{ . }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-3-if&#34;&gt;Example 3: if&lt;/h3&gt;
+
+&lt;p&gt;一种更长（冗余）的写法是用if，下面给出Example1重写的代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if isset .Params &amp;quot;title&amp;quot; }}
+    &amp;lt;h4&amp;gt;{{ index .Params &amp;quot;title&amp;quot; }}&amp;lt;/h4&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-4-if-else&#34;&gt;Example 4: if .. else&lt;/h3&gt;
+
+&lt;p&gt;Below example is “Example 2” rewritten using if .. else, and using isset function + .Params variable (different from the .Param function) instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if (isset .Params &amp;quot;description&amp;quot;) }}
+    {{ index .Params &amp;quot;description&amp;quot; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 5: if .. else if .. else
+Unlike with, if can contain else if clauses too.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if (isset .Params &amp;quot;description&amp;quot;) }}
+    {{ index .Params &amp;quot;description&amp;quot; }}
+{{ else if (isset .Params &amp;quot;summary&amp;quot;) }}
+    {{ index .Params &amp;quot;summary&amp;quot; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-6-and-or&#34;&gt;Example 6: and &amp;amp; or&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if (and (or (isset .Params &amp;quot;title&amp;quot;) (isset .Params &amp;quot;caption&amp;quot;)) (isset .Params &amp;quot;attr&amp;quot;)) }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;未完待续&lt;/p&gt;
+
+&lt;h2 id=&#34;管道符号-pipes&#34;&gt;&lt;strong&gt;管道符号（Pipes）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;概念：每个管道（pipe）的输出都成为后续管道的输入&lt;/p&gt;
+
+&lt;p&gt;限制：只能使用一个值作为传递参数&lt;/p&gt;
+
+&lt;h3 id=&#34;example-1-shuffle&#34;&gt;Example 1: shuffle&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;//两条语句功能一样
+{{ shuffle (seq 1 5) }}
+{{ (seq 1 5) | shuffle }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-2-index&#34;&gt;Example 2: index&lt;/h3&gt;
+
+&lt;p&gt;以下访问名为“disqus_url”的页面参数并转义HTML。此示例还使用index函数，(内置在 Go Templates中)：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ index .Params &amp;quot;disqus_url&amp;quot; | html }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-3-or-with-isset&#34;&gt;Example 3: or with isset&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if or (or (isset .Params &amp;quot;title&amp;quot;) (isset .Params &amp;quot;caption&amp;quot;)) (isset .Params &amp;quot;attr&amp;quot;) }}
+Stuff Here
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;改写为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if isset .Params &amp;quot;caption&amp;quot; | or isset .Params &amp;quot;title&amp;quot; | or isset .Params &amp;quot;attr&amp;quot; }}
+Stuff Here
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;example-4-internet-explorer-conditional-comments&#34;&gt;Example 4: Internet Explorer Conditional Comments&lt;/h3&gt;
+
+&lt;p&gt;By default, Go Templates remove HTML comments from output. This has the unfortunate side effect of removing Internet Explorer conditional comments. As a workaround, use something like this:&lt;/p&gt;
+
+&lt;p&gt;{{ &amp;ldquo;&lt;!--[if lt IE 9]&gt;&#34; | safeHTML }}
+  &lt;script src=&#34;html5shiv.js&#34;&gt;&lt;/script&gt;
+{{ &#34;&lt;![endif]--&gt;&amp;rdquo; | safeHTML }}
+Alternatively, you can use the backtick (`) to quote the IE conditional comments, avoiding the tedious task of escaping every double quotes (&amp;ldquo;) inside, as demonstrated in the examples in the Go text/template documentation:&lt;/p&gt;
+
+&lt;h2 id=&#34;if-lt-ie-7-html-class-no-js-lt-ie9-lt-ie8-lt-ie7-endif-safehtml&#34;&gt;{{ &lt;code&gt;&amp;lt;!--[if lt IE 7]&amp;gt;&amp;lt;html class=&amp;quot;no-js lt-ie9 lt-ie8 lt-ie7&amp;quot;&amp;gt;&amp;lt;![endif]--&amp;gt;&lt;/code&gt; | safeHTML }}&lt;/h2&gt;
+
+&lt;h2 id=&#34;context-aka-the-dot&#34;&gt;&lt;strong&gt;Context (aka “the dot”)&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;The most easily overlooked concept to understand about Go Templates is that {{ . }} always refers to the current context.&lt;/p&gt;
+
+&lt;p&gt;In the top level of your template, this will be the data set made available to it.
+Inside of an iteration, however, it will have the value of the current item in the loop; i.e., {{ . }} will no longer refer to the data available to the entire page.
+If you need to access page-level data (e.g., page params set in front matter) from within the loop, you will likely want to do one of the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Define a Variable Independent of Context
+The following shows how to define a variable independent of the context.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;tags-range-with-page-variable.html&lt;/p&gt;
+
+&lt;p&gt;{{ $title := .Site.Title }}
+&lt;ul&gt;
+{{ range .Params.tags }}
+    &lt;li&gt;
+        &lt;a href=&#34;panfeng0119.github.io/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+        - {{ $title }}
+    &lt;/li&gt;
+{{ end }}
+&lt;/ul&gt;
+Notice how once we have entered the loop (i.e. range), the value of {{ . }} has changed. We have defined a variable outside of the loop ({{$title}}) that we’ve assigned a value so that we have access to the value from within the loop as well.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use $. to Access the Global Context
+$ has special significance in your templates. $ is set to the starting value of . (“the dot”) by default. This is a documented feature of Go text/template. This means you have access to the global context from anywhere. Here is an equivalent example of the preceding code block but now using $ to grab .Site.Title from the global context:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;range-through-tags-w-global.html&lt;/p&gt;
+
+&lt;ul&gt;
+{{ range .Params.tags }}
+  &lt;li&gt;
+    &lt;a href=&#34;panfeng0119.github.io/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+            - {{ $.Site.Title }}
+  &lt;/li&gt;
+{{ end }}
+&lt;/ul&gt;
+The built-in magic of $ would cease to work if someone were to mischievously redefine the special character; e.g. {{ $ := .Site }}. Don’t do it. You may, of course, recover from this mischief by using {{ $ := . }} in a global context to reset $ to its default value.
+
+## **Whitespace**
+
+Go 1.6 includes the ability to trim the whitespace from either side of a Go tag by including a hyphen (-) and space immediately beside the corresponding {{ or }} delimiter.
+
+For instance, the following Go Template will include the newlines and horizontal tab in its HTML output:
+
+&lt;div&gt;
+  {{ .Title }}
+&lt;/div&gt;
+Which will output:
+
+&lt;div&gt;
+  Hello, World!
+&lt;/div&gt;
+Leveraging the - in the following example will remove the extra white space surrounding the .Title variable and remove the newline:
+
+&lt;div&gt;
+  {{- .Title -}}
+&lt;/div&gt;
+Which then outputs:
+
+&lt;div&gt;Hello, World!&lt;/div&gt;
+Go considers the following characters whitespace:
+
+space
+horizontal tab
+carriage return
+newline
+
+## **Comments**
+In order to keep your templates organized and share information throughout your team, you may want to add comments to your templates. There are two ways to do that with Hugo.
+
+Go Templates comments 
+Go Templates support {{/* and */}} to open and close a comment block. Nothing within that block will be rendered.
+
+For example:
+
+Bonsoir, {{/* {{ add 0 + 2 }} */}}Eliott.
+Will render Bonsoir, Eliott., and not care about the syntax error (add 0 + 2) in the comment block.
+
+HTML comments 
+If you need to produce HTML comments from your templates, take a look at the Internet Explorer conditional comments example. If you need variables to construct such HTML comments, just pipe printf to safeHTML. For example:
+
+{{ printf &#34;&lt;!-- Our website is named: %s --&gt;&#34; .Site.Title | safeHTML }}
+HTML comments containing Go Templates 
+HTML comments are by default stripped, but their content is still evaluated. That means that although the HTML comment will never render any content to the final HTML pages, code contained within the comment may fail the build process.
+
+Do not try to comment out Go Template code using HTML comments.
+
+&lt;!-- {{ $author := &#34;Emma Goldman&#34; }} was a great woman. --&gt;
+{{ $author }}
+The templating engine will strip the content within the HTML comment, but will first evaluate any Go Template code if present within. So the above example will render Emma Goldman, as the $author variable got evaluated in the HTML comment. But the build would have failed if that code in the HTML comment had an error.
+
+
+
+
+
+## **Hugo Parameters**
+
+
+Hugo provides the option of passing values to your template layer through your site configuration (i.e. for site-wide values) or through the metadata of each specific piece of content (i.e. the front matter). You can define any values of any type and use them however you want in your templates, as long as the values are supported by the front matter format specified via metaDataFormat in your configuration file.
+
+Use Content (Page) Parameters 
+You can provide variables to be used by templates in individual content’s front matter.
+
+An example of this is used in the Hugo docs. Most of the pages benefit from having the table of contents provided, but sometimes the table of contents doesn’t make a lot of sense. We’ve defined a notoc variable in our front matter that will prevent a table of contents from rendering when specifically set to true.
+
+Here is the example front matter (YAML):
+
+---
+title: Roadmap
+lastmod: 2017-03-05
+date: 2013-11-18
+notoc: true
+---
+Here is an example of corresponding code that could be used inside a toc.html partial template:
+
+layouts/partials/toc.html
+
+{{ if not .Params.notoc }}
+&lt;aside&gt;
+  &lt;header&gt;
+    &lt;a href=&#34;#{{.Title | urlize}}&#34;&gt;
+    &lt;h3&gt;{{.Title}}&lt;/h3&gt;
+    &lt;/a&gt;
+  &lt;/header&gt;
+  {{.TableOfContents}}
+&lt;/aside&gt;
+&lt;a href=&#34;#&#34; id=&#34;toc-toggle&#34;&gt;&lt;/a&gt;
+{{ end }}
+We want the default behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the notoc: field in this page’s front matter is not true.
+
+
+Use Site Configuration Parameters
+You can arbitrarily define as many site-level parameters as you want in your site’s configuration file. These parameters are globally available in your templates.
+
+For instance, you might declare the following:
+
+config.
+yaml
+  toml
+  json
+ 
+[params]
+  copyrighthtml = &#34;Copyright &amp;#xA9; 2017 John Doe. All Rights Reserved.&#34;
+  sidebarrecentlimit = 5
+  twitteruser = &#34;spf13&#34;
+
+Within a footer layout, you might then declare a &lt;footer&gt; that is only rendered if the copyrighthtml parameter is provided. If it is provided, you will then need to declare the string is safe to use via the safeHTML function so that the HTML entity is not escaped again. This would let you easily update just your top-level config file each January 1st, instead of hunting through your templates.
+
+{{ if .Site.Params.copyrighthtml }}
+    &lt;footer&gt;
+        &lt;div class=&#34;text-center&#34;&gt;{{.Site.Params.CopyrightHTML | safeHTML}}&lt;/div&gt;
+    &lt;/footer&gt;
+{{ end }}
+An alternative way of writing the “if” and then referencing the same value is to use with instead. with rebinds the context (.) within its scope and skips the block if the variable is absent:
+
+layouts/partials/twitter.html
+
+{{ with .Site.Params.twitteruser }}
+    &lt;div&gt;
+        &lt;a href=&#34;https://twitter.com/{{.}}&#34; rel=&#34;author&#34;&gt;
+        &lt;img src=&#34;panfeng0119.github.io/images/twitter.png&#34; width=&#34;48&#34; height=&#34;48&#34; title=&#34;Twitter: {{.}}&#34; alt=&#34;Twitter&#34;&gt;&lt;/a&gt;
+    &lt;/div&gt;
+{{ end }}
+Finally, you can pull “magic constants” out of your layouts as well. The following uses the first function, as well as the .RelPermalink page variable and the .Site.Pages site variable.
+
+&lt;nav&gt;
+  &lt;h1&gt;Recent Posts&lt;/h1&gt;
+  &lt;ul&gt;
+  {{- range first .Site.Params.SidebarRecentLimit .Site.Pages -}}
+      &lt;li&gt;&lt;a href=&#34;{{.RelPermalink}}&#34;&gt;{{.Title}}&lt;/a&gt;&lt;/li&gt;
+  {{- end -}}
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+
+Example: Show Only Upcoming Events 
+Go allows you to do more than what’s shown here. Using Hugo’s where function and Go built-ins, we can list only the items from content/events/ whose date (set in a content file’s front matter) is in the future. The following is an example partial template:
+
+layouts/partials/upcoming-events.html
+
+&lt;h4&gt;Upcoming Events&lt;/h4&gt;
+&lt;ul class=&#34;upcoming-events&#34;&gt;
+{{ range where .Pages.ByDate &#34;Section&#34; &#34;events&#34; }}
+    {{ if ge .Date.Unix now.Unix }}
+        &lt;li&gt;
+        &lt;!-- add span for event type --&gt;
+          &lt;span&gt;{{ .Type | title }} —&lt;/span&gt;
+          {{ .Title }} on
+        &lt;!-- add span for event date --&gt;
+          &lt;span&gt;{{ .Date.Format &#34;2 January at 3:04pm&#34; }}&lt;/span&gt;
+          at {{ .Params.place }}
+        &lt;/li&gt;
+    {{ end }}
+{{ end }}
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://gohugo.io/templates/introduction/#basic-syntax&#34; target=&#34;_blank&#34;&gt;https://gohugo.io/templates/introduction/#basic-syntax&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo 01 | Documentation</title>
+      <link>panfeng0119.github.io/post/hugo01/</link>
+      <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugo01/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction-to-hugo-templating-https-gohugo-io-templates-introduction&#34;&gt;&lt;a href=&#34;https://gohugo.io/templates/introduction/&#34; target=&#34;_blank&#34;&gt;Introduction to Hugo Templating&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;Hugo 使用Go语言的 &lt;code&gt;html/template&lt;/code&gt; and &lt;code&gt;text/template&lt;/code&gt; 库作为模板.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;content-organization-https-gohugo-io-content-management-organization&#34;&gt;&lt;a href=&#34;https://gohugo.io/content-management/organization/&#34; target=&#34;_blank&#34;&gt;Content Organization&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;hugo-s-lookup-order&#34;&gt;Hugo&amp;rsquo;s Lookup Order&lt;/h1&gt;
+
+&lt;p&gt;Hugo searches for the layout to use for a given page in a well defined order, starting from the most specific.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;base-templates-and-blocks&#34;&gt;Base Templates and Blocks&lt;/h1&gt;
+
+&lt;p&gt;The base and block constructs allow you to define the outer shell of your master templates (i.e., the chrome of the page).&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;install-hugo&#34;&gt;Install Hugo&lt;/h1&gt;
+
+&lt;p&gt;Install Hugo on macOS, Windows, Linux, OpenBSD, FreeBSD, and on any machine where the Go compiler tool chain can run.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;directory-structure&#34;&gt;Directory Structure&lt;/h1&gt;
+
+&lt;p&gt;Hugo’s CLI scaffolds a project directory structure and then takes that single directory and uses it as the input to create a complete website.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;code-toggle&#34;&gt;Code Toggle&lt;/h1&gt;
+
+&lt;p&gt;Code Toggle tryout and showcase.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;configure-hugo&#34;&gt;Configure Hugo&lt;/h1&gt;
+
+&lt;p&gt;How to configure your Hugo site.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;comments&#34;&gt;Comments&lt;/h1&gt;
+
+&lt;p&gt;Hugo ships with an internal Disqus template, but this isn’t the only commenting system that will work with your new Hugo website.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>概率论</title>
+      <link>panfeng0119.github.io/post/prob/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/prob/</guid>
+      <description>
+
+&lt;!-- # coding: utf-8 --&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nbviewer.jupyter.org/github/hschen0712/machine_learning_notes/blob/master/PRML/Chap1-Introduction/1.2-probability-theory.ipynb&#34; target=&#34;_blank&#34;&gt;原文连接&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;1-2-概率论回顾&#34;&gt;1.2 概率论回顾&lt;/h2&gt;
+
+&lt;p&gt;概率，又称或然率、机会率、机率（几率）或可能性，是概率论的基本概念。概率是对随机事件发生的可能性的度量，一般以一个在0到1之间的实数表示一个事件发生的可能性大小。越接近1，该事件更可能发生；越接近0，则该事件更不可能发生。如某人有百分之多少的把握能通过这次考试，某件事发生的可能性是多少，这些都是概率的实例。&lt;/p&gt;
+
+&lt;h2 id=&#34;求和法则与乘法法则&#34;&gt;求和法则与乘法法则&lt;/h2&gt;
+
+&lt;p&gt;假设有两个离散随机变量 $X$ 和$Y$，$X$的取值范围为$x_i,(i=1,2,&amp;hellip;,M)$, $Y$的取值范围为$y&lt;em&gt;j,(j=1,2,&amp;hellip;,L)$。
+我们考虑在$N$次实验中同时对$X$和$Y$进行采样，设$n&lt;/em&gt;{ij}$表示$X=x_i$且$Y=y_j$发生的次数，$c_i$表示$X=x_i$发生的次数（不管$Y$取值多少），$r_j$表示$Y=y_j$发生的次数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://7xikew.com1.z0.glb.clouddn.com/prml-1.10.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那么根据频率学派的观点，$X=x_i$且$Y=y_j$发生的概率，即二者的*联合概率（joint probability）*定义为点$(X,Y)$落在单元$(i, j)$的次数占总实验次数的比例：&lt;/p&gt;
+
+&lt;p&gt;$$p(X=x_i, Y=y&lt;em&gt;j)=\frac{n&lt;/em&gt;{ij}}{N}$$&lt;/p&gt;
+
+&lt;p&gt;这里我们默认$N\to \infty$。类似地，$X=x_i$的概率$p(X=x_i)$由如下公式给出：&lt;/p&gt;
+
+&lt;p&gt;$$p(X=x_i)=\frac{c_i}{N}$$&lt;/p&gt;
+
+&lt;p&gt;注意到$c&lt;em&gt;i=\sum&lt;/em&gt;{j=1}^L n_{ij}$，由此我们可以得到概率论中的*求和法则（sum rule）*：
+$$p(X=x_i)=\frac{c&lt;em&gt;i}{N}=\sum&lt;/em&gt;{j=1}^L \frac{n&lt;em&gt;{ij}}{N}=\sum&lt;/em&gt;{j=1}^L p(X=x_i, Y=y_j)$$
+如果我们只考虑$X=x_i$的样例中$Y=y_j$样本所占的比例，记为$p(Y=y_j|X=x_i)$，也被称为给定$X=x_i$情况下$Y=y_j$的条件概率，则该条件概率可以由落在单元$(i, j)$内的点的个数与落在第$i$列的点的总数的比值给出：&lt;/p&gt;
+
+&lt;p&gt;$$p(Y=y_j|X=x&lt;em&gt;i)=\frac{n&lt;/em&gt;{ij}}{c_i}$$&lt;/p&gt;
+
+&lt;p&gt;在定义了条件概率之后，我们回过头来看联合概率，可以发现：&lt;/p&gt;
+
+&lt;p&gt;$$ p(X=x_i, Y=y&lt;em&gt;j)=\frac{n&lt;/em&gt;{ij}}{N}=\frac{n_{ij}}{c_i}\cdot \frac{c_i}{N}=p(Y=y_j|X=x_i)p(X=x_i)$$
+上述公式即为概率论中的*乘法法则（product rule）*。&lt;/p&gt;
+
+&lt;p&gt;为了表述方便，我们将$X,Y$的具体取值省略，将两个法则写为：&lt;/p&gt;
+
+&lt;p&gt;$$ \begin{aligned}\textbf{sum rule}\quad\quad &amp;amp;p(X)=\sum\limits_{Y}p(X,Y)\\textbf{product rule}\quad\quad &amp;amp;p(X, Y)=p(Y|X) p(X)\end{aligned}$$&lt;/p&gt;
+
+&lt;p&gt;这两个法则十分重要，因为它们是概率背后运作的机制，构成了概率论的理论基石。&lt;/p&gt;
+
+&lt;h2 id=&#34;贝叶斯公式&#34;&gt;贝叶斯公式&lt;/h2&gt;
+
+&lt;p&gt;根据乘法法则以及联合概率的对称性（$p(X,Y)=p(Y,X)$）可得：
+$$p(Y|X)p(X)=p(X|Y)p(Y)$$
+上式又可以改写为
+$$p(Y|X)=\frac{p(X|Y)p(Y)}{p(X)}$$
+这个公式就是概率论中鼎鼎有名的*贝叶斯公式（Bayes&amp;rsquo; theorem）*，它在机器学习和模式识别中发挥着至关重要的作用。其中$p(Y|X)$称为*后验概率（posterior probability）*，$p(X|Y)$称为*似然函数（likelihood function）*，$p(Y)$称为&lt;em&gt;先验概率（prior probability）&lt;/em&gt;,$p(X)$称为*归一化因子（normalize factor）*。根据加法公式我们可以把分母用分子中的似然函数和先验概率来表示：
+$$p(X)=\sum_{Y}p(X|Y)p(Y)$$
+如果联合概率可以分解为各自边缘概率的乘积，即$p(X, Y)=p(X)p(Y)$，则我们说$X$和$Y$彼此独立，并且有$p(Y|X)=p(Y)$，也就是说给定$X$情况下$Y$的分布与$X$的取值无关。&lt;/p&gt;
+
+&lt;h2 id=&#34;概率密度&#34;&gt;概率密度&lt;/h2&gt;
+
+&lt;p&gt;我们可以把概率的定义从离散的情况推广到连续的情形，在这种背景下，我们引入&lt;em&gt;概率密度函数（probability density）&lt;/em&gt;$p(x)$来描述连续随机变量$X$的概率分布。
+&amp;gt; &lt;strong&gt;概率密度&lt;/strong&gt; 当$\delta x\to 0$时，如果$X$落在区间$(x,x+\delta x)$的概率等于$p(x)\delta x$，即
+$$\lim_{\delta x\to 0} p\big(X\in(x,x+\delta x)\big)=p(x)\delta x$$
+则称$p(x)$为$X$的概率密度函数&lt;/p&gt;
+
+&lt;p&gt;注意到当$\delta x\to 0$时，$p(x)\delta x$可以视为图中阴影部分的面积:
+&lt;img src=&#34;http://7xikew.com1.z0.glb.clouddn.com/prml-1.12.jpg&#34; alt=&#34;&#34; /&gt;
+那么$X$落在区间$(a,b)$内的概率$p(X\in(a,b))$就是$p(x)$在区间$(a,b)$内的面积，我们可以用概率密度的积分来表示它：
+$$p(X\in(a,b))=\int&lt;em&gt;a^b p(x)dx$$
+此外，考虑到概率的性质，概率密度也必须满足：
+&amp;gt; $$ p(x)\geq 0\ \int&lt;/em&gt;{-\infty}^{\infty} p(x)dx=1$$&lt;/p&gt;
+
+&lt;p&gt;利用密度函数在一个区间上的积分等于随机变量落在这个区间上的概率这一性质，我们可以定义*累积密度函数（cdf）*：
+$$P(z)=\int_{-\infty}^z p(x) dx$$
+$P(z)$表示$X$处于$(-\infty, z)$之间的概率，且满足$P&amp;rsquo;(x)=p(x)$&lt;/p&gt;
+
+&lt;p&gt;假设我们知道$x$的概率密度为$f_X(x)$，如果我们对$x$做一个非线性变换$y=g(x)$（这里$g(x)$必须是单调递增函数）,那么我们可以用如下公式计算$y$的概率密度$f_Y(y)$：
+$$ f_Y(y)=f_X(g^{-1}(y))\bigg|\frac{d }{dy}g^{-1}(y)\bigg|$$
+这个公式称为*变元公式（change of a variable）*，证明过程如下：&lt;br /&gt;
+首先将$P(X\leq x)$简记为$P_X(x)$，将$P(Y\leq y)$简记为$P_Y(y)$。
+因为概率密度是分布函数的导数，根据定义我们有
+$$\begin{aligned}f_Y(y)&amp;amp;=\frac{d}{dy}P_Y(y)=\frac{d}{dy}P(g(X)\leq y)\&amp;amp;=\frac{d}{dx}P_X(g^{-1}(y))\bigg|\frac{dx}{dy}\bigg|\&amp;amp;=f_X(g^{-1}(y))\bigg|\frac{d}{dy}g^{-1}(y)\bigg|\end{aligned}$$&lt;/p&gt;
+
+&lt;p&gt;同样地，我们可以将加法公式、乘法公式和贝叶斯公式推广到连续随机变量上：
+&amp;gt; $$ \begin{aligned}\textbf{sum rule}\quad\quad &amp;amp;p(x)=\int p(x,y) dy\\textbf{product rule}\quad\quad &amp;amp;p(x, y)=p(y|x) p(x)\\textbf{Bayes&amp;rsquo; rule}\quad\quad &amp;amp;p(y|x)=\frac{p(x|y) p(y)}{\int_Y p(x|y) p(y) dy}\end{aligned}$$&lt;/p&gt;
+
+&lt;h2 id=&#34;期望和协方差&#34;&gt;期望和协方差&lt;/h2&gt;
+
+&lt;p&gt;函数$f(x)$在概率密度$p(x)$下的加权平均称为$f(x)$的*期望（expectation）*，当$X$为离散随机变量时期望定义为
+$$\mathbb{E}[f]=\sum_x p(x) f(x)$$
+当$X$为连续随机变量时期望定义为
+$$\mathbb{E}[f]=\int p(x)f(x) dx$$
+给定$N$个从分布$p(x)$抽样得到的样本$x_1, x_2, &amp;hellip;,x&lt;em&gt;N$，我们可以用如下公式近似估计期望：
+$$ \frac{1}{N}\sum&lt;/em&gt;{n=1}^N f(x_n)\approx \mathbb{E}[f]$$
+当$N\to\infty$时，上式等号成立。&lt;br /&gt;
+有时我们希望计算多元函数关于某个变量的期望，我们用下标指定要求期望的变量：
+$$E_x[f(x,y)]=\int f(x,y)p(x)dx$$
+*条件期望（conditional expectation）*定义为
+$$ E_x[f|y]=\int p(x|y)f(x)dx$$
+函数$f(x)$的方差定义为
+$$ var[f]=\mathbb{E}\big[(f(x)-\mathbb{E}[f(x)])^2\big]$$
+经过一番计算，方差可以简化为
+$$var[f]=\mathbb{E}[f(x)^2]-\mathbb{E}[(f(x)]^2$$&lt;/p&gt;
+
+&lt;p&gt;随机变量$x$和$y$的*协方差（covariance）*定义为
+$$ cov[x,y]=\mathbb{E}&lt;em&gt;{x,y}[{x-\mathbb{E}[x]}{y-\mathbb{E}[y]}=\mathbb{E}&lt;/em&gt;{x,y}[xy]-\mathbb{E}[x]\mathbb{E}[y]$$
+随机向量$\mathbf{x}$和$\mathbf{y}$的*协方差（covariance）*定义为
+$$cov[\mathbf{x}, \mathbf{y}]=\mathbb{E}&lt;em&gt;{\mathbf{x},\mathbf{y}}[{\mathbf{x}-\mathbb{E}[\mathbf{x}]}{\mathbf{y}^\top-\mathbb{E}[\mathbf{y}^\top]}=\mathbb{E}&lt;/em&gt;{\mathbf{x},\mathbf{y}}[\mathbf{x}\mathbf{y}^\top]-\mathbb{E}[\mathbf{x}]\mathbb{E}[\mathbf{y}^\top]$$&lt;/p&gt;
+
+&lt;h2 id=&#34;贝叶斯概率&#34;&gt;贝叶斯概率&lt;/h2&gt;
+
+&lt;p&gt;上一节，我们以频率的观点来理解概率，并从一个简单的例子出发推导出了概率论中许多常用的结论。在频率派看来，概率定义为在在相同环境条件中重复某个实验（无穷）多次的背景下，一件事发生的相对频率。因此为了得到准确的概率值，我们通常必须重复相同的实验很多次，例如我们需要重复投掷一枚硬币成千上万次才能精确估计其均匀程度。&lt;br /&gt;
+然而并不是所有事件的概率都能用频率的观点来解释，考虑以下问题：
+&amp;gt;2050年南极冰川是否会全部融化？&lt;/p&gt;
+
+&lt;p&gt;因为目前是2016年，我们无法对其进行观测，这就导致了该事件的概率是未定义的。而贝叶斯统计学则为我们提供了一种完全不同的视角来看待这个问题。贝叶斯派认为概率是一种不确定性的度量，是人对于某个不确定事件是否会发生的置信度。贝叶斯的主要思路是通过不断收集证据来修正人对某件事的主观认识，比如我们可以通过观察南极冰川融化的速度来量化其不确定性，从而决定是否要减少温室气体的排放。&lt;br /&gt;
+考虑上一节介绍的曲线拟合的例子，我们可以用贝叶斯框架对模型参数$\mathbf{w}$作推断。获得观测样本前我们对于模型参数$\mathbf{w}$的假设以&lt;strong&gt;先验分布&lt;/strong&gt;$p(\mathbf{w})$的形式表达，采集到的观测数据$\mathcal{D}={(x_1,t_1),&amp;hellip;,(x_N, t_N)}$通过&lt;strong&gt;似然函数&lt;/strong&gt;$p(\mathcal{D}|\mathbf{w})$发挥作用，注意到它是关于$\mathcal{D}$（已知）的分布，因此它是关于$\mathbf{w}$的函数，反映了在不同的模型参数取值下产生该组观测值的可能性。透过似然函数，我们将关于$\mathbf{w}$的置信度转变为了&lt;strong&gt;后验分布&lt;/strong&gt;$p(\mathbf{w}|\mathcal{D})$的形式，它表达了在获得观测数据后对于先验$p(\mathbf{w})$的修正。具体地，依据贝叶斯公式有：&lt;br /&gt;
+$$p(\mathbf{w}|\mathcal{D})=\frac{p(\mathcal{D}|\mathbf{w})p(\mathbf{w})}{p(\mathcal{D})}$$
+注意到$p(\mathcal{D})$只是个定值，起到归一化作用，我们可以将其用先验和似然的乘积关于$\mathbf{w}$的积分表示出来
+$$p(\mathcal{D})=\int p(\mathcal{D}|\mathbf{w})p(\mathbf{w})d\mathbf{w}$$
+如果忽略$p(\mathcal{D})$，我们可以将先验、似然、后验之间的关系表达为如下的形式：
+$$ posterior \propto likelihood \times prior $$
+其中$\propto$表示正比符号，三个量都可以视为$\mathcal{w}$的函数。&lt;br /&gt;
+无论是频率派还是贝叶斯派，似然函数都起着重要的作用，然而对似然函数使用方式的不同是两者最本质的区别。以上一节介绍的曲线拟合为例，频率派认为参数$\mathbf{w}$固定而数据是随机产生的，我们通过最大化似然函数的思想利用观测数据去反推这个值。而贝叶斯派则认为数据集是确定的，模型参数$\mathbf{w}$是随机的，我们通过似然函数将先验修改为后验。频率派利用交叉验证来选择合适的模型，但贝叶斯中先验的选择通常出于数学上的方便，而不是是否符合直觉。&lt;br /&gt;
+贝叶斯一直面临着两个难题：
+1. 合理的推断依赖于合适的先验，如何选取合适的先验却一直被频率派诟病
+2. 一个完整的贝叶斯推断过程（比如作预测或比较模型）通常包含参数空间的积分，带来高昂的计算代价&lt;/p&gt;
+
+&lt;p&gt;近几十年来随着计算机运算速度的提高，后验概率的计算逐渐变得可行，目前可行的方法有两种：
+1. 基于采样的方法 主要代表是MCMC，Gibbs采样。这类方法的优点是精度高，适用于任何形式的后验估计；缺点是效率低，只适用于小规模数据。
+2. 基于优化的方法 主要代表是变分贝叶斯。这类方法的优点是速度快，适用于大规模数据；缺点是牺牲了精度以换取速度的提升。&lt;/p&gt;
+
+&lt;h2 id=&#34;高斯分布&#34;&gt;高斯分布&lt;/h2&gt;
+
+&lt;p&gt;高斯分布是概率论中最常用的概率分布之一，其定义如下
+$$\frac{1}{(2\pi \sigma^2)^{&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt;}} \exp({-\frac{1}{2\sigma^2} (x-\mu)^2}) $$
+其中$\mu$是均值，$\sigma^2$是方差，$\sigma$称为标准差，方差的倒数$\beta=1/\sigma^2$称为精度。
+可以证明，高斯分布满足概率的以下两个性质：
+$$\mathcal{N}(x|\mu,\sigma^2)&amp;gt;0\\int&lt;em&gt;{-\infty}^{\infty}\mathcal{N}(x|\mu,\sigma^2)dx=1$$
+高斯分布的期望为
+$$\mathbb{E}[x]=\int&lt;/em&gt;{-\infty}^{\infty}\mathcal{N}(x|\mu,\sigma^2)\ x\ dx=\mu$$
+高斯分布的二阶矩为
+$$\mathbb{E}[x^2]=\int_{-\infty}^{\infty}\mathcal{N}(x|\mu,\sigma^2)\ x^2\ dx=\mu^2+\sigma^2$$
+方差为
+$$var[x]=\mathbb{E}[x^2]-\mathbb{E}[x]^2=\sigma^2$$
+设$\mathbf{x}$是$D$维的向量，则其对应的多元高斯分布的概率密度函数为：
+$$\mathcal{N}(\mathbf{x}|\mathbf{\mu},\Sigma)=\frac{1}{(2\pi)^{D/2}}\frac{1}{|\Sigma|^{&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt;}}\exp\big{-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^\top\Sigma^{-1}(\mathbf{x}-\mathbf{\mu})\big}$$
+其中$\mathbf{\mu}$是$D$维的均值向量，$\Sigma$是$D\times D$的协方差矩阵，$|\Sigma|$表示$\Sigma$的行列式。&lt;br /&gt;
+现在假设有一组数据$\mathrm{x}={x_1,&amp;hellip;,x&lt;em&gt;N}$,为了确定高斯分布的参数我们假定它们是独立同分布地从同一个分布产生的，于是这组数据的似然函数可以表示为
+$$p(\mathrm{x}|\mu,\sigma^2 )=\prod&lt;/em&gt;{n=1}^N \mathcal{N}(x&lt;em&gt;n|\mu, \sigma^2)$$
+频率派最常用的参数估计方法是最大似然估计，其思想是通过最大化似然函数找到参数的估计。由于对似然函数取对数不影响优化，我们可以得到对数似然函数：
+$$\ln\ p(\mathrm{x}|\mu,\sigma^2 )=-\frac{1}{2\sigma^2}\sum&lt;/em&gt;{n=1}^N(x&lt;em&gt;n-\mu)^2-\frac{N}{2}ln\ \sigma^2-\frac{N}{2}\ln\ (2\pi)$$
+关于$\mu$优化，得到其最大似然估计
+$$\mu&lt;/em&gt;{ML}=\frac{1}{N}\sum_{n=1}^N x&lt;em&gt;n$$
+注意到$\mu$的最大似然估计等价于样本均值。关于$\sigma^2$我们得到
+$$\sigma&lt;/em&gt;{ML}=\frac{1}{N}\sum_{n=1}^N (x&lt;em&gt;n-\mu&lt;/em&gt;{ML})^2$$
+也就是样本方差。
+注意到最大似然估计是有偏估计：
+$$\mathbb{E}[\mu&lt;em&gt;{ML}]=\mu\\mathbb{E}[\sigma^2&lt;/em&gt;{ML}]=\bigg(\frac{N-1}{N}\bigg)\sigma^2$$
+也就是说$\sigma^2_{ML}$低估了$\sigma^2$，这种有偏性随着样本量增大而逐渐减轻，当$N\to\infty$时这种有偏性消失。&lt;/p&gt;
+
+&lt;h2 id=&#34;重访曲线拟合&#34;&gt;重访曲线拟合&lt;/h2&gt;
+
+&lt;p&gt;让我们回到曲线拟合问题上来，这次我们将从概率的角度来重塑我们对于这个问题的理解，我们将证明当假设误差服从一个高斯分布时，通过最大似然估计（MLE，maximum likelihood estimation）可以得到最小二乘的目标函数。&lt;br /&gt;
+假设给定输入变量 $x$，目标变量值$t$服从一个均值为$y(x,\mathbf{w})$的高斯分布:
+$$ p(t|x, \mathbf{w},\beta)=\mathcal{N}(t| y(x,\mathbf{w}), \beta^{-1}) $$
+其中$\beta=1/\sigma^2$ 为高斯的精度。&lt;br /&gt;
+我们进一步假设数据集$\mathrm{x}={x_1,&amp;hellip;,x&lt;em&gt;N}$中的样本点独立同分布地从上述的高斯分布产生。那么该数据集的似然函数为:
+$$ p( \mathbf{t}| \mathbf{x}, \mathbf{w},\beta )=\prod&lt;/em&gt;{n=1}^N  \mathcal{N}(t_n| y(x_n,\mathbf{w}), \beta^{-1})  $$&lt;/p&gt;
+
+&lt;p&gt;最大似然估计的目标是最大化对数似然函数：
+$$\mathbf{w}&lt;em&gt;{ML}=\arg\max&lt;/em&gt;{\mathbf{w}}\ln\ p( \mathbf{t}| \mathbf{x}, \mathbf{w},\beta )$$
+对似然函数取对数的好处有三：
+1. 对数函数是单调递增函数，这意味着最大化对数似然等价于最大化似然函数
+2. 乘积的对数可以转化为对数的和，在数学上更易于求导
+3. 由于概率值介于0，1之间，连续多个概率值的乘积可能导致概率值下溢，取对数可以防止下溢保证结果的精度&lt;/p&gt;
+
+&lt;p&gt;通过取对数，我们得到对数似然函数：
+$$ \mathcal{L}(\mathbf{w},\beta)=ln \, p( \mathbf{t}| \mathbf{x}, \mathbf{w},\beta )=-\frac{\beta}{2}\sum_{n=1}^N{y(x_n,\mathbf{w})-t&lt;em&gt;n}^2+ \frac{N}{2}ln\, \beta- \frac{N}{2} ln\, (2\pi) $$
+首先，我们先来优化$\mathbf{w}$。注意到后两项不依赖于 $\mathbf{w}$，因此我们可以丢掉它们。于是我们的目标变为最大化 $- \frac{\beta}{2}\sum&lt;/em&gt;{n=1}^N{y(x_n,\mathbf{w})-t&lt;em&gt;n}^2$，其等价于最小化$ \frac{\beta}{2}\sum&lt;/em&gt;{n=1}^N { y(x_n,\mathbf{w})-t&lt;em&gt;n }^2$。基于$\mathbf{w}$不依赖于$\beta$ 且 $\beta&amp;gt;0$的事实，我们可以任意放缩系数$ \frac{\beta}{2}$。不失一般性，我们将系数设为$&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt;$。最终，我们的目标函数定义如下:
+$$ \mathbf{w}&lt;/em&gt;{ML}=\arg\min&lt;em&gt;{\mathbf{w}}  \frac{1}{2}\sum&lt;/em&gt;{n=1}^N { y(x_n,\mathbf{w})-t&lt;em&gt;n }^2 $$
+这个函数有点眼熟，它不就是1.1节中的平方和误差么？至此我们证明了当假设误差服从一个高斯分布时，从最大似然估计（MLE，maximum likelihood estimation）出发可以得到最小二乘的目标函数。&lt;br /&gt;
+接着，我们还要优化$\beta$:
+$$ \frac{\partial  \mathcal{L}(\mathbf{w},\beta)}{\partial \beta} =   -\frac{1}{2}\sum&lt;/em&gt;{n=1}^N{y(x_n,\mathbf{w})-t&lt;em&gt;n}^2+ \frac{N}{2\beta}=0 $$
+由此可得
+$$ \frac{1}{\beta&lt;/em&gt;{ML}}=\sigma&lt;em&gt;{ML}^2=  \sum&lt;/em&gt;{n=1}^N{y(x_n,\mathbf{w})-t&lt;em&gt;n}^2$$
+将$\mathbf{w}&lt;/em&gt;{ML},\beta&lt;em&gt;{ML}$代回到本节开头的概率密度式就得到了关于$t$的预测分布：
+$$p(t|x, \mathbf{w}&lt;/em&gt;{ML},\beta&lt;em&gt;{ML})=\mathcal{N}(t| y(x,\mathbf{w}&lt;/em&gt;{ML}), \beta_{ML}^{-1}) $$&lt;/p&gt;
+
+&lt;p&gt;接下来介绍一种更“贝叶斯”的方法，我们可以对参数$\mathbf{w}$假设一个先验，为了数学上的方便不妨假设其为一个零均值，协方差为对角阵的多元高斯：
+$$p(\mathbf{w}|\alpha)=\mathcal{N}(\mathbf{w}|\mathbf{0},\alpha^{-1}\boldsymbol{I})=\Big(\frac{\alpha}{2\pi}\Big)^{(M+1)/2}\exp(-\frac{\alpha}{2}\mathbf{w}^T\mathbf{w})$$
+其中$\alpha$是高斯的精度，也称为超参数（即参数的参数）；$M+1$是$\mathbf{w}$中的参数个数。&lt;br /&gt;
+根据贝叶斯公式，后验正比于似然与先验的乘积：
+$$p(\mathbf{w}|\mathbf{x},\mathbf{t},\alpha,\beta)\propto p(\mathbf{t}|\mathbf{x},\mathbf{w},\beta)p(\mathbf{w}|\alpha)$$
+这个公式乍看之下挺难理解，不过只要你学了概率图模型，你就会发现要理解它其实非常容易。首先我们画出这几个变量的概率图模型：
+&lt;img src=&#34;http://7xikew.com1.z0.glb.clouddn.com/prml-1.2-1.png&#34; width=&#34;500&#34;&gt;
+很显然，$\mathcal{w}$的后验依赖于$\mathrm{t}$和$\alpha$，此时还需注意到$\mathrm{x}$、$\beta$和$\mathbf{w}$是$\mathrm{t}$的共同祖先，因此$\mathcal{w}$也依赖于$\mathrm{x}$和$\beta$。&lt;br /&gt;
+我们将后验写为如下形式
+$$p(\mathbf{w}|\mathbf{x},\mathbf{t},\alpha,\beta)=\frac{p(\mathbf{w},\mathbf{x},\mathbf{t},\alpha,\beta)}{p(\mathbf{x},\mathbf{t},\alpha,\beta)}\propto p(\mathbf{w},\mathbf{x},\mathbf{t},\alpha,\beta)$$
+根据概率图模型的链式法则，我们可以将联合概率分解为
+$$p(\mathbf{w},\mathbf{x},\mathbf{t},\alpha,\beta)=p(\mathbf{t}|\mathbf{x},\mathbf{w},\beta)p(\mathbf{w}|\alpha)p(\alpha)p(\beta)$$
+由于我们只关心与$\mathbf{w}$有关的概率，因此$p(\alpha)$和$p(\beta)$可以省略，于是我们就得到了
+$$p(\mathbf{w}|\mathbf{x},\mathbf{t},\alpha,\beta)\propto p(\mathbf{t}|\mathbf{x},\mathbf{w},\beta)p(\mathbf{w}|\alpha)$$&lt;/p&gt;
+
+&lt;p&gt;将$p(\mathrm{t}|\mathrm{x},\mathbf{w},\beta)$和$p(\mathbf{w}|\alpha)$的具体形式代入并取对数，通过最大化对数后验分布我们得到关于$\mathbf{w}$的最大后验估计（MAP, maximum a posteriori）：
+$$\begin{aligned}\mathbf{w}&lt;em&gt;{MAP}&amp;amp;=\arg\max&lt;/em&gt;{\mathbf{w}} \ln\ p(\mathbf{w}|\mathbf{x},\mathbf{t},\alpha,\beta)\&amp;amp;=\arg\max&lt;em&gt;{\mathbf{w}} - \frac{\beta}{2}\sum&lt;/em&gt;{n=1}^N(t_n-y(x&lt;em&gt;n,\mathbf{w}))^2-\frac{\alpha}{2}\mathbf{w}^T\mathbf{w}\&amp;amp;=\arg\min&lt;/em&gt;{\mathbf{w}} \frac{1}{2}\sum_{n=1}^N(t_n-y(x&lt;em&gt;n,\mathbf{w}))^2+\frac{\alpha}{2\beta}\mathbf{w}^T\mathbf{w}\&amp;amp;= \arg\min&lt;/em&gt;{\mathbf{w}} \frac{1}{2}\sum_{n=1}^N(t_n-y(x_n,\mathbf{w}))^2+\frac{\lambda}{2}\mathbf{w}^T\mathbf{w}\end{aligned}$$
+其中$\lambda=\frac{\alpha}{\beta}$，就是1.1节中的正则化系数。&lt;/p&gt;
+
+&lt;h2 id=&#34;贝叶斯曲线拟合&#34;&gt;贝叶斯曲线拟合&lt;/h2&gt;
+
+&lt;p&gt;前面介绍的MLE和MAP都属于点估计，这一节将介绍一种更完全的贝叶斯方法。回顾曲线拟合的目标，我们希望为给定的输入$\hat{x}$预测其对应的输出$\hat{t}$。这里假设参数$\alpha$和$\beta$已知，于是可以省略$\mathbf{w}$的后验概率中的参数，写为$p(\mathbf{w}|\mathbf{x},\mathbf{t})$。通过对下式右端关于$\mathbf{w}$积分，我们可以得到$t$的后验预测分布（posterior predictive distribution）：
+$$ p(t|x,\mathbf{x},\mathbf{t})=\int p(t|x,\mathbf{w})p(\mathbf{w}|\mathbf{x},\mathbf{t})d\mathbf{w}$$
+这个公式是我读这本书遇到的第一道坎，貌似很多人也在这个公式上卡了很久。我说一下我对这个公式的理解：&lt;br /&gt;
+&lt;strong&gt;第一种理解&lt;/strong&gt;：我们知道在贝叶斯中数据是已知的，只有参数$\mathbf{w}$是不确定的，因此式中$x,\mathbf{x},\mathbf{t}$都是确定的，为了直观我们可以把已知的都省略，于是原式变为
+$$p(t)=\int p(t|\mathbf{w})p(\mathbf{w}) d\mathbf{w}=\int p(t,\mathbf{w})d\mathbf{w}$$
+这就很好理解了，就是对$\mathbf{w}$做marginalization（运用概率论的乘法公式和加法公式，连续的情况下求和变为积分）。&lt;br /&gt;
+&lt;strong&gt;第二种理解&lt;/strong&gt;：概率图模型，需要用到*D-separation*理论（D-Separation是一种用来判断变量是否条件独立的图形化方法）。以下举个D-separation最简单的例子，更多的理论知识请参考PRML第8章
+&lt;img src=&#34;http://7xikew.com1.z0.glb.clouddn.com/d_separation.png&#34; width=&#34;300&#34;&gt;
+我们要确定上图中$a$和$b$的关系，则可以分为两种情况来讨论&lt;br /&gt;
+首先依据链式法则,我们写出该图模型的联合概率
+$$p(a,b,c)=p&amp;copy;p(a|c)p(b|c)$$
+1）如果随机变量$c$已经被观测，则$a$与$b$条件独立，即$p(a,b|c)=p(a|c)p(b|c)$&lt;br /&gt;
+证明过程如下：
+$$p(a,b|c)=\frac{p(a,b,c)}{p&amp;copy;}=\frac{p&amp;copy;p(a|c)p(b|c)}{p&amp;copy;}=p(a|c)p(b|c)$$
+同理，我们还能证明$p(b|a, c)=p(b|c)$
+$$p(b|a, c)=\frac{p(a,b,c)}{p(a, c)}=\frac{p&amp;copy;p(a|c)p(b|c)}{p&amp;copy;p(a|c)}=p(b|c)$$
+2）如果随机变量$c$未被观测，通过对$p(a,b,c)$关于$c$积分我们获得$a$和$b$的联合概率
+$$p(a,b)=\sum_{c}=p&amp;copy;p(a|c)p(b|c)$$
+通常情况下，$p(a,b)$是不等于$p(a)p(b)$的，因此$a$和$b$相互不独立&lt;br /&gt;
+接下来我们讨论回归模型的概率图模型：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://7xikew.com1.z0.glb.clouddn.com/regression-graph-model.png&#34; width=&#34;300&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来我们来证明原式成立：
+$$\begin{aligned}p(t|x,\mathbf{x},\mathbf{t})&amp;amp;=\frac{p(t,x,\mathbf{x},\mathbf{t})}{p(x,\mathbf{x},\mathbf{t})}\&amp;amp;=\int \frac{p(t,x,\mathbf{x},\mathbf{t}, \mathbf{w})}{p(x,\mathbf{x},\mathbf{t})}d\mathbf{w}\&amp;amp;=\int \frac{p(t,x,\mathbf{x},\mathbf{t}, \mathbf{w})}{p(x,\mathbf{x},\mathbf{t}, \mathbf{w})}\frac{p(x,\mathbf{x},\mathbf{t}, \mathbf{w})}{p(x,\mathbf{x},\mathbf{t})}d\mathbf{w}\&amp;amp;=\int p(t|x,\mathbf{x},\mathbf{t}, \mathbf{w})p(\mathbf{w}|x,\mathbf{x},\mathbf{t})d\mathbf{w}\end{aligned}$$
+根据图模型的*D-separation*理论，$\mathbf{w}$被观测的条件下，上图中$\mathbf{x}$到$t$（在图中是$\hat{t}$）的通路被阻断，因此$t$与$\mathbf{x}$及$\mathbf{t}$相互独立，则
+$$p(t|x,\mathbf{x},\mathbf{t}, \mathbf{w})=p(t|x,\mathbf{w})$$
+接着我们考察概率$p(\mathbf{w}|x,\mathbf{x},\mathbf{t})$，由于$t$尚未被观测，根据图模型*D-separation*理论，$\mathbf{w}$和$x$应该是独立的，此外由于$\mathbf{t}$已经被观测，那么$\mathbf{w}$与$\mathbf{x}$条件不独立。于是
+$$p(\mathbf{w}|x,\mathbf{x},\mathbf{t})=p(\mathbf{w}|\mathbf{x},\mathbf{t})$$
+综上，我们知道
+$$p(t|x,\mathbf{x},\mathbf{t})=\int p(t|x,\mathbf{w})p(\mathbf{w}|\mathbf{x},\mathbf{t})d\mathbf{w}$$&lt;/p&gt;
+
+&lt;p&gt;在理解了后验预测分布是怎么来的以后，我们需要计算该分布。注意到似然函数$p(t|x,\mathbf{w})$是个高斯分布，而先验$p(\mathbf{w})$也是个高斯分布，贝叶斯统计学里可以证明，当先验和似然都是高斯分布时则后验与先验共轭，即后验也是一个高斯分布（准确来说，只要都属于指数分布族该结论都能成立）。至此，我们知道了$p(t|x,\mathbf{w})$和$p(\mathbf{w}|\mathbf{x},\mathbf{t})$都是高斯分布，这还没完，因为我们还没求积分呢。刚开始看到这个积分，我也十分头大，觉得根本无从下手，于是我就开始在网上漫无目的地寻找线索，也许是因为我的搜索技术高超，最后还真被我找到了点蛛丝马迹。其实这个积分是两个高斯分布的卷积，可以证明两个高斯分布的卷积还是一个高斯分布，经过一大串的计算可以得到如下的结论（具体怎么算的，看我的另一篇&lt;a href=&#34;../Chap3-Linear-Models-For-Regression/summary-baysian-linear-regression.ipynb&#34;&gt;笔记&lt;/a&gt;）：
+$$ p(t|x,\mathbf{x}, \mathbf{t})=\mathcal{N}\big(t|m(x),s^2(x)\big)$$
+其中均值和方差都是关于$x$的函数，定义为
+$$ m(x)=\beta\phi(x)^T \mathbf{S}\sum_{n=1}^N\phi(x_n)t&lt;em&gt;n\s^2(x)=\beta^{-1}+\phi(x)^T\mathbf{S}\phi(x)$$
+这里矩阵$\mathbf{S}$由下式给出
+$$\mathbf{S}^{-1}=\alpha \mathbf{I}+\beta\sum&lt;/em&gt;{n=1}^N\phi(x_n)\phi(x_n)^T$$
+其中$\mathbf{I}$是单位矩阵，$\phi(x)$是关于$x$的特征变换，其中$\phi_i(x)=x^i,i=0,&amp;hellip;,M$&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>设计模式：工厂模式（Factory Pattern）</title>
+      <link>panfeng0119.github.io/post/designpatternfactory/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/designpatternfactory/</guid>
+      <description>
+
+&lt;p&gt;工厂模式（Factory Pattern）&lt;/p&gt;
+
+&lt;h3 id=&#34;类型&#34;&gt;类型&lt;/h3&gt;
+
+&lt;p&gt;创建型模式&lt;/br&gt;
+提供了一种创建对象的最佳方式&lt;/p&gt;
+
+&lt;p&gt;意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。&lt;/p&gt;
+
+&lt;p&gt;主要解决：主要解决接口选择的问题。&lt;/p&gt;
+
+&lt;p&gt;何时使用：我们明确地计划不同条件下创建不同实例时。&lt;/p&gt;
+
+&lt;p&gt;如何解决：让其子类实现工厂接口，返回的也是一个抽象的产品。&lt;/p&gt;
+
+&lt;p&gt;关键代码：创建过程在其子类执行。&lt;/p&gt;
+
+&lt;p&gt;应用实例： 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的具体实现。 2、Hibernate 换数据库只需换方言和驱动就可以。&lt;/p&gt;
+
+&lt;p&gt;1. 我们需要一个接口&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type Shape interface {
+    Draw()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2. 这个接口下的实例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 实例1
+type Rectangle struct {
+}
+
+func (this Rectangle) Draw() {
+    fmt.Println(&amp;quot;Inside Rectangle::draw() method.&amp;quot;)
+}
+
+// 实例2
+type Square struct {
+}
+
+func (this Square) Draw() {
+    fmt.Println(&amp;quot;Inside Square ::draw() method.&amp;quot;)
+}
+
+// 实例3
+type Circle struct {
+}
+
+func (this Circle) Draw() {
+    fmt.Println(&amp;quot;Inside Circle  ::draw() method.&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3. 创建一个工厂&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type ShapeFactory struct {
+}
+
+//使用 getShape 方法获取形状类型的对象
+func (this ShapeFactory) getShape(shapeType string) Shape {
+
+    if shapeType == &amp;quot;&amp;quot; {
+        return nil
+    }
+    if shapeType == &amp;quot;CIRCLE&amp;quot; {
+        return Circle{}
+    } else if shapeType == &amp;quot;RECTANGLE&amp;quot; {
+        return Rectangle{}
+    } else if shapeType == &amp;quot;SQUARE&amp;quot; {
+        return Square{}
+    }
+    return nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4. 使用这个工厂&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+    factory := ShapeFactory{}
+    factory.getShape(&amp;quot;CIRCLE&amp;quot;).Draw()
+    factory.getShape(&amp;quot;RECTANGLE&amp;quot;).Draw()
+    factory.getShape(&amp;quot;SQUARE&amp;quot;).Draw()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Inside Circle  ::draw() method.
+Inside Rectangle::draw() method.
+Inside Square ::draw() method.
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo &#43; GitHub 部署个人站点</title>
+      <link>panfeng0119.github.io/post/hugohost_on_github/</link>
+      <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/hugohost_on_github/</guid>
+      <description>
+
+&lt;p&gt;完整内容请参阅 &lt;a href=&#34;https://gohugo.io/hosting-and-deployment/&#34; target=&#34;_blank&#34;&gt;Hosting &amp;amp; Deployment&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;已安装 &lt;a href=&#34;https://git-scm.com/downloads&#34; target=&#34;_blank&#34;&gt;Git&lt;/a&gt; 版本 2.8 以上.&lt;/li&gt;
+&lt;li&gt;需要发布的Hugo网站，起码已完成&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34; target=&#34;_blank&#34;&gt;快速入门&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;在 &lt;a href=&#34;https://github.com/&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; 中创建好了仓库: &amp;lt;USERNAME&amp;gt;.github.io.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;b-准备工作-b&#34;&gt;&lt;b&gt;准备工作&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;不同的仓库类型，需要托管的分支是不同的。具体描述，请参阅文档 &lt;a href=&#34;https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages&#34; target=&#34;_blank&#34;&gt;GitHub Pages doc&lt;/a&gt;，以确定您要创建哪种类型的站点.&lt;/p&gt;
+
+&lt;p&gt;从逻辑上，常用两种类型的仓库，对应的分支为&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;code&gt;https://github.com/&amp;lt;USERNAME&amp;gt;/&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;网站分支 -&amp;gt; &lt;font face=&#34;Aria&#34;&gt;&lt;b&gt;gh-pages&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;网站分支 -&amp;gt; &lt;font face=&#34;Aria&#34;&gt;&lt;b&gt;master&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;源码分支 -&amp;gt; &lt;font face=&#34;微软雅黑&#34;&gt;&lt;b&gt;任意&lt;/b&gt; &lt;/font&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;源码分支 -&amp;gt; &lt;font face=&#34;微软雅黑&#34;&gt;&lt;b&gt;任意&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;我们用第二种类型，需要注意两点：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;仓库名必须用&amp;lt;USERNAME&amp;gt;.github.io &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;网站内容必须存放在 master 分支&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;一-b-通过两个仓库来创建-github-pages-b&#34;&gt;一、&lt;b&gt;通过两个仓库来创建 GitHub Pages&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;最简单的方法就是将 Hugo 文件和生成的内容分别发布到两个不同的仓库(Repositoriy)中。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;创建两个仓库 &lt;p&gt; 一个存放源码的仓库： &lt;code&gt;&amp;lt;YOUR-PROJECT&amp;gt;&lt;/code&gt;  &lt;font color=#F08080&gt;（如：blog）&lt;/font&gt; &lt;/br&gt; 一个托管Hugo网站的仓库： &lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;克隆源码仓库到本地 &lt;p&gt; git clone &amp;lt;OUR-PROJECT-URL&amp;gt; &lt;/br&gt; cd &amp;lt;YOUR-PROJECT&amp;gt; &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;启动网站服务，确保网站能正常运行 &lt;p&gt; hugo server &lt;/br&gt; 访问网站 &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;http://localhost:1313&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;创建 git 子模块，命名为 &lt;em&gt;public&lt;/em&gt; &lt;font color=#F08080&gt;（用来托管网站）&lt;/font&gt; &lt;p&gt; git submodule add -b master &lt;code&gt;git@github.com:&amp;lt;USERNAME&amp;gt;/&amp;lt;USERNAME&amp;gt;.github.io.git public&lt;/code&gt; &lt;em&gt;public&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;运行脚本，将网站 push 到&lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; &lt;p&gt; chmod +x deploy.sh  ./deploy.sh&amp;rdquo;提交消息(可选)&amp;rdquo; &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;将源代码 push 到 &lt;code&gt;&amp;lt;YOUR-PROJECT&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# 文件名：deploy.sh
+echo -e &amp;quot;\033[0;32mDeploying updates to GitHub...\033[0m&amp;quot;
+Date=`date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;`
+
+# Build the project.
+hugo
+
+# Go To Public folder
+cd public
+
+# Add changes to git.
+git add -A
+
+# Commit changes.
+msg=&amp;quot;rebuilding site ${Date}&amp;quot;
+if [ $# -eq 1 ]
+  then msg=&amp;quot;$1&amp;quot;
+fi
+git commit -m &amp;quot;$msg&amp;quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在！您的个人页面成功地部署在 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=#778899&gt;补充：如果需要指定 Hugo 生成网站的输出目录，可以在配置文件中 config.toml 中设置变量 publishDir = &#34;docs&#34;. &lt;/font&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;二-b-通过两个分支来创建-github-pages-b&#34;&gt;二、&lt;b&gt;通过两个分支来创建 GitHub Pages&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;我们还可以指定默认分支来托管源代码，并将发布的站点指向单独的分支，虽然比上面的方法复杂，但他的优点在于：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;只用一个仓库，方便维护和版本控制&lt;/li&gt;
+&lt;li&gt;直接使用默认的 &lt;em&gt;public&lt;/em&gt; 目录，不必指定 Git 子模块或输出目录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们需要到仓库中新建一个托管源代码的分支，并设置为默认分支&lt;font color=#F08080&gt;（非 master 分支）&lt;/font&gt;，设置方法如下&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;进入仓库 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; ，点击导航栏的设置 &lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Settings&lt;/strong&gt;&lt;font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在左侧 &lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Options&lt;/strong&gt;&lt;font&gt; 找到 &lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Branches&lt;/strong&gt;&lt;font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Default branch&lt;/strong&gt;&lt;font&gt; 选择源码托管的分支 &lt;font color=#F08080&gt;（如 hugo）&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2-1-初始化&#34;&gt;2.1 初始化&lt;/h3&gt;
+
+&lt;p&gt;接下来的步骤在每次 clone 下来后只需要完成一次。默认的 &lt;code&gt;（upstream&lt;/code&gt; 的名称 origin
+&lt;font color=#F08080&gt;（upstream 是远程仓库在本地的简写名称，可以通过 git remote -v 来查看 ）&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;现在，我们用 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 仓库，源码分支为 &lt;strong&gt;hugo&lt;/strong&gt; ，发布网站的分支为 &lt;strong&gt;master&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;克隆仓库到本地，默认分支是 &lt;strong&gt;hugo&lt;/strong&gt; &lt;p&gt; git clone &amp;lt;Repositoriy-URL&amp;gt; &lt;/br&gt; cd &amp;lt;Repositoriy&amp;gt; &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;切换到 &lt;strong&gt;master&lt;/strong&gt; 分支，进行设置 &lt;p&gt;
+git checkout master &lt;/br&gt;
+git reset &amp;ndash;hard &lt;/br&gt;
+git commit &amp;ndash;allow-empty -m &amp;ldquo;Initializing master branch&amp;rdquo; &lt;/br&gt;
+git push origin master&lt;/br&gt;
+git checkout master &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;切换到 &lt;strong&gt;hugo&lt;/strong&gt; 分支&lt;p&gt;
+echo public &amp;gt;&amp;gt; .gitignore &lt;/br&gt;
+rm -rf public&lt;/br&gt;
+rm -rf .git/worktrees/public/&amp;rdquo; &lt;/br&gt;
+git worktree add -B master public origin/master &lt;/br&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2-2-启动服务并push到分支&#34;&gt;2.2 启动服务并push到分支&lt;/h3&gt;
+
+&lt;p&gt;现在我们只需要启动服务，检查网站正常运行，就可以通过脚本来push了  &lt;font color=#F08080&gt;（脚本需要 chmod +x deploy.sh）&lt;/font&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# 文件名：deploy.sh
+# 脚本：自动将public文件夹push到master分支
+# 如果是用 gh-branch，将 master 替换为 gh-branch 就可以
+
+# 日志信息
+Date=`date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;`
+alias printlog=&#39;echo ${Date} INFO&#39;
+
+# 标记当前路径
+DIR=`pwd`
+printlog &amp;quot;当前目录：${DIR}&amp;quot;
+
+printlog &amp;quot;标记 public 文件夹为 master 分支&amp;quot;
+rm -rf public
+rm -rf .git/worktrees/public/
+
+git worktree add -B master public origin/master
+# 清除原来的内容
+rm -rf public/*
+
+# 编译
+printlog &amp;quot;正在生成网站.&amp;quot;
+hugo
+
+printlog &amp;quot;正在提交更新&amp;quot;
+msg=&amp;quot;Rebuilding site ${Date} (publish.sh)&amp;quot;
+
+# 提交
+cd public &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &amp;quot;${msg}&amp;quot;
+
+printlog &amp;quot;正在 push&amp;quot;
+git push origin master
+
+printlog &amp;quot;Down!&amp;quot;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;附录&#34;&gt;附录&lt;/h3&gt;
+
+&lt;p&gt;知识点：&lt;/p&gt;
+
+&lt;p&gt;git worktree&lt;/p&gt;
+
+&lt;p&gt;利用 upstream 标记更多的远程仓库地址&lt;/p&gt;
+
+&lt;p&gt;脚本中获取相对路径 DIR=$(dirname &amp;ldquo;$0&amp;rdquo;)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 刷题笔记</title>
+      <link>panfeng0119.github.io/post/leetcode1-100/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/leetcode1-100/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/categories/content-management&#34; target=&#34;_blank&#34;&gt;CONTENT MANAGEMENT&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-two-sum&#34;&gt;1. Two Sum&lt;/h1&gt;
+
+&lt;p&gt;Given an array of integers, return indices of the two numbers such that they add up to a specific target.&lt;/p&gt;
+
+&lt;p&gt;You may assume that each input would have exactly one solution, and you may not use the same element twice.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+
+&lt;p&gt;考虑时间复杂度， 按正常思路遍历是 &lt;code&gt;O(n^2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;所以需要一个map来记录遍历过的值，key 用 &lt;code&gt;target - n&lt;/code&gt; 来表示这个数需要匹配的数，value 记录这个位置&lt;/p&gt;
+
+&lt;p&gt;如果找到这个值，就直接返回他的value&lt;/p&gt;
+
+&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;func twoSum(nums []int, target int) []int {
+    m := make(map[int]int)
+    for i, n := range nums {
+        _, prs := m[n]
+        if prs {
+            return []int{m[n], i}
+        } else {
+            m[target-n] = i
+        }
+    }
+    return nil;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;2-two-sum&#34;&gt;2. Two Sum&lt;/h1&gt;
+
+&lt;p&gt;Given an array of integers, return indices of the two numbers such that they add up to a specific target.&lt;/p&gt;
+
+&lt;p&gt;You may assume that each input would have exactly one solution, and you may not use the same element twice.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;思路-1&#34;&gt;思路&lt;/h2&gt;
+
+&lt;p&gt;考虑时间复杂度， 按正常思路遍历是 &lt;code&gt;O(n^2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;所以需要一个map来记录遍历过的值，key 用 &lt;code&gt;target - n&lt;/code&gt; 来表示这个数需要匹配的数，value 记录这个位置&lt;/p&gt;
+
+&lt;p&gt;如果找到这个值，就直接返回他的value&lt;/p&gt;
+
+&lt;h2 id=&#34;代码-1&#34;&gt;代码&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Page Resources</title>
+      <link>panfeng0119.github.io/post/pagesource/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/post/pagesource/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/categories/content-management&#34; target=&#34;_blank&#34;&gt;CONTENT MANAGEMENT&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;page-resources&#34;&gt;Page Resources&lt;/h1&gt;
+
+&lt;h1 id=&#34;resourcetype&#34;&gt;ResourceType&lt;/h1&gt;
+
+&lt;p&gt;The main type of the resource. For example, a file of MIME type image/jpg has for ResourceType image.
+Name
+Default value is the filename (relative to the owning page). Can be set in front matter.
+Title
+Default blank. Can be set in front matter.
+Permalink
+The absolute URL to the resource. Resources of type page will have no value.
+RelPermalink
+The relative URL to the resource. Resources of type page will have no value.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo 主题: Academic</title>
+      <link>panfeng0119.github.io/publication/aboutacademic/</link>
+      <pubDate>Sat, 01 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/publication/aboutacademic/</guid>
+      <description>
+
+&lt;h1 id=&#34;hugo-https-gohugo-io-主题-academic-https-github-com-gcushen-hugo-academic&#34;&gt;&lt;a href=&#34;https://gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt; 主题: &lt;a href=&#34;https://github.com/gcushen/hugo-academic&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Academic&lt;/strong&gt;&lt;/a&gt; 是一个框架，它可以帮助你迅速创建漂亮的网站. 适用于个人站点、博客或商业/项目网站. 不超过10分钟即可浏览&lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;最新的演示&lt;/a&gt;. 然后跳转到 &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;快速入门指南&lt;/a&gt; 或者查看&lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34;&gt;发行说明&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; alt=&#34;Screenshot&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;主要特征:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;轻松管理各种内容，包括主页，博客文章，出版物，讲座和项目&lt;/li&gt;
+&lt;li&gt;通过 &lt;strong&gt;color themes&lt;/strong&gt; 和 &lt;strong&gt;widgets/plugins&lt;/strong&gt; 进行扩展&lt;/li&gt;
+&lt;li&gt;通过 &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; 来进行编写，以便于格式化和代码高亮, 还可以用 &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34;&gt;LaTeX&lt;/a&gt; 来编写数学表达式&lt;/li&gt;
+&lt;li&gt;Social/academic 网络链接, &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34;&gt;Google Analytics&lt;/a&gt;, and &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34;&gt;Disqus&lt;/a&gt; 评论&lt;/li&gt;
+&lt;li&gt;响应和移动友好&lt;/li&gt;
+&lt;li&gt;单页、简单而清爽&lt;/li&gt;
+&lt;li&gt;多语言、易于定制&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;color-themes&#34;&gt;Color Themes&lt;/h2&gt;
+
+&lt;p&gt;Academic 有不同的颜色主题和字体主题.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;code&gt;默认&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;ocean&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;dark&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-default.png&#34; alt=&#34;default theme&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-ocean.png&#34; alt=&#34;ocean theme&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-dark.png&#34; alt=&#34;dark theme&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;code&gt;forest&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;coffee&lt;/code&gt; + &lt;code&gt;playfair&lt;/code&gt; font&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;1950s&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-forest.png&#34; alt=&#34;forest theme&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-coffee-playfair.png&#34; alt=&#34;coffee theme&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-1950s.png&#34; alt=&#34;1950s theme&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
+
+&lt;p&gt;您可以选择以下四种方法之一进行安装:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;one-click install using your web browser (recommended)&lt;/li&gt;
+&lt;li&gt;install on your computer using Git with the Command Prompt/Terminal app&lt;/li&gt;
+&lt;li&gt;install on your computer by downloading the ZIP files&lt;/li&gt;
+&lt;li&gt;install on your computer with RStudio&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;使用浏览器&#34;&gt;使用浏览器&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart&#34; target=&#34;_blank&#34;&gt;Install Academic with Netlify&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Netlify will provide you with a customizable URL to access your new site&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;On GitHub, go to your newly created &lt;code&gt;academic-kickstart&lt;/code&gt; repository and edit &lt;code&gt;config.toml&lt;/code&gt; to personalize your site. Shortly after saving the file, your site will automatically update&lt;/li&gt;
+&lt;li&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;使用-git&#34;&gt;使用 Git&lt;/h3&gt;
+
+&lt;p&gt;要求:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;下载并安装 &lt;a href=&#34;https://git-scm.com/downloads&#34; target=&#34;_blank&#34;&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载并安装 &lt;a href=&#34;https://gohugo.io/getting-started/installing/#quick-install&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart#fork-destination-box&#34; target=&#34;_blank&#34;&gt;Fork&lt;/a&gt; the &lt;em&gt;Academic Kickstart&lt;/em&gt; repository and clone your fork with Git:&lt;/p&gt;
+
+&lt;p&gt;git clone &lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart.git&#34; target=&#34;_blank&#34;&gt;https://github.com/sourcethemes/academic-kickstart.git&lt;/a&gt; My_Website&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note that if you forked Academic Kickstart, the above command should be edited to clone your fork, i.e. replace &lt;code&gt;sourcethemes&lt;/code&gt; with your GitHub username.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;初始化 academic 主题:&lt;/p&gt;
+
+&lt;p&gt;cd My_Website
+   git submodule update &amp;ndash;init &amp;ndash;recursive&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;通过-zip-安装&#34;&gt;通过 ZIP 安装&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract &lt;em&gt;Academic Kickstart&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract the &lt;em&gt;Academic theme&lt;/em&gt; to the &lt;code&gt;themes/academic/&lt;/code&gt; folder from the above step&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;使用-rstudio-安装&#34;&gt;使用 RStudio 安装&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-rstudio&#34; target=&#34;_blank&#34;&gt;View the guide to installing Academic with RStudio&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;If you installed on your computer, view your new website by running the following command:&lt;/p&gt;
+
+&lt;p&gt;hugo server&lt;/p&gt;
+
+&lt;p&gt;Now visit &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;localhost:1313&lt;/a&gt; and your new Academic powered website will appear. Otherwise, if using Netlify, they will provide you with your URL.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content, customize your site, and deploy it. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Build your site by running the &lt;code&gt;hugo&lt;/code&gt; command. Then &lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/&#34; target=&#34;_blank&#34;&gt;host it for free using Github Pages&lt;/a&gt; or Netlify (refer to the first installation method). Alternatively, copy the generated &lt;code&gt;public/&lt;/code&gt; directory (by FTP, Rsync, etc.) to your production web server (such as a university&amp;rsquo;s hosting service).&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;更新&#34;&gt;更新&lt;/h2&gt;
+
+&lt;p&gt;Feel free to &lt;em&gt;star&lt;/em&gt; the project on &lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; to help keep track of updates and check out the &lt;a href=&#34;https://sourcethemes.com/academic/updates&#34; target=&#34;_blank&#34;&gt;release notes&lt;/a&gt; prior to updating your site.&lt;/p&gt;
+
+&lt;p&gt;Before updating the framework, it is recommended to make a backup of your entire website directory (or at least your &lt;code&gt;themes/academic&lt;/code&gt; directory) and record your current version number.&lt;/p&gt;
+
+&lt;p&gt;By default, Academic is installed as a Git submodule which can be updated by running the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule update --remote --merge
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Check out the update guide&lt;/a&gt; for full instructions and alternative methods.&lt;/p&gt;
+
+&lt;h2 id=&#34;反馈-贡献&#34;&gt;反馈 &amp;amp; 贡献&lt;/h2&gt;
+
+&lt;p&gt;Please use the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;issue tracker&lt;/a&gt; to let me know about any bugs or feature requests, or alternatively make a pull request.&lt;/p&gt;
+
+&lt;p&gt;For support, head over to the &lt;a href=&#34;http://discuss.gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo discussion forum&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/igrigorik/ga-beacon&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://ga-beacon.appspot.com/UA-78646709-2/hugo-academic/readme?pixel&#34; alt=&#34;Analytics&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Math Sample</title>
+      <link>panfeng0119.github.io/post/2017-03-05-math-sample/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>panfeng0119.github.io/post/2017-03-05-math-sample/</guid>
+      <description>&lt;p&gt;KaTeX can be used to generate complex math formulas server-side.&lt;/p&gt;
+
+&lt;p&gt;$$
+\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
+$$&lt;/p&gt;
+
+&lt;p&gt;Additional details can be found on &lt;a href=&#34;https://github.com/Khan/KaTeX&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; or on the &lt;a href=&#34;http://tiddlywiki.com/plugins/tiddlywiki/katex/&#34; target=&#34;_blank&#34;&gt;Wiki&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;example-1&#34;&gt;Example 1&lt;/h3&gt;
+
+&lt;p&gt;If the text between $$ contains newlines it will rendered in display mode:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$$
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+$$
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$$
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+$$&lt;/p&gt;
+
+&lt;h3 id=&#34;example-2&#34;&gt;Example 2&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$$
+\frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\cdots} } } }
+$$
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;​​$$
+\frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\cdots} } } }
+$$
+​​&lt;/p&gt;
+
+&lt;h3 id=&#34;example-3&#34;&gt;Example 3&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$$
+1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots = \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \quad\quad \text{for }\lvert q\rvert&amp;lt;1.
+$$
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$$
+1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots = \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \quad\quad \text{for }\lvert q\rvert&amp;lt;1.
+$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Example Talk</title>
+      <link>panfeng0119.github.io/talk/example-talk/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/talk/example-talk/</guid>
+      <description>&lt;p&gt;Embed your slides or video here using &lt;a href=&#34;https://sourcethemes.com/academic/post/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;. Further details can easily be added using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>example - Deep Learning</title>
+      <link>panfeng0119.github.io/project/deep-learning/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/project/deep-learning/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

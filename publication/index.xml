@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on Pan Feng</title>
+    <link>panfeng0119.github.io/publication/</link>
+    <description>Recent content in Publications on Pan Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="panfeng0119.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo 主题: Academic</title>
+      <link>panfeng0119.github.io/publication/aboutacademic/</link>
+      <pubDate>Sat, 01 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>panfeng0119.github.io/publication/aboutacademic/</guid>
+      <description>Hugo 主题: Academic Academic 是一个框架，它可以帮助你迅速创建漂亮的网站. 适用于个人站点、博客或商业/项目网站. 不超过10分钟即可浏览最新的演示. 然后跳转到 快</description>
+    </item>
+    
+  </channel>
+</rss>
