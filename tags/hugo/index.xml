@@ -44,7 +44,7 @@
       <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
       
       <guid>http://panfeng0119.github.io/post/hugo/hugo01-2018-09-28-documentation/</guid>
-      <description>Introduction to Hugo Templating Hugo 使用Go语言的 html/template and text/template 库作为模板. Content Organization Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。 Hugo&amp;rsquo;s Lookup Order Hugo searches for the layout to use for a given page in a well defined</description>
+      <description>CONTENT MANAGEMENT Introduction to Hugo Templating Hugo 使用Go语言的 html/template and text/template 库作为模板. Content Organization Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。 Hugo&amp;rsquo;s Lookup Order Hugo searches for the layout to use for a given page in a</description>
     </item>
     
   </channel>

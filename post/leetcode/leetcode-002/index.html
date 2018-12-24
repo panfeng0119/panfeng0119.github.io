@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>设计模式：工厂模式（Factory Pattern） - Pan Feng&#39;s Blog</title>
+  <title>LeetCode 刷题笔记02 - Pan Feng&#39;s Blog</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,8 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="Pan Feng" />
-  <meta name="description" content="工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工" />
+<meta name="author" content="Pan Feng" /><meta name="description" content="LeetCode 刷题之旅." />
 
 
 
@@ -34,7 +33,7 @@
 <meta name="generator" content="Hugo 0.52" />
 
 
-<link rel="canonical" href="http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/" />
+<link rel="canonical" href="http://panfeng0119.github.io/post/leetcode/leetcode-002/" />
 
 
 
@@ -56,26 +55,26 @@
 
 
 
-<meta property="og:title" content="设计模式：工厂模式（Factory Pattern）" />
-<meta property="og:description" content="工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工" />
+<meta property="og:title" content="LeetCode 刷题笔记02" />
+<meta property="og:description" content="LeetCode 刷题之旅." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/" /><meta property="article:published_time" content="2018-09-26T00:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2018-09-26T00:00:00&#43;08:00"/>
+<meta property="og:url" content="http://panfeng0119.github.io/post/leetcode/leetcode-002/" /><meta property="article:published_time" content="2018-12-24T13:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-12-24T13:00:00&#43;08:00"/>
 
-<meta itemprop="name" content="设计模式：工厂模式（Factory Pattern）">
-<meta itemprop="description" content="工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工">
-
-
-<meta itemprop="datePublished" content="2018-09-26T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2018-09-26T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="494">
+<meta itemprop="name" content="LeetCode 刷题笔记02">
+<meta itemprop="description" content="LeetCode 刷题之旅.">
 
 
+<meta itemprop="datePublished" content="2018-12-24T13:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-24T13:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="563">
 
-<meta itemprop="keywords" content="design pattern,go," />
+
+
+<meta itemprop="keywords" content="LeetCode," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="设计模式：工厂模式（Factory Pattern）"/>
-<meta name="twitter:description" content="工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工"/>
+<meta name="twitter:title" content="LeetCode 刷题笔记02"/>
+<meta name="twitter:description" content="LeetCode 刷题之旅."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -271,18 +270,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">设计模式：工厂模式（Factory Pattern）</h1>
+      <h1 class="post-title">LeetCode 刷题笔记02</h1>
       
       <div class="post-meta">
-        <time datetime="2018-09-26" class="post-time">
-          2018-09-26
+        <time datetime="2018-12-24" class="post-time">
+          2018-12-24
         </time>
         <div class="post-category">
-            <a href="http://panfeng0119.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式 </a>
+            <a href="http://panfeng0119.github.io/categories/leetcode/"> LeetCode </a>
             
           </div>
-        <span class="more-meta"> 494 words </span>
-          <span class="more-meta"> 1 min read </span>
+        <span class="more-meta"> 563 words </span>
+          <span class="more-meta"> 2 min read </span>
 
         
         
@@ -299,12 +298,11 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#2-结构体数字求和-add-two-numbers">2. 结构体数字求和（Add Two Numbers）</a>
 <ul>
-<li>
-<ul>
-<li><a href="#类型">类型</a></li>
-</ul></li>
+<li><a href="#思路">思路</a></li>
+<li><a href="#代码">代码</a></li>
+<li><a href="#伪代码-同时遍历">伪代码 (同时遍历)</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -315,26 +313,17 @@
     <div class="post-content">
       
 
-<p>工厂模式（Factory Pattern）</p>
+<p>链接：<a href="https://leetcode.com/problemset/all/">leetcode</a></p>
 
-<h3 id="类型">类型</h3>
+<h1 id="2-结构体数字求和-add-two-numbers">2. 结构体数字求和（Add Two Numbers）</h1>
 
-<p>创建型模式</br>
-提供了一种创建对象的最佳方式</p>
+<p>难度：💔💔💔</p>
 
-<p>意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</p>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
 
-<p>主要解决：主要解决接口选择的问题。</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
 
-<p>何时使用：我们明确地计划不同条件下创建不同实例时。</p>
-
-<p>如何解决：让其子类实现工厂接口，返回的也是一个抽象的产品。</p>
-
-<p>关键代码：创建过程在其子类执行。</p>
-
-<p>应用实例： 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的具体实现。 2、Hibernate 换数据库只需换方言和驱动就可以。</p>
-
-<p>1. 我们需要一个接口</p>
+<p>Example:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -342,12 +331,54 @@
 </span><span class="lnt">3
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">type Shape interface {
-	Draw()
-}</pre></td></tr></table>
+<pre class="chroma">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+Explanation: 342 + 465 = 807.</pre></td></tr></table>
 </div>
 </div>
-<p>2. 这个接口下的实例</p>
+<h2 id="思路">思路</h2>
+
+<p>这是一个用结构体来实现一个加法，从最低位开始相加，有进位则下一个位置多加1</p>
+
+<p>进位取值在<code>0</code>或<code>1</code>，因为当前位置最大值为 $9 + 9 + 1 = 19$</p>
+
+<p>需要考虑特殊情况</p>
+
+<!-- | $l1=[0,1 ]$, $l2=[0,1,2]$ | 长短不一
+
+| $l1=[]$, $l2=[0,1]$ | 存在空值
+
+| $l1=[9,9]$, $l2=[1]$ | 一直进位 -->
+
+<table border="1" align="center">
+    <tr>
+        <td align="center" colspan="2">情况</td>
+        <td align="center" rowspan="2">备注</td>
+    </tr>
+    <tr>
+        <td align="center">$l_1$</td>
+        <td align="center">$l_2$</td>
+    </tr>
+    <tr>
+        <td align="center">$[0,1 ]$</td>
+        <td align="center">$[0,1,2]$</td>
+        <td align="center">长短不一</td>
+    </tr>
+    <tr>
+        <td align="center">$[]$</td>
+        <td align="center">$[0,1]$</td>
+        <td align="center">存在空值</td>
+    </tr>
+    <tr>
+        <td align="center">$[9,9]$</td>
+        <td align="center">$[1]$</td>
+        <td align="center">一直进位</td>
+    </tr>
+</table>
+
+<p>使用变量跟踪进位并从列表头部开始模拟逐位数字，其中包含最低有效数字。</p>
+
+<h2 id="代码">代码</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -373,108 +404,79 @@
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">// 实例1
-type Rectangle struct {
-}
-
-func (this Rectangle) Draw() {
-	fmt.Println(&#34;Inside Rectangle::draw() method.&#34;)
-}
-
-// 实例2
-type Square struct {
-}
-
-func (this Square) Draw() {
-	fmt.Println(&#34;Inside Square ::draw() method.&#34;)
-}
-
-// 实例3
-type Circle struct {
-}
-
-func (this Circle) Draw() {
-	fmt.Println(&#34;Inside Circle  ::draw() method.&#34;)
-}</pre></td></tr></table>
-</div>
-</div>
-<p>3. 创建一个工厂</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">type ShapeFactory struct {
-}
-
-//使用 getShape 方法获取形状类型的对象
-func (this ShapeFactory) getShape(shapeType string) Shape {
-
-	if shapeType == &#34;&#34; {
-		return nil
+<pre class="chroma">/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	r := &amp;ListNode{}
+	rt := r
+	h1, h2 := l1, l2
+	t := 0
+	for h1 != nil {
+		a := h1.Val + t
+		if h2 != nil {
+			a += h2.Val
+			h2 = h2.Next
+		}
+		t = a / 10
+		r.Next = &amp;ListNode{Val: a % 10,}
+		r = r.Next
+		h1 = h1.Next
 	}
-	if shapeType == &#34;CIRCLE&#34; {
-		return Circle{}
-	} else if shapeType == &#34;RECTANGLE&#34; {
-		return Rectangle{}
-	} else if shapeType == &#34;SQUARE&#34; {
-		return Square{}
+	for h2 != nil {
+		a := h2.Val + t
+		t = a / 10
+		r.Next = &amp;ListNode{Val: a % 10,}
+		h2 = h2.Next
+		r = r.Next
 	}
-	return nil
+	if t != 0 {
+		r.Next = &amp;ListNode{Val: t,}
+	}
+	return rt.Next
 }</pre></td></tr></table>
 </div>
 </div>
-<p>4. 使用这个工厂</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">func main() {
-	factory := ShapeFactory{}
-	factory.getShape(&#34;CIRCLE&#34;).Draw()
-	factory.getShape(&#34;RECTANGLE&#34;).Draw()
-	factory.getShape(&#34;SQUARE&#34;).Draw()
-}</pre></td></tr></table>
-</div>
-</div>
-<p>结果</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">Inside Circle  ::draw() method.
-Inside Rectangle::draw() method.
-Inside Square ::draw() method.</pre></td></tr></table>
-</div>
-</div>
+<h2 id="伪代码-同时遍历">伪代码 (同时遍历)</h2>
+
+<p>The pseudocode is as following:</p>
+
+<ul>
+<li>Initialize current node to dummy head of the returning list.</li>
+<li>Initialize carry to 0.</li>
+<li>Initialize p and q to head of l1 and l2 respectively.</li>
+<li>Loop through lists l1 and l2 until you reach both ends.
+
+<ul>
+<li>Set x to node p&rsquo;s value. If p has reached the end of l1, set to 0.</li>
+<li>Set y to node q&rsquo;s value. If q has reached the end of l2, set to 0.</li>
+<li>Set $sum = x + y + carry$.</li>
+<li>Update $carry = sum / 10$.</li>
+<li>Create a new node with the digit value of (sum mod 10) and set it to current node&rsquo;s next, then advance current node to next.</li>
+<li>Advance both p and q.</li>
+</ul></li>
+<li>Check if carry = 1, if so append a new node with digit 1 to the returning list.</li>
+<li>Return dummy head&rsquo;s next node.</li>
+</ul>
+
     </div>
 
     
@@ -486,7 +488,7 @@ Inside Square ::draw() method.</pre></td></tr></table>
   </p>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
-    <span class="item-content">2018-09-26</span>
+    <span class="item-content">2018-12-24</span>
   </p>
   
   <p class="copyright-item">
@@ -501,15 +503,14 @@ Inside Square ::draw() method.</pre></td></tr></table>
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="http://panfeng0119.github.io/tags/design-pattern/">design pattern</a>
-          <a href="http://panfeng0119.github.io/tags/go/">go</a>
+          <a href="http://panfeng0119.github.io/tags/leetcode/">LeetCode</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/design-pattern/designpattern-2018-09-26-principle/">
+          <a class="prev" href="/post/leetcode/leetcode-003/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -519,12 +520,12 @@ Inside Square ::draw() method.</pre></td></tr></table>
 </svg>
 
             </i>
-            <span class="prev-text nav-default">Go 设计模式原则</span>
+            <span class="prev-text nav-default">LeetCode 刷题笔记03</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         
-          <a class="next" href="/post/hugo/hugo-2018-09-15-host-on-github/">
-            <span class="next-text nav-default">Hugo &#43; GitHub 部署个人站点</span>
+          <a class="next" href="/post/hugo/hugo03-2018-12-23-lookup/">
+            <span class="next-text nav-default">Hugo 03 | Hugo 查询顺序</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">
@@ -631,6 +632,52 @@ Inside Square ::draw() method.</pre></td></tr></table>
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  
+  
+
+  
+
+  
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+                extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
+  
+<script type="text/x-mathjax-config">
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+    });
+</script> 
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
 
 
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LeetCode 刷题笔记 - Pan Feng&#39;s Blog</title>
+  <title>Leetcode · Pan Feng&#39;s Blog</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,6 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Pan Feng" />
-  <meta name="description" content="CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1 2 3 4 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] &#43; nums[1] = 2 &#43; 7 = 9," />
-
 
 
 
@@ -34,7 +32,8 @@
 <meta name="generator" content="Hugo 0.52" />
 
 
-<link rel="canonical" href="http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/" />
+<link rel="canonical" href="http://panfeng0119.github.io/categories/leetcode/" />
+<link href="http://panfeng0119.github.io/categories/leetcode/index.xml" rel="alternate" type="application/rss+xml" title="Pan Feng&#39;s Blog" />
 
 
 
@@ -56,26 +55,18 @@
 
 
 
-<meta property="og:title" content="LeetCode 刷题笔记" />
-<meta property="og:description" content="CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1 2 3 4 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] &#43; nums[1] = 2 &#43; 7 = 9," />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/" /><meta property="article:published_time" content="2018-09-14T00:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2018-09-16T00:00:00&#43;08:00"/>
+<meta property="og:title" content="Leetcode" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://panfeng0119.github.io/categories/leetcode/" />
+<meta property="og:updated_time" content="2018-12-24T17:00:00&#43;08:00"/>
 
-<meta itemprop="name" content="LeetCode 刷题笔记">
-<meta itemprop="description" content="CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1 2 3 4 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] &#43; nums[1] = 2 &#43; 7 = 9,">
+<meta itemprop="name" content="Leetcode">
+<meta itemprop="description" content="">
 
-
-<meta itemprop="datePublished" content="2018-09-14T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2018-09-16T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="378">
-
-
-
-<meta itemprop="keywords" content="LeetCode," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="LeetCode 刷题笔记"/>
-<meta name="twitter:description" content="CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1 2 3 4 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] &#43; nums[1] = 2 &#43; 7 = 9,"/>
+<meta name="twitter:title" content="Leetcode"/>
+<meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -268,215 +259,86 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">LeetCode 刷题笔记</h1>
-      
-      <div class="post-meta">
-        <time datetime="2018-09-14" class="post-time">
-          2018-09-14
-        </time>
-        
-        <span class="more-meta"> 378 words </span>
-          <span class="more-meta"> 1 min read </span>
-
-        
-        
-
-        
-        
-      </div>
-    </header>
-
-    
-    
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Table of Contents</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#1-two-sum">1. Two Sum</a>
-<ul>
-<li><a href="#思路">思路</a></li>
-<li><a href="#代码">代码</a></li>
-</ul></li>
-<li><a href="#2-two-sum">2. Two Sum</a>
-<ul>
-<li><a href="#思路-1">思路</a></li>
-<li><a href="#代码-1">代码</a></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
-</div>
-
-    
-    <div class="post-content">
-      
-
-<p><a href="https://gohugo.io/categories/content-management">CONTENT MANAGEMENT</a></p>
-
-<h1 id="1-two-sum">1. Two Sum</h1>
-
-<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
-
-<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-
-<p>Example:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">Given nums = [2, 7, 11, 15], target = 9,
-
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].</pre></td></tr></table>
-</div>
-</div>
-<h2 id="思路">思路</h2>
-
-<p>考虑时间复杂度， 按正常思路遍历是 <code>O(n^2)</code></p>
-
-<p>所以需要一个map来记录遍历过的值，key 用 <code>target - n</code> 来表示这个数需要匹配的数，value 记录这个位置</p>
-
-<p>如果找到这个值，就直接返回他的value</p>
-
-<h2 id="代码">代码</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">func twoSum(nums []int, target int) []int {
-    m := make(map[int]int)
-    for i, n := range nums {
-        _, prs := m[n]
-        if prs {
-            return []int{m[n], i}
-        } else {
-            m[target-n] = i
-        }
-    }
-    return nil;
-}</pre></td></tr></table>
-</div>
-</div>
-<h1 id="2-two-sum">2. Two Sum</h1>
-
-<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
-
-<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-
-<p>Example:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">Given nums = [2, 7, 11, 15], target = 9,
-
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].</pre></td></tr></table>
-</div>
-</div>
-<h2 id="思路-1">思路</h2>
-
-<p>考虑时间复杂度， 按正常思路遍历是 <code>O(n^2)</code></p>
-
-<p>所以需要一个map来记录遍历过的值，key 用 <code>target - n</code> 来表示这个数需要匹配的数，value 记录这个位置</p>
-
-<p>如果找到这个值，就直接返回他的value</p>
-
-<h2 id="代码-1">代码</h2>
-
-    </div>
-
-    
-    
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Pan Feng</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">LastMod</span>
-    <span class="item-content">2018-09-16</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">License</span>
-    <span class="item-content">None</span>
-  </p>
-</div>
-
-
-    
-    
-
-    <footer class="post-footer">
-      <div class="post-tags">
-          <a href="http://panfeng0119.github.io/tags/leetcode/">LeetCode</a>
           
-        </div>
 
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/hugo/hugo-2018-09-15-host-on-github/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">Hugo &#43; GitHub 部署个人站点</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        
-      </nav>
-    </footer>
-  </article>
-
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-
-  
-
-  
+<section id="archive" class="archive">
   
     
+      <div class="archive-title category">
+        <h2 class="archive-name">Category: Leetcode</h2>
+      </div>
+    
+  
+
+  
+    <div class="archive-post">
+      <time datetime="2018-12-24" class="archive-post-time">
+        2018-12-24
+      </time>
+      <span class="archive-post-title">
+        <a href="/post/leetcode/leetcode-004/" class="archive-post-link">
+          LeetCode 刷题笔记04
+        </a>
+      </span>
+    </div>
+  
+    <div class="archive-post">
+      <time datetime="2018-12-24" class="archive-post-time">
+        2018-12-24
+      </time>
+      <span class="archive-post-title">
+        <a href="/post/leetcode/leetcode-003/" class="archive-post-link">
+          LeetCode 刷题笔记03
+        </a>
+      </span>
+    </div>
+  
+    <div class="archive-post">
+      <time datetime="2018-12-24" class="archive-post-time">
+        2018-12-24
+      </time>
+      <span class="archive-post-title">
+        <a href="/post/leetcode/leetcode-002/" class="archive-post-link">
+          LeetCode 刷题笔记02
+        </a>
+      </span>
+    </div>
+  
+    <div class="archive-post">
+      <time datetime="2018-09-14" class="archive-post-time">
+        2018-09-14
+      </time>
+      <span class="archive-post-title">
+        <a href="/post/leetcode/leetcode-001/" class="archive-post-link">
+          LeetCode 刷题笔记01
+        </a>
+      </span>
+    </div>
+  
+</section>
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
 
 
 

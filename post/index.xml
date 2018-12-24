@@ -6,10 +6,37 @@
     <description>Recent content in Posts on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Dec 2018 18:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 24 Dec 2018 17:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://panfeng0119.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 刷题笔记04</title>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-004/</link>
+      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-004/</guid>
+      <description>链接：leetcode 4. Median of Two Sorted Arrays 难度：💔💔💔💔💔 There are two sorted arrays nums1 and nums2 of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)). You may assume nums1 and nums2 cannot be both empty. 1 2 3 4</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 刷题笔记03</title>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-003/</link>
+      <pubDate>Mon, 24 Dec 2018 16:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-003/</guid>
+      <description>链接：leetcode 3. 最大非重复子串（Longest Substring Without Repeating Characters） 难度：💔💔💔 Given a string, find the length of the longest substring without repeating characters. 1 2 3 4 5 Example 1: Input: &amp;#34;abcabcbb&amp;#34; Output:</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 刷题笔记02</title>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-002/</link>
+      <pubDate>Mon, 24 Dec 2018 13:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-002/</guid>
+      <description>链接：leetcode 2. 结构体数字求和（Add Two Numbers） 难度：💔💔💔 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and</description>
+    </item>
     
     <item>
       <title>Hugo 03 | Hugo 查询顺序</title>
@@ -53,11 +80,11 @@
       <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
       
       <guid>http://panfeng0119.github.io/post/hugo/hugo01-2018-09-28-documentation/</guid>
-      <description>Introduction to Hugo Templating Hugo 使用Go语言的 html/template and text/template 库作为模板. Content Organization Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。 Hugo&amp;rsquo;s Lookup Order Hugo searches for the layout to use for a given page in a well defined</description>
+      <description>CONTENT MANAGEMENT Introduction to Hugo Templating Hugo 使用Go语言的 html/template and text/template 库作为模板. Content Organization Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。 Hugo&amp;rsquo;s Lookup Order Hugo searches for the layout to use for a given page in a</description>
     </item>
     
     <item>
-      <title>Go_design_pattern</title>
+      <title>Go 设计模式原则</title>
       <link>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-principle/</link>
       <pubDate>Wed, 26 Sep 2018 00:13:42 +0800</pubDate>
       
@@ -72,24 +99,6 @@
       
       <guid>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/</guid>
       <description>工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工</description>
-    </item>
-    
-    <item>
-      <title>Hugo &#43; GitHub 部署个人站点</title>
-      <link>http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/</link>
-      <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/</guid>
-      <description>完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 刷题笔记</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/</link>
-      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/</guid>
-      <description>CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1 2 3 4 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9,</description>
     </item>
     
   </channel>

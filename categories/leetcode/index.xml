@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leetcode on Pan Feng&#39;s Blog</title>
-    <link>http://panfeng0119.github.io/tags/leetcode/</link>
+    <link>http://panfeng0119.github.io/categories/leetcode/</link>
     <description>Recent content in Leetcode on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 24 Dec 2018 17:00:00 +0800</lastBuildDate>
     
-	<atom:link href="http://panfeng0119.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://panfeng0119.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

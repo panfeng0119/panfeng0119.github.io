@@ -6,10 +6,431 @@
     <description>Recent content on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Dec 2018 18:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 24 Dec 2018 17:00:00 +0800</lastBuildDate>
     
         <atom:link href="http://panfeng0119.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 刷题笔记04</title>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-004/</link>
+      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-004/</guid>
+      
+        <description>
+
+&lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;4-median-of-two-sorted-arrays&#34;&gt;4. Median of Two Sorted Arrays&lt;/h1&gt;
+
+&lt;p&gt;难度：💔💔💔💔💔&lt;/p&gt;
+
+&lt;p&gt;There are two sorted arrays nums1 and nums2 of size m and n respectively.&lt;/p&gt;
+
+&lt;p&gt;Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).&lt;/p&gt;
+
+&lt;p&gt;You may assume nums1 and nums2 cannot be both empty.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Example 1:
+
+nums1 = [1, 3]
+nums2 = [2]
+
+The median is 2.0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Example 2:
+
+nums1 = [1, 2]
+nums2 = [3, 4]
+
+The median is (2 + 3)/2 = 2.5&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+
+&lt;p&gt;要解决这个问题，我们需要了解“中位数有什么用”。在统计中，中位数用于：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;将一组分成两个相等长度的子集，一个子集所有的值总是大于另一个子集的任意一个值。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;func lengthOfLongestSubstring(s string) int {
+    var i,j,ret int
+    m := make(map[byte]int)
+    for j &amp;lt; len(s) {
+        if v, ok := m[s[j]]; ok {
+            ret = max(ret, len(s[i:j]))
+            i = max(i, v+1)
+        }
+        m[s[j]] = j
+        j += 1
+    }
+    return max(ret, len(s[i:j]))
+} 
+
+func max(a, b int) int {
+    if a &amp;gt; b {
+        return a
+    }
+    return b
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>LeetCode 刷题笔记03</title>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-003/</link>
+      <pubDate>Mon, 24 Dec 2018 16:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-003/</guid>
+      
+        <description>
+
+&lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;3-最大非重复子串-longest-substring-without-repeating-characters&#34;&gt;3. 最大非重复子串（Longest Substring Without Repeating Characters）&lt;/h1&gt;
+
+&lt;p&gt;难度：💔💔💔&lt;/p&gt;
+
+&lt;p&gt;Given a string, find the length of the longest substring without repeating characters.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Example 1:
+
+Input: &amp;#34;abcabcbb&amp;#34;
+Output: 3 
+Explanation: The answer is &amp;#34;abc&amp;#34;, with the length of 3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Example 2:
+
+Input: &amp;#34;bbbbb&amp;#34;
+Output: 1
+Explanation: The answer is &amp;#34;b&amp;#34;, with the length of 1.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Example 3:
+
+Input: &amp;#34;pwwkew&amp;#34;
+Output: 3
+Explanation: The answer is &amp;#34;wke&amp;#34;, with the length of 3. 
+             Note that the answer must be a substring, &amp;#34;pwke&amp;#34; is a subsequence and not a substring.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+
+&lt;p&gt;思路一定是：逐个检查所有子字符串，看它是否没有重复的字符。&lt;/p&gt;
+
+&lt;p&gt;优化方式1：不要直接用子串，尽量用底层存放的地址、或byte值来判断&lt;/p&gt;
+
+&lt;p&gt;判断重复时，最好使用map，将子串的每个元素导入map，值为位置&lt;/p&gt;
+
+&lt;p&gt;再次检查时只需检查key是否存在，如果存在，映射该值到当前位置的长度，即为本次循环的最大子串&lt;/p&gt;
+
+&lt;p&gt;优化方式2：去重复无效的判断&lt;/p&gt;
+
+&lt;p&gt;本次循环后，下一次循环只需要在重复元素的下一个元素进行判断即可&lt;/p&gt;
+
+&lt;p&gt;优化方式3：能减少计算就不要计算&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;len(s$[i:j]$)&lt;/code&gt; 就可以实现  $ret = j - i + 1$&lt;/p&gt;
+
+&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;func lengthOfLongestSubstring(s string) int {
+    var i,j,ret int
+    m := make(map[byte]int)
+    for j &amp;lt; len(s) {
+        if v, ok := m[s[j]]; ok {
+            ret = max(ret, len(s[i:j]))
+            i = max(i, v+1)
+        }
+        m[s[j]] = j
+        j += 1
+    }
+    return max(ret, len(s[i:j]))
+} 
+
+func max(a, b int) int {
+    if a &amp;gt; b {
+        return a
+    }
+    return b
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>LeetCode 刷题笔记02</title>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-002/</link>
+      <pubDate>Mon, 24 Dec 2018 13:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-002/</guid>
+      
+        <description>
+
+&lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;2-结构体数字求和-add-two-numbers&#34;&gt;2. 结构体数字求和（Add Two Numbers）&lt;/h1&gt;
+
+&lt;p&gt;难度：💔💔💔&lt;/p&gt;
+
+&lt;p&gt;You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.&lt;/p&gt;
+
+&lt;p&gt;You may assume the two numbers do not contain any leading zero, except the number 0 itself.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)
+Output: 7 -&amp;gt; 0 -&amp;gt; 8
+Explanation: 342 + 465 = 807.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+
+&lt;p&gt;这是一个用结构体来实现一个加法，从最低位开始相加，有进位则下一个位置多加1&lt;/p&gt;
+
+&lt;p&gt;进位取值在&lt;code&gt;0&lt;/code&gt;或&lt;code&gt;1&lt;/code&gt;，因为当前位置最大值为 $9 + 9 + 1 = 19$&lt;/p&gt;
+
+&lt;p&gt;需要考虑特殊情况&lt;/p&gt;
+
+&lt;!-- | $l1=[0,1 ]$, $l2=[0,1,2]$ | 长短不一
+
+| $l1=[]$, $l2=[0,1]$ | 存在空值
+
+| $l1=[9,9]$, $l2=[1]$ | 一直进位 --&gt;
+
+&lt;table border=&#34;1&#34; align=&#34;center&#34;&gt;
+    &lt;tr&gt;
+        &lt;td align=&#34;center&#34; colspan=&#34;2&#34;&gt;情况&lt;/td&gt;
+        &lt;td align=&#34;center&#34; rowspan=&#34;2&#34;&gt;备注&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td align=&#34;center&#34;&gt;$l_1$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;$l_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td align=&#34;center&#34;&gt;$[0,1 ]$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;$[0,1,2]$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;长短不一&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td align=&#34;center&#34;&gt;$[]$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;$[0,1]$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;存在空值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td align=&#34;center&#34;&gt;$[9,9]$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;$[1]$&lt;/td&gt;
+        &lt;td align=&#34;center&#34;&gt;一直进位&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;使用变量跟踪进位并从列表头部开始模拟逐位数字，其中包含最低有效数字。&lt;/p&gt;
+
+&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	r := &amp;amp;ListNode{}
+	rt := r
+	h1, h2 := l1, l2
+	t := 0
+	for h1 != nil {
+		a := h1.Val + t
+		if h2 != nil {
+			a += h2.Val
+			h2 = h2.Next
+		}
+		t = a / 10
+		r.Next = &amp;amp;ListNode{Val: a % 10,}
+		r = r.Next
+		h1 = h1.Next
+	}
+	for h2 != nil {
+		a := h2.Val + t
+		t = a / 10
+		r.Next = &amp;amp;ListNode{Val: a % 10,}
+		h2 = h2.Next
+		r = r.Next
+	}
+	if t != 0 {
+		r.Next = &amp;amp;ListNode{Val: t,}
+	}
+	return rt.Next
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;伪代码-同时遍历&#34;&gt;伪代码 (同时遍历)&lt;/h2&gt;
+
+&lt;p&gt;The pseudocode is as following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Initialize current node to dummy head of the returning list.&lt;/li&gt;
+&lt;li&gt;Initialize carry to 0.&lt;/li&gt;
+&lt;li&gt;Initialize p and q to head of l1 and l2 respectively.&lt;/li&gt;
+&lt;li&gt;Loop through lists l1 and l2 until you reach both ends.
+
+&lt;ul&gt;
+&lt;li&gt;Set x to node p&amp;rsquo;s value. If p has reached the end of l1, set to 0.&lt;/li&gt;
+&lt;li&gt;Set y to node q&amp;rsquo;s value. If q has reached the end of l2, set to 0.&lt;/li&gt;
+&lt;li&gt;Set $sum = x + y + carry$.&lt;/li&gt;
+&lt;li&gt;Update $carry = sum / 10$.&lt;/li&gt;
+&lt;li&gt;Create a new node with the digit value of (sum mod 10) and set it to current node&amp;rsquo;s next, then advance current node to next.&lt;/li&gt;
+&lt;li&gt;Advance both p and q.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Check if carry = 1, if so append a new node with digit 1 to the returning list.&lt;/li&gt;
+&lt;li&gt;Return dummy head&amp;rsquo;s next node.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Hugo 03 | Hugo 查询顺序</title>
@@ -2237,6 +2658,8 @@ notoc: true
       
         <description>
 
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/categories/content-management&#34;&gt;CONTENT MANAGEMENT&lt;/a&gt;&lt;/p&gt;
+
 &lt;h1 id=&#34;introduction-to-hugo-templating-https-gohugo-io-templates-introduction&#34;&gt;&lt;a href=&#34;https://gohugo.io/templates/introduction/&#34;&gt;Introduction to Hugo Templating&lt;/a&gt;&lt;/h1&gt;
 
 &lt;p&gt;Hugo 使用Go语言的 &lt;code&gt;html/template&lt;/code&gt; and &lt;code&gt;text/template&lt;/code&gt; 库作为模板.&lt;/p&gt;
@@ -2293,7 +2716,7 @@ notoc: true
     </item>
     
     <item>
-      <title>Go_design_pattern</title>
+      <title>Go 设计模式原则</title>
       <link>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-principle/</link>
       <pubDate>Wed, 26 Sep 2018 00:13:42 +0800</pubDate>
       
@@ -2537,375 +2960,6 @@ Inside Rectangle::draw() method.
 Inside Square ::draw() method.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Hugo &#43; GitHub 部署个人站点</title>
-      <link>http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/</link>
-      <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/</guid>
-      
-        <description>
-
-&lt;p&gt;完整内容请参阅 &lt;a href=&#34;https://gohugo.io/hosting-and-deployment/&#34;&gt;Hosting &amp;amp; Deployment&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;已安装 &lt;a href=&#34;https://git-scm.com/downloads&#34;&gt;Git&lt;/a&gt; 版本 2.8 以上.&lt;/li&gt;
-&lt;li&gt;需要发布的Hugo网站，起码已完成&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;快速入门&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;在 &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; 中创建好了仓库: &amp;lt;USERNAME&amp;gt;.github.io.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;b-准备工作-b&#34;&gt;&lt;b&gt;准备工作&lt;/b&gt;&lt;/h2&gt;
-
-&lt;p&gt;不同的仓库类型，需要托管的分支是不同的。具体描述，请参阅文档 &lt;a href=&#34;https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages&#34;&gt;GitHub Pages doc&lt;/a&gt;，以确定您要创建哪种类型的站点.&lt;/p&gt;
-
-&lt;p&gt;从逻辑上，常用两种类型的仓库，对应的分支为&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;code&gt;https://github.com/&amp;lt;USERNAME&amp;gt;/&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;网站分支 -&amp;gt; &lt;font face=&#34;Aria&#34;&gt;&lt;b&gt;gh-pages&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;网站分支 -&amp;gt; &lt;font face=&#34;Aria&#34;&gt;&lt;b&gt;master&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;源码分支 -&amp;gt; &lt;font face=&#34;微软雅黑&#34;&gt;&lt;b&gt;任意&lt;/b&gt; &lt;/font&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;源码分支 -&amp;gt; &lt;font face=&#34;微软雅黑&#34;&gt;&lt;b&gt;任意&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;我们用第二种类型，需要注意两点：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;仓库名必须用&amp;lt;USERNAME&amp;gt;.github.io &lt;br&gt;&lt;/li&gt;
-&lt;li&gt;网站内容必须存放在 master 分支&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;一-b-通过两个仓库来创建-github-pages-b&#34;&gt;一、&lt;b&gt;通过两个仓库来创建 GitHub Pages&lt;/b&gt;&lt;/h2&gt;
-
-&lt;p&gt;最简单的方法就是将 Hugo 文件和生成的内容分别发布到两个不同的仓库(Repositoriy)中。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;创建两个仓库 &lt;p&gt; 一个存放源码的仓库： &lt;code&gt;&amp;lt;YOUR-PROJECT&amp;gt;&lt;/code&gt;  &lt;font color=#F08080&gt;（如：blog）&lt;/font&gt; &lt;/br&gt; 一个托管Hugo网站的仓库： &lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;克隆源码仓库到本地 &lt;p&gt; git clone &amp;lt;OUR-PROJECT-URL&amp;gt; &lt;/br&gt; cd &amp;lt;YOUR-PROJECT&amp;gt; &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;启动网站服务，确保网站能正常运行 &lt;p&gt; hugo server &lt;/br&gt; 访问网站 &lt;a href=&#34;http://localhost:1313&#34;&gt;http://localhost:1313&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;创建 git 子模块，命名为 &lt;em&gt;public&lt;/em&gt; &lt;font color=#F08080&gt;（用来托管网站）&lt;/font&gt; &lt;p&gt; git submodule add -b master &lt;code&gt;git@github.com:&amp;lt;USERNAME&amp;gt;/&amp;lt;USERNAME&amp;gt;.github.io.git public&lt;/code&gt; &lt;em&gt;public&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;运行脚本，将网站 push 到&lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; &lt;p&gt; chmod +x deploy.sh  ./deploy.sh&amp;rdquo;提交消息(可选)&amp;rdquo; &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;将源代码 push 到 &lt;code&gt;&amp;lt;YOUR-PROJECT&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
-&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 文件名：deploy.sh&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;\033[0;32mDeploying updates to GitHub...\033[0m&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;date &lt;span class=&#34;s2&#34;&gt;&amp;#34;+%Y-%m-%d %H:%M:%S&amp;#34;&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# Build the project.&lt;/span&gt;
-hugo
-
-&lt;span class=&#34;c1&#34;&gt;# Go To Public folder&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
-
-&lt;span class=&#34;c1&#34;&gt;# Add changes to git.&lt;/span&gt;
-git add -A
-
-&lt;span class=&#34;c1&#34;&gt;# Commit changes.&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;rebuilding site &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$#&lt;/span&gt; -eq &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
-git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$msg&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# Push source and build repos.&lt;/span&gt;
-git push origin master
-
-&lt;span class=&#34;c1&#34;&gt;# Come Back up to the Project Root&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;现在！您的个人页面成功地部署在 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;font color=#778899&gt;补充：如果需要指定 Hugo 生成网站的输出目录，可以在配置文件中 config.toml 中设置变量 publishDir = &#34;docs&#34;. &lt;/font&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;二-b-通过两个分支来创建-github-pages-b&#34;&gt;二、&lt;b&gt;通过两个分支来创建 GitHub Pages&lt;/b&gt;&lt;/h2&gt;
-
-&lt;p&gt;我们还可以指定默认分支来托管源代码，并将发布的站点指向单独的分支，虽然比上面的方法复杂，但他的优点在于：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;只用一个仓库，方便维护和版本控制&lt;/li&gt;
-&lt;li&gt;直接使用默认的 &lt;em&gt;public&lt;/em&gt; 目录，不必指定 Git 子模块或输出目录&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;我们需要到仓库中新建一个托管源代码的分支，并设置为默认分支&lt;font color=#F08080&gt;（非 master 分支）&lt;/font&gt;，设置方法如下&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;进入仓库 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; ，点击导航栏的设置 &lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Settings&lt;/strong&gt;&lt;font&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在左侧 &lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Options&lt;/strong&gt;&lt;font&gt; 找到 &lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Branches&lt;/strong&gt;&lt;font&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;font face=&#34;woff2&#34;&gt;&lt;strong&gt;Default branch&lt;/strong&gt;&lt;font&gt; 选择源码托管的分支 &lt;font color=#F08080&gt;（如 hugo）&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;2-1-初始化&#34;&gt;2.1 初始化&lt;/h3&gt;
-
-&lt;p&gt;接下来的步骤在每次 clone 下来后只需要完成一次。默认的 &lt;code&gt;（upstream&lt;/code&gt; 的名称 origin
-&lt;font color=#F08080&gt;（upstream 是远程仓库在本地的简写名称，可以通过 git remote -v 来查看 ）&lt;/font&gt;&lt;/p&gt;
-
-&lt;p&gt;现在，我们用 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 仓库，源码分支为 &lt;strong&gt;hugo&lt;/strong&gt; ，发布网站的分支为 &lt;strong&gt;master&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;克隆仓库到本地，默认分支是 &lt;strong&gt;hugo&lt;/strong&gt; &lt;p&gt; git clone &amp;lt;Repositoriy-URL&amp;gt; &lt;/br&gt; cd &amp;lt;Repositoriy&amp;gt; &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;切换到 &lt;strong&gt;master&lt;/strong&gt; 分支，进行设置 &lt;p&gt;
-git checkout master &lt;/br&gt;
-git reset &amp;ndash;hard &lt;/br&gt;
-git commit &amp;ndash;allow-empty -m &amp;ldquo;Initializing master branch&amp;rdquo; &lt;/br&gt;
-git push origin master&lt;/br&gt;
-git checkout master &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;切换到 &lt;strong&gt;hugo&lt;/strong&gt; 分支&lt;p&gt;
-echo public &amp;gt;&amp;gt; .gitignore &lt;/br&gt;
-rm -rf public&lt;/br&gt;
-rm -rf .git/worktrees/public/&amp;rdquo; &lt;/br&gt;
-git worktree add -B master public origin/master &lt;/br&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;2-2-启动服务并push到分支&#34;&gt;2.2 启动服务并push到分支&lt;/h3&gt;
-
-&lt;p&gt;现在我们只需要启动服务，检查网站正常运行，就可以通过脚本来push了  &lt;font color=#F08080&gt;（脚本需要 chmod +x deploy.sh）&lt;/font&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
-&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 文件名：deploy.sh&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 脚本：自动将public文件夹push到master分支&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 如果是用 gh-branch，将 master 替换为 gh-branch 就可以&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 日志信息&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;date &lt;span class=&#34;s2&#34;&gt;&amp;#34;+%Y-%m-%d %H:%M:%S&amp;#34;&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;alias&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;printlog&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;echo ${Date} INFO&amp;#39;&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 标记当前路径&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
-printlog &lt;span class=&#34;s2&#34;&gt;&amp;#34;当前目录：&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;DIR&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-
-printlog &lt;span class=&#34;s2&#34;&gt;&amp;#34;标记 public 文件夹为 master 分支&amp;#34;&lt;/span&gt;
-rm -rf public
-rm -rf .git/worktrees/public/
-
-git worktree add -B master public origin/master
-&lt;span class=&#34;c1&#34;&gt;# 清除原来的内容&lt;/span&gt;
-rm -rf public/*
-
-&lt;span class=&#34;c1&#34;&gt;# 编译&lt;/span&gt;
-printlog &lt;span class=&#34;s2&#34;&gt;&amp;#34;正在生成网站.&amp;#34;&lt;/span&gt;
-hugo
-
-printlog &lt;span class=&#34;s2&#34;&gt;&amp;#34;正在提交更新&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Rebuilding site &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; (publish.sh)&amp;#34;&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 提交&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git add --all &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-
-printlog &lt;span class=&#34;s2&#34;&gt;&amp;#34;正在 push&amp;#34;&lt;/span&gt;
-git push origin master
-
-printlog &lt;span class=&#34;s2&#34;&gt;&amp;#34;Down!&amp;#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;h3 id=&#34;附录&#34;&gt;附录&lt;/h3&gt;
-
-&lt;p&gt;知识点：&lt;/p&gt;
-
-&lt;p&gt;git worktree&lt;/p&gt;
-
-&lt;p&gt;利用 upstream 标记更多的远程仓库地址&lt;/p&gt;
-
-&lt;p&gt;脚本中获取相对路径 DIR=$(dirname &amp;ldquo;$0&amp;rdquo;)&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>LeetCode 刷题笔记</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/</link>
-      <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/</guid>
-      
-        <description>
-
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/categories/content-management&#34;&gt;CONTENT MANAGEMENT&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;1-two-sum&#34;&gt;1. Two Sum&lt;/h1&gt;
-
-&lt;p&gt;Given an array of integers, return indices of the two numbers such that they add up to a specific target.&lt;/p&gt;
-
-&lt;p&gt;You may assume that each input would have exactly one solution, and you may not use the same element twice.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Given nums = [2, 7, 11, 15], target = 9,
-
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
-
-&lt;p&gt;考虑时间复杂度， 按正常思路遍历是 &lt;code&gt;O(n^2)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;所以需要一个map来记录遍历过的值，key 用 &lt;code&gt;target - n&lt;/code&gt; 来表示这个数需要匹配的数，value 记录这个位置&lt;/p&gt;
-
-&lt;p&gt;如果找到这个值，就直接返回他的value&lt;/p&gt;
-
-&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;func twoSum(nums []int, target int) []int {
-    m := make(map[int]int)
-    for i, n := range nums {
-        _, prs := m[n]
-        if prs {
-            return []int{m[n], i}
-        } else {
-            m[target-n] = i
-        }
-    }
-    return nil;
-}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;2-two-sum&#34;&gt;2. Two Sum&lt;/h1&gt;
-
-&lt;p&gt;Given an array of integers, return indices of the two numbers such that they add up to a specific target.&lt;/p&gt;
-
-&lt;p&gt;You may assume that each input would have exactly one solution, and you may not use the same element twice.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Given nums = [2, 7, 11, 15], target = 9,
-
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;思路-1&#34;&gt;思路&lt;/h2&gt;
-
-&lt;p&gt;考虑时间复杂度， 按正常思路遍历是 &lt;code&gt;O(n^2)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;所以需要一个map来记录遍历过的值，key 用 &lt;code&gt;target - n&lt;/code&gt; 来表示这个数需要匹配的数，value 记录这个位置&lt;/p&gt;
-
-&lt;p&gt;如果找到这个值，就直接返回他的value&lt;/p&gt;
-
-&lt;h2 id=&#34;代码-1&#34;&gt;代码&lt;/h2&gt;
-</description>
       
     </item>
     
