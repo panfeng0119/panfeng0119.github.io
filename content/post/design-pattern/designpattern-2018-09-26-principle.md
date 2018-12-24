@@ -1,5 +1,5 @@
 +++
-title = "Go_design_pattern"
+title = "Go 设计模式原则"
 date = 2018-09-26T00:13:42+08:00
 draft = false
 

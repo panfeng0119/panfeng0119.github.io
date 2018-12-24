@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # 脚本：自动将public文件夹push到master分支 (本分支的不会提交)
+# push 之后可以 到 https://panfeng0119.github.io 网站直接浏览
 # 如果是用 gh-branch，将 master 替换为 gh-branch 就可以
 
 # 日志信息

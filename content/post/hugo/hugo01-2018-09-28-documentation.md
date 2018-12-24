@@ -13,6 +13,7 @@ summary = "还没翻译，待整理"
 draft = false
 +++
 
+[CONTENT MANAGEMENT](https://gohugo.io/categories/content-management)
 
 # [Introduction to Hugo Templating](https://gohugo.io/templates/introduction/)
 
