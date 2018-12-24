@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>go on Pan Feng</title>
-    <link>panfeng0119.github.io/tags/go/</link>
-    <description>Recent content in go on Pan Feng</description>
+    <title>Go on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/tags/go/</link>
+    <description>Recent content in Go on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; 2018</copyright>
+    <language>en</language>
     <lastBuildDate>Wed, 26 Sep 2018 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="panfeng0119.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://panfeng0119.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>概率论</title>
-      <link>panfeng0119.github.io/post/prob/</link>
-      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
-      
-      <guid>panfeng0119.github.io/post/prob/</guid>
-      <description>原文连接 1.2 概率论回顾 概率，又称或然率、机会率、机率（几率）或可能性，是概率论的基本概念。概率是对随机事件发生的可能性的度量，一般以一个在0到</description>
-    </item>
     
     <item>
       <title>设计模式：工厂模式（Factory Pattern）</title>
-      <link>panfeng0119.github.io/post/designpatternfactory/</link>
+      <link>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>panfeng0119.github.io/post/designpatternfactory/</guid>
+      <guid>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/</guid>
       <description>工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工</description>
     </item>
     

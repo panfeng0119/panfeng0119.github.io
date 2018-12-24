@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/categories/hugo/</link>
+    <description>Recent content in Hugo on Pan Feng&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://panfeng0119.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo Mathjax 渲染问题</title>
+      <link>http://panfeng0119.github.io/post/hugo/hugo-2018-12-22-mathjax-problem/</link>
+      <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/hugo/hugo-2018-12-22-mathjax-problem/</guid>
+      <description>原文地址 markdown 在 hugo 中默认是没有公式渲染的，需要引入 Mathjax 模块。 方案 在 layouts/partials/ 目录下，把所有和公式有关的修改都写在一个文件中，然后在适当的位置调用 步骤1 创建</description>
+    </item>
+    
+    <item>
+      <title>Hugo 02 | Hugo 模板介绍</title>
+      <link>http://panfeng0119.github.io/post/hugo/hugo02-2018-09-28-template/</link>
+      <pubDate>Fri, 28 Sep 2018 23:59:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/hugo/hugo02-2018-09-28-template/</guid>
+      <description>Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 1 2 3 4 5 // 可以是当前作用域中已存在</description>
+    </item>
+    
+    <item>
+      <title>Hugo 01 | Documentation</title>
+      <link>http://panfeng0119.github.io/post/hugo/hugo01-2018-09-28-documentation/</link>
+      <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/hugo/hugo01-2018-09-28-documentation/</guid>
+      <description>Introduction to Hugo Templating Hugo 使用Go语言的 html/template and text/template 库作为模板. Content Organization Hugo认为相同的结构体用来组织源内容，同样用来渲染站点。 Hugo&amp;rsquo;s Lookup Order Hugo searches for the layout to use for a given page in a well defined</description>
+    </item>
+    
+  </channel>
+</rss>

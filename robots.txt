@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://panfeng0119.github.io/sitemap.xml

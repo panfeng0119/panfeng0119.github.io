@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GitHub Pages on Pan Feng</title>
-    <link>panfeng0119.github.io/tags/github-pages/</link>
-    <description>Recent content in GitHub Pages on Pan Feng</description>
+    <title>Github Pages on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/tags/github-pages/</link>
+    <description>Recent content in Github Pages on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; 2018</copyright>
+    <language>en</language>
     <lastBuildDate>Sat, 15 Sep 2018 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="panfeng0119.github.io/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://panfeng0119.github.io/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hugo &#43; GitHub 部署个人站点</title>
-      <link>panfeng0119.github.io/post/hugohost_on_github/</link>
+      <link>http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/</link>
       <pubDate>Sat, 15 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>panfeng0119.github.io/post/hugohost_on_github/</guid>
+      <guid>http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/</guid>
       <description>完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发</description>
     </item>
     

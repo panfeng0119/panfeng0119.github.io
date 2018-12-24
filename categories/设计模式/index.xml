@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on Pan Feng&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 26 Sep 2018 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://panfeng0119.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>设计模式：工厂模式（Factory Pattern）</title>
+      <link>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/</guid>
+      <description>工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mathjax on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/tags/mathjax/</link>
+    <description>Recent content in Mathjax on Pan Feng&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://panfeng0119.github.io/tags/mathjax/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo Mathjax 渲染问题</title>
+      <link>http://panfeng0119.github.io/post/hugo/hugo-2018-12-22-mathjax-problem/</link>
+      <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/hugo/hugo-2018-12-22-mathjax-problem/</guid>
+      <description>原文地址 markdown 在 hugo 中默认是没有公式渲染的，需要引入 Mathjax 模块。 方案 在 layouts/partials/ 目录下，把所有和公式有关的修改都写在一个文件中，然后在适当的位置调用 步骤1 创建</description>
+    </item>
+    
+  </channel>
+</rss>

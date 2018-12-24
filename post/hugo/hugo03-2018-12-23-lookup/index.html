@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hugo 03 | Hugo 查询顺序 - Pan Feng&#39;s Blog</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Pan Feng" />
+  <meta name="description" content="Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 1 2 3 4 5 // 可以是当前作用域中已存在" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52" />
+
+
+<link rel="canonical" href="http://panfeng0119.github.io/post/hugo/hugo03-2018-12-23-lookup/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.c8c1ff75dee09b44060a6c38f41b9036bac2512ccdb22d7f296cec12dc786375.css" integrity="sha256-yMH/dd7gm0QGCmw49BuQNrrCUSzNsi1/KWzsEtx4Y3U=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Hugo 03 | Hugo 查询顺序" />
+<meta property="og:description" content="Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 1 2 3 4 5 // 可以是当前作用域中已存在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://panfeng0119.github.io/post/hugo/hugo03-2018-12-23-lookup/" /><meta property="article:published_time" content="2018-12-23T18:31:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-12-23T18:31:00&#43;08:00"/>
+
+<meta itemprop="name" content="Hugo 03 | Hugo 查询顺序">
+<meta itemprop="description" content="Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 1 2 3 4 5 // 可以是当前作用域中已存在">
+
+
+<meta itemprop="datePublished" content="2018-12-23T18:31:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-23T18:31:00&#43;08:00" />
+<meta itemprop="wordCount" content="2853">
+
+
+
+<meta itemprop="keywords" content="hugo," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo 03 | Hugo 查询顺序"/>
+<meta name="twitter:description" content="Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 1 2 3 4 5 // 可以是当前作用域中已存在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+  <link href='http://panfeng0119.github.io/avatar/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Pan Feng</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Pan Feng
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hugo 03 | Hugo 查询顺序</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-12-23" class="post-time">
+          2018-12-23
+        </time>
+        
+        <span class="more-meta"> 2853 words </span>
+          <span class="more-meta"> 6 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#基本语法-basic-syntax"><strong>基本语法 Basic Syntax</strong></a></li>
+<li><a href="#变量"><strong>变量</strong></a></li>
+<li><a href="#函数"><strong>函数</strong></a></li>
+<li><a href="#includes"><strong>Includes</strong></a></li>
+<li><a href="#partial-函数"><strong>Partial 函数</strong></a></li>
+<li><a href="#template-函数"><strong>Template 函数</strong></a></li>
+<li><a href="#逻辑"><strong>逻辑</strong></a></li>
+<li><a href="#条件语句"><strong>条件语句</strong></a>
+<ul>
+<li><a href="#example-1-with">Example 1: with</a></li>
+<li><a href="#example-2-with-else">Example 2: with .. else</a></li>
+<li><a href="#example-3-if">Example 3: if</a></li>
+<li><a href="#example-4-if-else">Example 4: if .. else</a></li>
+<li><a href="#example-6-and-or">Example 6: and &amp; or</a></li>
+</ul></li>
+<li><a href="#管道符号-pipes"><strong>管道符号（Pipes）</strong></a>
+<ul>
+<li><a href="#example-1-shuffle">Example 1: shuffle</a></li>
+<li><a href="#example-2-index">Example 2: index</a></li>
+<li><a href="#example-3-or-with-isset">Example 3: or with isset</a></li>
+<li><a href="#example-4-internet-explorer-conditional-comments">Example 4: Internet Explorer Conditional Comments</a></li>
+</ul></li>
+<li><a href="#context-aka-the-dot"><strong>Context (aka “the dot”)</strong></a>
+<ul>
+<li><a href="#1-定义一个变量">1.定义一个变量</a></li>
+<li><a href="#2-使用全局变量参数">2.使用全局变量参数 $.</a></li>
+</ul></li>
+<li><a href="#空白-whitespace"><strong>空白（Whitespace）</strong></a></li>
+<li><a href="#注释-comments"><strong>注释（Comments）</strong></a>
+<ul>
+<li><a href="#go-templates-的注释">Go Templates 的注释</a></li>
+<li><a href="#html-注释">HTML 注释</a></li>
+<li><a href="#包含go模板的html注释">包含Go模板的HTML注释</a></li>
+</ul></li>
+<li><a href="#hugo-parameters"><strong>Hugo Parameters</strong></a>
+<ul>
+<li><a href="#使用content-page-参数">使用Content (Page) 参数</a></li>
+<li><a href="#使用-全局参数-来判断代码块是否执行">使用 全局参数 来判断代码块是否执行</a></li>
+<li><a href="#example-show-only-upcoming-events-只显示即将发生的事件">Example: Show Only Upcoming Events 只显示即将发生的事件</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>Hugo 使用Go的 html/template 和 text/template. 详情请看<a href="http://golang.org/pkg/html/template/">Go docs</a>.</p>
+
+<hr />
+
+<h2 id="基本语法-basic-syntax"><strong>基本语法 Basic Syntax</strong></h2>
+
+<p>模板主要由 <code>variables</code> 和 <code>functions</code>组成，在 <code>{{ }}</code> 内中使用</p>
+
+<p>访问变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// 可以是当前作用域中已存在的变量
+{{ .Title }}
+
+// 或者自定义变量
+{{ $address }}</pre></td></tr></table>
+</div>
+</div>
+<p>函数参数用空格分割</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ FUNCTION ARG1 ARG2 .. }}
+
+// 例如
+{{ add 1 2 }}</pre></td></tr></table>
+</div>
+</div>
+<p>方法调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// 方法和字段用&#34;.&#34;来访问
+{{ .Params.bar }}</pre></td></tr></table>
+</div>
+</div>
+<p>用括号组织</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if or (isset .Params &#34;alt&#34;) (isset .Params &#34;caption&#34;) }} Caption {{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="变量"><strong>变量</strong></h2>
+
+<p>每个Go Template都会获取一个data对象。而在Hugo中，每个Template都传递一个Page</p>
+
+<p><code>.Title</code> 就是 <a href="https://gohugo.io/variables/page/"><code>Page</code></a> 变量中可访问的元素之一，通过 &ldquo;.&rdquo; 访问：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;title&gt;{{ .Title }}&lt;/title&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>变量赋值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ $address := &#34;123 Main St.&#34; }}
+{{ $address }}</pre></td></tr></table>
+</div>
+</div>
+<p><em>下面的示例仅适用于 Hugov0.48 或更新的版本</em></p>
+
+<p>在主页上打印“Var is Hugo Home”，在所有其他页面上打印“Var is Hugo Page”：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ $var := &#34;Hugo Page&#34; }}
+{{ if .IsHome }}
+    {{ $var = &#34;Hugo Home&#34; }}
+{{ end }}
+Var is {{ $var }}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="函数"><strong>函数</strong></h2>
+
+<p>Hugo Template 的<a href="https://gohugo.io/functions/">自带函数</a></p>
+
+<p>新的函数需要编译后才能使用</p>
+
+<p>Example 1: Adding Numbers</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ add 1 2 }}
+&lt;!-- prints 3 --&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>Example 2: Comparing Numbers</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ lt 1 2 }}
+&lt;!-- prints true (i.e., since 1 is less than 2) --&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>这两个示例都使用了 <a href="https://gohugo.io/functions/math/">math functions</a></p>
+
+<h2 id="includes"><strong>Includes</strong></h2>
+
+<p>模板的位置从 <code>layouts/</code> 目录开始</p>
+
+<h2 id="partial-函数"><strong>Partial 函数</strong></h2>
+
+<p>用来调用 partial templates</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// 使用方法
+{{ partial &#34;&lt;PATH&gt;/&lt;PARTIAL&gt;.&lt;EXTENSION&gt;&#34; . }}
+
+// 例如:  调用 layouts/partials/header.html partial
+{{ partial &#34;header.html&#34; . }}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="template-函数"><strong>Template 函数</strong></h2>
+
+<p>仅用于调用 <a href="https://gohugo.io/templates/internal/">internal templates</a></p>
+
+<p>可用模板在<a href="https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates">这里</a>找</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// 语法为
+{{template“_internal / &lt;TEMPLATE&gt;.&lt;EXTENSION&gt;”. }}
+
+// 例如： 调用 internal opengraph.html template:
+{{ template &#34;_internal/opengraph.html&#34; . }}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="逻辑"><strong>逻辑</strong></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// Example 1: Using Context (.) 
+{{ range $array }}
+    {{ . }} &lt;!--  . 表示 $array 中的一个元素 --&gt;
+{{ end }}
+
+// Example 2: 给元素声明一个变量名
+{{ range $elem_val := $array }}
+    {{ $elem_val }}
+{{ end }}
+
+// Example 3: array 和 slice 的索引和变量
+{{ range $elem_index, $elem_val := $array }}
+   {{ $elem_index }} -- {{ $elem_val }}
+{{ end }}
+// Example 4: map 的 key 和 value
+{{ range $elem_key, $elem_val := $map }}
+   {{ $elem_key }} -- {{ $elem_val }}
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="条件语句"><strong>条件语句</strong></h2>
+
+<p>每个语句用 <code>{{ end }}</code> 结束</p>
+
+<p>可以用到的关键字：<code>if</code>, <code>else</code>, <code>with</code>, <code>or</code>, <code>and</code>, <code>range</code></p>
+
+<p>作为 false 的值可以是：</p>
+
+<ul>
+<li>false (boolean)</li>
+<li>0 (integer)</li>
+<li>任何 zero-length array, slice, map, 或者 string</li>
+</ul>
+
+<h3 id="example-1-with">Example 1: with</h3>
+
+<p>功能：如果变量存在，则&hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// 如果变量不存在，或判定为 false 则跳过
+{{ with .Params.title }}
+    &lt;h4&gt;{{ . }}&lt;/h4&gt;
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-2-with-else">Example 2: with .. else</h3>
+
+<p>如果设置了参数 <code>“description”</code> 的值，执行<code>.</code>命令</p>
+
+<p>否则使用<code>.Summary</code>的变量值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ with .Param &#34;description&#34; }}
+    {{ . }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-3-if">Example 3: if</h3>
+
+<p>一种更长（冗余）的写法是用if，下面给出Example1重写的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if isset .Params &#34;title&#34; }}
+    &lt;h4&gt;{{ index .Params &#34;title&#34; }}&lt;/h4&gt;
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-4-if-else">Example 4: if .. else</h3>
+
+<p>Below example is “Example 2” rewritten using if .. else, and using isset function + .Params variable (different from the .Param function) instead:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if (isset .Params &#34;description&#34;) }}
+    {{ index .Params &#34;description&#34; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<p>Example 5: if .. else if .. else
+Unlike with, if can contain else if clauses too.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if (isset .Params &#34;description&#34;) }}
+    {{ index .Params &#34;description&#34; }}
+{{ else if (isset .Params &#34;summary&#34;) }}
+    {{ index .Params &#34;summary&#34; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-6-and-or">Example 6: and &amp; or</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if (and (or (isset .Params &#34;title&#34;) (isset .Params &#34;caption&#34;)) (isset .Params &#34;attr&#34;)) }}</pre></td></tr></table>
+</div>
+</div>
+<p>未完待续</p>
+
+<h2 id="管道符号-pipes"><strong>管道符号（Pipes）</strong></h2>
+
+<p>概念：每个管道（pipe）的输出都成为后续管道的输入</p>
+
+<p>限制：只能使用一个值作为传递参数</p>
+
+<h3 id="example-1-shuffle">Example 1: shuffle</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">//两条语句功能一样
+{{ shuffle (seq 1 5) }}
+{{ (seq 1 5) | shuffle }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-2-index">Example 2: index</h3>
+
+<p>以下访问名为“disqus_url”的页面参数并转义HTML。此示例还使用index函数，(内置在 Go Templates中)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ index .Params &#34;disqus_url&#34; | html }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-3-or-with-isset">Example 3: or with isset</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if or (or (isset .Params &#34;title&#34;) (isset .Params &#34;caption&#34;)) (isset .Params &#34;attr&#34;) }}
+Stuff Here
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<p>改写为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if isset .Params &#34;caption&#34; | or isset .Params &#34;title&#34; | or isset .Params &#34;attr&#34; }}
+Stuff Here
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-4-internet-explorer-conditional-comments">Example 4: Internet Explorer Conditional Comments</h3>
+
+<p>Go Templates 默认会删除HTML注释</p>
+
+<p>这有不幸的副作用是删除Internet Explorer条件注释。作为解决办法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ &#34;&lt;!--[if lt IE 9]&gt;&#34; | safeHTML }}
+  &lt;script src=&#34;html5shiv.js&#34;&gt;&lt;/script&gt;
+{{ &#34;&lt;![endif]--&gt;&#34; | safeHTML }}</pre></td></tr></table>
+</div>
+</div>
+<p>或者使用反勾号（`）来引用IE条件注释，避免转义内部每个双引号（&rdquo;）的繁琐任务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ `&lt;!--[if lt IE 7]&gt;&lt;html class=&#34;no-js lt-ie9 lt-ie8 lt-ie7&#34;&gt;&lt;![endif]--&gt;` | safeHTML }}</pre></td></tr></table>
+</div>
+</div>
+<hr />
+
+<h2 id="context-aka-the-dot"><strong>Context (aka “the dot”)</strong></h2>
+
+<p>在最顶层，这是可用的数据集合
+在迭代循环内，它具有当前值（.在循环内不会引用整个页面的数据）
+如果需要访问页面数据，有以下方法</p>
+
+<h3 id="1-定义一个变量">1.定义一个变量</h3>
+
+<p>下面展示了如何定义变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">//tags-range-with-page-variable.html
+
+{{ $title := .Site.Title }}
+&lt;ul&gt;
+{{ range .Params.tags }}
+    &lt;li&gt;
+        &lt;a href=&#34;/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+        - {{ $title }}
+    &lt;/li&gt;
+{{ end }}
+&lt;/ul&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>注意: 一旦我们进入循环（如 range），值{{.}}已更改。
+由于已经在循环外部定义了一个变量（{{$title}}），并分配了一个值，因此我们也可以从循环内部访问该值。</p>
+
+<h3 id="2-使用全局变量参数">2.使用全局变量参数 $.</h3>
+
+<p>$.可以从任何地方访问全局上下文。</p>
+
+<p>使用$从全局上下文中获取.Site.Title：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">//range-through-tags-w-global.html
+
+&lt;ul&gt;
+{{ range .Params.tags }}
+  &lt;li&gt;
+    &lt;a href=&#34;/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+            - {{ $.Site.Title }}
+  &lt;/li&gt;
+{{ end }}
+&lt;/ul&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>如果重定义<code>$</code>, <code>{{$：=.Site}}</code>, 那么内置的<code>$</code>将停止工作。您可以通过使用<code>{{$: =.}}</code> 来将<code>$</code>重置为其默认值。</p>
+
+<h2 id="空白-whitespace"><strong>空白（Whitespace）</strong></h2>
+
+<p>使用连字符（hyphen, &ldquo;-&ldquo;）可以去掉空白（类似 trim），如<code>{{- XXXX -}}</code></p>
+
+<p>可以去掉的有：
+- 空格 （space）
+- 当前行的Tab（horizontal tab）
+- 回车（carriage return）
+- 换行符 （newline）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;div&gt;
+  {{ .Title }}
+&lt;/div&gt;
+&lt;div&gt;
+  {{- .Title -}}
+&lt;/div&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>输出:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;div&gt;
+  Hello, World!
+&lt;/div&gt;
+&lt;div&gt;Hello, World!&lt;/div&gt;</pre></td></tr></table>
+</div>
+</div>
+<h2 id="注释-comments"><strong>注释（Comments）</strong></h2>
+
+<h3 id="go-templates-的注释">Go Templates 的注释</h3>
+
+<p>注释块用 <code>{{/*</code> 和 <code>*/}}</code></p>
+
+<h3 id="html-注释">HTML 注释</h3>
+
+<p>注释用 <code>&lt;!--xxx --&gt;</code>
+如果需要构造 html 注释块，可以用管道符导入到safeHTML</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ printf &#34;&lt;!-- Our website is named: %s --&gt;&#34; .Site.Title | safeHTML }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="包含go模板的html注释">包含Go模板的HTML注释</h3>
+
+<p>不要用 HTML 注释来注释 GO 模板
+引擎默认先编译 Go 模板代码，如果HTML注释中代码出错，编译就会失败。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;!-- {{ $author := &#34;Emma Goldman&#34; }} was a great woman. --&gt;
+{{ $author }}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="hugo-parameters"><strong>Hugo Parameters</strong></h2>
+
+<p>网页范围的参数配置，通过特定的内容片断来指定一些特定的渲染（如当前网站不需要用到的）传递到模板中</p>
+
+<p>You can define any values of any type and use them however you want in your templates, as long as the values are supported by the front matter format specified via metaDataFormat in your configuration file.</p>
+
+<p>您可以定义任何类型的值，并在模板中根据需要使用它们，只要这些值由配置文件中通过metaDataFormat指定的前置事项格式支持。</p>
+
+<h3 id="使用content-page-参数">使用Content (Page) 参数</h3>
+
+<p>全局都使用变量 notoc ，但有时我们不需要内容表。此时，我们在文件头设置为true，它将阻止内容表呈现。</p>
+
+<p>Here is the example front matter (YAML):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">---
+title: Roadmap
+lastmod: 2017-03-05
+date: 2013-11-18
+notoc: true
+---</pre></td></tr></table>
+</div>
+</div>
+<p>对应的模板中要加上处理的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">//layouts/partials/toc.html
+
+{{ if not .Params.notoc }}
+&lt;aside&gt;
+  &lt;header&gt;
+    &lt;a href=&#34;#{{.Title | urlize}}&#34;&gt;
+    &lt;h3&gt;{{.Title}}&lt;/h3&gt;
+    &lt;/a&gt;
+  &lt;/header&gt;
+  {{.TableOfContents}}
+&lt;/aside&gt;
+&lt;a href=&#34;#&#34; id=&#34;toc-toggle&#34;&gt;&lt;/a&gt;
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<p>We want the default behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the notoc: field in this page’s front matter is not true.
+我们希望页面的默认行为包括TOC，除非另有指定。此模板检查以确保此页’s前端中的notoc:字段不正确。</p>
+
+<h3 id="使用-全局参数-来判断代码块是否执行">使用 全局参数 来判断代码块是否执行</h3>
+
+<p>这些参数在模板中是全局可用的。</p>
+
+<p>如：版权copyrighthtml这个内容，需要在全局使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[params]
+  copyrighthtml = &#34;Copyright &amp;#xA9; 2017 John Doe. All Rights Reserved.&#34;
+  sidebarrecentlimit = 5
+  twitteruser = &#34;spf13&#34;</pre></td></tr></table>
+</div>
+</div>
+<p>然后，在页脚中声明一个<code>&lt;footer&gt;</code>，只有当提供了copyrightml参数时才会呈现它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{ if .Site.Params.copyrighthtml }}
+    &lt;footer&gt;
+        &lt;div class=&#34;text-center&#34;&gt;{{.Site.Params.CopyrightHTML | safeHTML}}&lt;/div&gt;
+    &lt;/footer&gt;
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<p>或者用 <code>with</code> 来替换 <code>if</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// layouts/partials/twitter.html
+
+{{ with .Site.Params.twitteruser }}
+    &lt;div&gt;
+        &lt;a href=&#34;https://twitter.com/{{.}}&#34; rel=&#34;author&#34;&gt;
+        &lt;img src=&#34;/images/twitter.png&#34; width=&#34;48&#34; height=&#34;48&#34; title=&#34;Twitter: {{.}}&#34; alt=&#34;Twitter&#34;&gt;&lt;/a&gt;
+    &lt;/div&gt;
+{{ end }}</pre></td></tr></table>
+</div>
+</div>
+<p>layout 中可以使用“magic constants”</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;nav&gt;
+  &lt;h1&gt;Recent Posts&lt;/h1&gt;
+  &lt;ul&gt;
+  {{- range first .Site.Params.SidebarRecentLimit .Site.Pages -}}
+      &lt;li&gt;&lt;a href=&#34;{{.RelPermalink}}&#34;&gt;{{.Title}}&lt;/a&gt;&lt;/li&gt;
+  {{- end -}}
+  &lt;/ul&gt;
+&lt;/nav&gt;</pre></td></tr></table>
+</div>
+</div>
+<h3 id="example-show-only-upcoming-events-只显示即将发生的事件">Example: Show Only Upcoming Events 只显示即将发生的事件</h3>
+
+<p>Go allows you to do more than what’s shown here. Using Hugo’s <code>where function</code> and Go built-ins, we can list only the items from content/events/ whose date (set in a content file’s front matter) is in the future. The following is an example partial template:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">layouts/partials/upcoming-events.html
+
+&lt;h4&gt;Upcoming Events&lt;/h4&gt;
+&lt;ul class=&#34;upcoming-events&#34;&gt;
+{{ range where .Pages.ByDate &#34;Section&#34; &#34;events&#34; }}
+    {{ if ge .Date.Unix now.Unix }}
+        &lt;li&gt;
+        &lt;!-- add span for event type --&gt;
+          &lt;span&gt;{{ .Type | title }} —&lt;/span&gt;
+          {{ .Title }} on
+        &lt;!-- add span for event date --&gt;
+          &lt;span&gt;{{ .Date.Format &#34;2 January at 3:04pm&#34; }}&lt;/span&gt;
+          at {{ .Params.place }}
+        &lt;/li&gt;
+    {{ end }}
+{{ end }}
+&lt;/ul&gt;</pre></td></tr></table>
+</div>
+</div>
+<p><strong><a href="https://gohugo.io/templates/introduction/#basic-syntax">https://gohugo.io/templates/introduction/#basic-syntax</a></strong></p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Pan Feng</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-12-23</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">None</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://panfeng0119.github.io/tags/hugo/">hugo</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/hugo/hugo-2018-12-22-mathjax-problem/">
+            <span class="next-text nav-default">Hugo Mathjax 渲染问题</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+
+
+
+
+
+
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2018
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Pan Feng
+        
+      </span></span>
+
+  
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

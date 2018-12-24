@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hugo &#43; GitHub 部署个人站点 - Pan Feng&#39;s Blog</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Pan Feng" />
+  <meta name="description" content="完整内容请参阅 Hosting &amp;amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52" />
+
+
+<link rel="canonical" href="http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.c8c1ff75dee09b44060a6c38f41b9036bac2512ccdb22d7f296cec12dc786375.css" integrity="sha256-yMH/dd7gm0QGCmw49BuQNrrCUSzNsi1/KWzsEtx4Y3U=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Hugo &#43; GitHub 部署个人站点" />
+<meta property="og:description" content="完整内容请参阅 Hosting &amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://panfeng0119.github.io/post/hugo/hugo-2018-09-15-host-on-github/" /><meta property="article:published_time" content="2018-09-15T00:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-15T00:00:00&#43;08:00"/>
+
+<meta itemprop="name" content="Hugo &#43; GitHub 部署个人站点">
+<meta itemprop="description" content="完整内容请参阅 Hosting &amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发">
+
+
+<meta itemprop="datePublished" content="2018-09-15T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-15T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1387">
+
+
+
+<meta itemprop="keywords" content="GitHub Pages," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo &#43; GitHub 部署个人站点"/>
+<meta name="twitter:description" content="完整内容请参阅 Hosting &amp; Deployment. 我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成： 已安装 Git 版本 2.8 以上. 需要发"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+  <link href='http://panfeng0119.github.io/avatar/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Pan Feng</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Pan Feng
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hugo &#43; GitHub 部署个人站点</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-09-15" class="post-time">
+          2018-09-15
+        </time>
+        
+        <span class="more-meta"> 1387 words </span>
+          <span class="more-meta"> 3 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#b-准备工作-b"><b>准备工作</b></a></li>
+<li><a href="#一-b-通过两个仓库来创建-github-pages-b">一、<b>通过两个仓库来创建 GitHub Pages</b></a></li>
+<li><a href="#二-b-通过两个分支来创建-github-pages-b">二、<b>通过两个分支来创建 GitHub Pages</b></a>
+<ul>
+<li><a href="#2-1-初始化">2.1 初始化</a></li>
+<li><a href="#2-2-启动服务并push到分支">2.2 启动服务并push到分支</a></li>
+<li><a href="#附录">附录</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>完整内容请参阅 <a href="https://gohugo.io/hosting-and-deployment/">Hosting &amp; Deployment</a>.</p>
+
+<p>我们可以将 Hugo 生成的站点托管在 GitHub Pages 上，并使用简单的shell脚本自动完成整个过程。假设您已完成：</p>
+
+<ol>
+<li>已安装 <a href="https://git-scm.com/downloads">Git</a> 版本 2.8 以上.</li>
+<li>需要发布的Hugo网站，起码已完成<a href="https://gohugo.io/getting-started/quick-start/">快速入门</a>.</li>
+<li>在 <a href="https://github.com/">GitHub</a> 中创建好了仓库: &lt;USERNAME&gt;.github.io.</li>
+</ol>
+
+<h2 id="b-准备工作-b"><b>准备工作</b></h2>
+
+<p>不同的仓库类型，需要托管的分支是不同的。具体描述，请参阅文档 <a href="https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages">GitHub Pages doc</a>，以确定您要创建哪种类型的站点.</p>
+
+<p>从逻辑上，常用两种类型的仓库，对应的分支为</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"><code>https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io</code></th>
+<th align="left"><code>https://&lt;USERNAME&gt;.github.io</code></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">网站分支 -&gt; <font face="Aria"><b>gh-pages</b></font></td>
+<td align="left">网站分支 -&gt; <font face="Aria"><b>master</b></font></td>
+</tr>
+
+<tr>
+<td align="left">源码分支 -&gt; <font face="微软雅黑"><b>任意</b> </font></td>
+<td align="left">源码分支 -&gt; <font face="微软雅黑"><b>任意</b></font></td>
+</tr>
+</tbody>
+</table>
+
+<p>我们用第二种类型，需要注意两点：</p>
+
+<ol>
+<li>仓库名必须用&lt;USERNAME&gt;.github.io <br></li>
+<li>网站内容必须存放在 master 分支</li>
+</ol>
+
+<hr />
+
+<h2 id="一-b-通过两个仓库来创建-github-pages-b">一、<b>通过两个仓库来创建 GitHub Pages</b></h2>
+
+<p>最简单的方法就是将 Hugo 文件和生成的内容分别发布到两个不同的仓库(Repositoriy)中。</p>
+
+<ol>
+<li>创建两个仓库 <p> 一个存放源码的仓库： <code>&lt;YOUR-PROJECT&gt;</code>  <font color=#F08080>（如：blog）</font> </br> 一个托管Hugo网站的仓库： <code>&lt;USERNAME&gt;.github.io</code> </p></li>
+<li>克隆源码仓库到本地 <p> git clone &lt;OUR-PROJECT-URL&gt; </br> cd &lt;YOUR-PROJECT&gt; </p></li>
+<li>启动网站服务，确保网站能正常运行 <p> hugo server </br> 访问网站 <a href="http://localhost:1313">http://localhost:1313</a></li>
+<li>创建 git 子模块，命名为 <em>public</em> <font color=#F08080>（用来托管网站）</font> <p> git submodule add -b master <code>git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public</code> <em>public</em></li>
+<li>运行脚本，将网站 push 到<code>&lt;USERNAME&gt;.github.io</code> <p> chmod +x deploy.sh  ./deploy.sh&rdquo;提交消息(可选)&rdquo; </p></li>
+<li>将源代码 push 到 <code>&lt;YOUR-PROJECT&gt;</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="c1"># 文件名：deploy.sh</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+<span class="nv">Date</span><span class="o">=</span><span class="sb">`</span>date <span class="s2">&#34;+%Y-%m-%d %H:%M:%S&#34;</span><span class="sb">`</span>
+
+<span class="c1"># Build the project.</span>
+hugo
+
+<span class="c1"># Go To Public folder</span>
+<span class="nb">cd</span> public
+
+<span class="c1"># Add changes to git.</span>
+git add -A
+
+<span class="c1"># Commit changes.</span>
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site </span><span class="si">${</span><span class="nv">Date</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span>
+  <span class="k">then</span> <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
+
+<span class="c1"># Push source and build repos.</span>
+git push origin master
+
+<span class="c1"># Come Back up to the Project Root</span>
+<span class="nb">cd</span> ..</pre></td></tr></table>
+</div>
+</div>
+<p>现在！您的个人页面成功地部署在 <code>https://&lt;USERNAME&gt;.github.io</code></p>
+
+<p><font color=#778899>补充：如果需要指定 Hugo 生成网站的输出目录，可以在配置文件中 config.toml 中设置变量 publishDir = "docs". </font></p>
+
+<h2 id="二-b-通过两个分支来创建-github-pages-b">二、<b>通过两个分支来创建 GitHub Pages</b></h2>
+
+<p>我们还可以指定默认分支来托管源代码，并将发布的站点指向单独的分支，虽然比上面的方法复杂，但他的优点在于：</p>
+
+<ul>
+<li>只用一个仓库，方便维护和版本控制</li>
+<li>直接使用默认的 <em>public</em> 目录，不必指定 Git 子模块或输出目录</li>
+</ul>
+
+<p>我们需要到仓库中新建一个托管源代码的分支，并设置为默认分支<font color=#F08080>（非 master 分支）</font>，设置方法如下</p>
+
+<ol>
+<li><p>进入仓库 <code>https://&lt;USERNAME&gt;.github.io</code> ，点击导航栏的设置 <font face="woff2"><strong>Settings</strong><font></p></li>
+
+<li><p>在左侧 <font face="woff2"><strong>Options</strong><font> 找到 <font face="woff2"><strong>Branches</strong><font></p></li>
+
+<li><p><font face="woff2"><strong>Default branch</strong><font> 选择源码托管的分支 <font color=#F08080>（如 hugo）</font></p></li>
+</ol>
+
+<h3 id="2-1-初始化">2.1 初始化</h3>
+
+<p>接下来的步骤在每次 clone 下来后只需要完成一次。默认的 <code>（upstream</code> 的名称 origin
+<font color=#F08080>（upstream 是远程仓库在本地的简写名称，可以通过 git remote -v 来查看 ）</font></p>
+
+<p>现在，我们用 <code>https://&lt;USERNAME&gt;.github.io</code> 仓库，源码分支为 <strong>hugo</strong> ，发布网站的分支为 <strong>master</strong></p>
+
+<ol>
+<li>克隆仓库到本地，默认分支是 <strong>hugo</strong> <p> git clone &lt;Repositoriy-URL&gt; </br> cd &lt;Repositoriy&gt; </p></li>
+<li>切换到 <strong>master</strong> 分支，进行设置 <p>
+git checkout master </br>
+git reset &ndash;hard </br>
+git commit &ndash;allow-empty -m &ldquo;Initializing master branch&rdquo; </br>
+git push origin master</br>
+git checkout master </p></li>
+<li>切换到 <strong>hugo</strong> 分支<p>
+echo public &gt;&gt; .gitignore </br>
+rm -rf public</br>
+rm -rf .git/worktrees/public/&rdquo; </br>
+git worktree add -B master public origin/master </br></p></li>
+</ol>
+
+<h3 id="2-2-启动服务并push到分支">2.2 启动服务并push到分支</h3>
+
+<p>现在我们只需要启动服务，检查网站正常运行，就可以通过脚本来push了  <font color=#F08080>（脚本需要 chmod +x deploy.sh）</font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="c1"># 文件名：deploy.sh</span>
+<span class="c1"># 脚本：自动将public文件夹push到master分支</span>
+<span class="c1"># 如果是用 gh-branch，将 master 替换为 gh-branch 就可以</span>
+
+<span class="c1"># 日志信息</span>
+<span class="nv">Date</span><span class="o">=</span><span class="sb">`</span>date <span class="s2">&#34;+%Y-%m-%d %H:%M:%S&#34;</span><span class="sb">`</span>
+<span class="nb">alias</span> <span class="nv">printlog</span><span class="o">=</span><span class="s1">&#39;echo ${Date} INFO&#39;</span>
+
+<span class="c1"># 标记当前路径</span>
+<span class="nv">DIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+printlog <span class="s2">&#34;当前目录：</span><span class="si">${</span><span class="nv">DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+
+printlog <span class="s2">&#34;标记 public 文件夹为 master 分支&#34;</span>
+rm -rf public
+rm -rf .git/worktrees/public/
+
+git worktree add -B master public origin/master
+<span class="c1"># 清除原来的内容</span>
+rm -rf public/*
+
+<span class="c1"># 编译</span>
+printlog <span class="s2">&#34;正在生成网站.&#34;</span>
+hugo
+
+printlog <span class="s2">&#34;正在提交更新&#34;</span>
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;Rebuilding site </span><span class="si">${</span><span class="nv">Date</span><span class="si">}</span><span class="s2"> (publish.sh)&#34;</span>
+
+<span class="c1"># 提交</span>
+<span class="nb">cd</span> public <span class="o">&amp;&amp;</span> git add --all <span class="o">&amp;&amp;</span> git commit -m <span class="s2">&#34;</span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&#34;</span>
+
+printlog <span class="s2">&#34;正在 push&#34;</span>
+git push origin master
+
+printlog <span class="s2">&#34;Down!&#34;</span></pre></td></tr></table>
+</div>
+</div>
+<hr />
+
+<h3 id="附录">附录</h3>
+
+<p>知识点：</p>
+
+<p>git worktree</p>
+
+<p>利用 upstream 标记更多的远程仓库地址</p>
+
+<p>脚本中获取相对路径 DIR=$(dirname &ldquo;$0&rdquo;)</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Pan Feng</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-09-15</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">None</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://panfeng0119.github.io/tags/github-pages/">GitHub Pages</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/design-pattern/designpattern-2018-09-26-factory/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">设计模式：工厂模式（Factory Pattern）</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/leetcode/leetcode-2018-09-14-1-to-100/">
+            <span class="next-text nav-default">LeetCode 刷题笔记</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+
+
+
+
+
+
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2018
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Pan Feng
+        
+      </span></span>
+
+  
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

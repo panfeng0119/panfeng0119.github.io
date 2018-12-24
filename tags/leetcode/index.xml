@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>LeetCode on Pan Feng</title>
-    <link>panfeng0119.github.io/tags/leetcode/</link>
-    <description>Recent content in LeetCode on Pan Feng</description>
+    <title>Leetcode on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/tags/leetcode/</link>
+    <description>Recent content in Leetcode on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; 2018</copyright>
+    <language>en</language>
     <lastBuildDate>Fri, 14 Sep 2018 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="panfeng0119.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://panfeng0119.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>LeetCode 刷题笔记</title>
-      <link>panfeng0119.github.io/post/leetcode1-100/</link>
+      <link>http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/</link>
       <pubDate>Fri, 14 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>panfeng0119.github.io/post/leetcode1-100/</guid>
-      <description>CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1]. 思</description>
+      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-2018-09-14-1-to-100/</guid>
+      <description>CONTENT MANAGEMENT 1. Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1 2 3 4 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9,</description>
     </item>
     
   </channel>

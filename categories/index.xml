@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Pan Feng</title>
-    <link>panfeng0119.github.io/categories/</link>
-    <description>Recent content in Categories on Pan Feng</description>
+    <title>Categories on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/categories/</link>
+    <description>Recent content in Categories on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; 2018</copyright>
+    <language>en</language>
     
-	<atom:link href="panfeng0119.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://panfeng0119.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://panfeng0119.github.io/categories/hugo/</link>
+      <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数学</title>
+      <link>http://panfeng0119.github.io/categories/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Sun, 23 Dec 2018 00:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>http://panfeng0119.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
