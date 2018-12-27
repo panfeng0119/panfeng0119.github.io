@@ -28,5 +28,5 @@ git add --all && git commit -m "${msg}"
 echo "正在 push"
 git push origin hugo
 
-sh hugo_publish_to_master.sh
+sh hugo-release.sh
 echo "Down!"

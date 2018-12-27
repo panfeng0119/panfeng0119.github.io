@@ -46,35 +46,35 @@ The median is (2 + 3)/2 = 2.5
 
 ## 思路
 
-要解决这个问题，我们需要了解“中位数有什么用”。在统计中，中位数用于：
+什么是“中位数”，找到一个数使一个数组分为两个部分，left 和 right，
 
-> 将一组分成两个相等长度的子集，一个子集所有的值总是大于另一个子集的任意一个值。
+> 1. $len(left)=len(right)$
+> 2. $\max(\text{left}) \leq \min(\text{right}))$
 
-
+不要想太多，将两个数组合并然后找中位数就可以
 
 
 
 ## 代码
 ```
-func lengthOfLongestSubstring(s string) int {
-    var i,j,ret int
-    m := make(map[byte]int)
-    for j < len(s) {
-        if v, ok := m[s[j]]; ok {
-            ret = max(ret, len(s[i:j]))
-            i = max(i, v+1)
-        }
-        m[s[j]] = j
-        j += 1
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+    nums1 = append(nums1, nums2...)
+    sort.Ints(nums1)
+    
+    var median float64
+    
+    if len(nums1) % 2 == 1 {
+        median = float64(nums1[len(nums1) / 2])
+    } else {
+        median = float64((nums1[len(nums1) / 2] + nums1[(len(nums1) / 2) - 1]))
+        median = median / 2
     }
-    return max(ret, len(s[i:j]))
-} 
-
-func max(a, b int) int {
-    if a > b {
-        return a
-    }
-    return b
+    
+    return median
 }
+```
+
+```
+32 ms, faster than 33.90%
 ```
 
