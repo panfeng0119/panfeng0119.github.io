@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on Pan Feng&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 03 Jan 2019 11:06:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>常用算法|动态规划</title>
+      <link>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</link>
+      <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</guid>
+      <description>介绍 动态规划（Dynamic Programming，简称DP），通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法 动态规划常常适用于</description>
+    </item>
+    
+  </channel>
+</rss>

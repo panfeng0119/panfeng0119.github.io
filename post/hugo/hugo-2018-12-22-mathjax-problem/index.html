@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2018-12-23T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-23T23:02:35&#43;08:00" />
-<meta itemprop="wordCount" content="684">
+<meta itemprop="wordCount" content="723">
 
 
 
@@ -281,7 +281,7 @@
             <a href="http://panfeng0119.github.io/categories/hugo/"> hugo </a>
             
           </div>
-        <span class="more-meta"> 684 words </span>
+        <span class="more-meta"> 723 words </span>
           <span class="more-meta"> 2 min read </span>
 
         
@@ -299,21 +299,12 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li>
-<ul>
-<li>
-<ul>
 <li><a href="#方案">方案</a>
-<ul>
-<li>
 <ul>
 <li><a href="#步骤1">步骤1</a></li>
 <li><a href="#步骤2">步骤2</a></li>
 </ul></li>
-</ul></li>
 <li><a href="#代码说明">代码说明</a></li>
-</ul></li>
-</ul></li>
 </ul>
 </nav>
   </div>
@@ -327,16 +318,16 @@
 
 <p>markdown 在 hugo 中默认是没有公式渲染的，需要引入 Mathjax 模块。</p>
 
-<h3 id="方案">方案</h3>
+<h1 id="方案">方案</h1>
 
 <p>在 layouts/partials/ 目录下，把所有和公式有关的修改都写在一个文件中，然后在适当的位置调用</p>
 
-<h5 id="步骤1">步骤1</h5>
+<h2 id="步骤1">步骤1</h2>
 
 <p>创建文件 <code>layouts/partials/mathjax.html</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -373,9 +364,9 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&lt;!-- layouts/partials/mathjax.html --&gt;
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;!-- layouts/partials/mathjax.html --&gt;
 &lt;!-- 公式渲染 mathjax --&gt;
 &lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;&gt;&lt;/script&gt;
 
@@ -384,7 +375,7 @@
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]],
-        displayMath: [[&#39;$$&#39;,&#39;$$&#39;], [&#39;\[&#39;,&#39;\]&#39;]],
+        displayMath: [[&#39;$$&#39;,&#39;$$&#39;], [&#39;\[[&#39;,&#39;\]]&#39;]],
         processEscapes: true,
         processEnvironments: true,
         skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],
@@ -411,39 +402,39 @@ MathJax.Hub.Config({
         border: inherit;
         color: #515151;
     }
-&lt;/style&gt;</pre></td></tr></table>
+&lt;/style&gt;</code></pre></td></tr></table>
 </div>
 </div>
-<h5 id="步骤2">步骤2</h5>
+<h2 id="步骤2">步骤2</h2>
 
 <p>在文件 layout/footer.html (<code>&lt;foot&gt;</code> 或 <code>&lt;head&gt;</code>都可以)适当位置添加下面代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">{{ partial &#34;mathjax.html&#34; . }}</pre></td></tr></table>
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">{{ partial &#34;mathjax.html&#34; . }}</code></pre></td></tr></table>
 </div>
 </div>
-<hr />
-
-<h3 id="代码说明">代码说明</h3>
+<h1 id="代码说明">代码说明</h1>
 
 <p>第一块代码是渲染用的主要调用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;&gt;&lt;/script&gt;</pre></td></tr></table>
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;&gt;&lt;/script&gt;</code></pre></td></tr></table>
 </div>
 </div>
 <p>第二块是对行内代码进行优化</p>
 
 <p>因为在 markdown 中，对一些特殊字符进行了转义，使MathJax对行内代码渲染无效，因此需要添加下面代码把普通的代码和MathJax代码分开</p>
+
+<p>由于经常用中括号<code>[</code>和<code>]</code>, 为了不受影响，将displayMath字段内的 <code>['\[','\]']]</code> 改为 <code>['\[[','\]]']]</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -465,9 +456,9 @@ MathJax.Hub.Config({
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&lt;script type=&#34;text/x-mathjax-config&#34;&gt;
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;script type=&#34;text/x-mathjax-config&#34;&gt;
 MathJax.Hub.Config({
   tex2jax: {
     inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]],
@@ -488,7 +479,7 @@ MathJax.Hub.Config({
   MathJax.Hub.Queue(() =&gt; {
     MathJax.Hub.getAllJax().map(v =&gt; v.SourceElement().parentNode.className += &#39; has-jax&#39;);
   });
-&lt;/script&gt; </pre></td></tr></table>
+&lt;/script&gt; </code></pre></td></tr></table>
 </div>
 </div>
 <p>第三块是对样式进行处理</p>
@@ -496,22 +487,22 @@ MathJax.Hub.Config({
 <p>在CSS中对这种特殊的MathJax进行样式处理，否则行内公式的显示会有些奇怪。(<font color=#FF0000><strong>亲测无效</strong></font>)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">code.has-jax {
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">code.has-jax {
     font: inherit;
     font-size: 100%;
     background: inherit;
     border: inherit;
     color: #515151;
-}</pre></td></tr></table>
+}</code></pre></td></tr></table>
 </div>
 </div>
 <!-- 默认情况下，(c)可转换为©，(r)可转换为®。 -->
@@ -519,18 +510,18 @@ MathJax.Hub.Config({
 <p>但是，这样对行内公式仍然无法支持。 而除了支持行内公式，还有Markdown特殊字符的转义问题，如下划线_。 为了支持无需转义地写公式，行内公式推荐写成行内代码，用 ` ` 来包含，而区块公式则推荐用<code>&lt;div&gt;&lt;/div&gt;</code>来包含。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">When `$a \ne 0$`, there are two solutions to `\(ax^2 + bx + c = 0\)` and they are:
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">When `$a \ne 0$`, there are two solutions to `\(ax^2 + bx + c = 0\)` and they are:
 
 &lt;div&gt;$$
 x = {-b \pm \sqrt{b^2-4ac} \over 2a}
-$$&lt;/div&gt;</pre></td></tr></table>
+$$&lt;/div&gt;</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -645,7 +636,9 @@ $$&lt;/div&gt;</pre></td></tr></table>
 
   <span class="copyright-year">
     &copy;
-    2018
+    
+      2018 -
+    2019
     <span class="heart">
       
       <i class="iconfont">
@@ -689,52 +682,6 @@ $$&lt;/div&gt;</pre></td></tr></table>
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
-  <script type="text/javascript">
-    window.MathJax = {
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  
-  
-
-  
-
-  
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[','\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-        TeX: { equationNumbers: { autoNumber: "AMS" },
-                extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-});
-</script>
-  
-<script type="text/x-mathjax-config">
-    // Fix <code> tags after MathJax finishes running. This is a
-    // hack to overcome a shortcoming of Markdown. Discussion at
-    // https://github.com/mojombo/jekyll/issues/199
-    MathJax.Hub.Queue(() => {
-    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
-    });
-</script> 
-
-<style>
-    code.has-jax {
-        font: inherit;
-        font-size: 100%;
-        background: inherit;
-        border: inherit;
-        color: #515151;
-    }
-</style>
 
 
 

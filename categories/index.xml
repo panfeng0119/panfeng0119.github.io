@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Go</title>
+      <link>http://panfeng0119.github.io/categories/go/</link>
+      <pubDate>Fri, 04 Jan 2019 09:35:02 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hugo</title>
       <link>http://panfeng0119.github.io/categories/hugo/</link>
       <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
@@ -22,9 +31,18 @@
     <item>
       <title>Leetcode</title>
       <link>http://panfeng0119.github.io/categories/leetcode/</link>
-      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
+      <pubDate>Sat, 29 Dec 2018 16:06:00 +0800</pubDate>
       
       <guid>http://panfeng0119.github.io/categories/leetcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reinforcement Learning</title>
+      <link>http://panfeng0119.github.io/categories/reinforcement-learning/</link>
+      <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/reinforcement-learning/</guid>
       <description></description>
     </item>
     
@@ -34,6 +52,15 @@
       <pubDate>Sun, 23 Dec 2018 00:00:00 +0800</pubDate>
       
       <guid>http://panfeng0119.github.io/categories/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>算法</title>
+      <link>http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     

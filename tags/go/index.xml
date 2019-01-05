@@ -6,10 +6,19 @@
     <description>Recent content in Go on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Sep 2018 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jan 2019 09:35:02 +0800</lastBuildDate>
     
 	<atom:link href="http://panfeng0119.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go 服务包 fasthttp</title>
+      <link>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</link>
+      <pubDate>Fri, 04 Jan 2019 09:35:02 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</guid>
+      <description>fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连</description>
+    </item>
     
     <item>
       <title>设计模式：工厂模式（Factory Pattern）</title>
