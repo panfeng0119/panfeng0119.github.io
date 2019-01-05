@@ -33,6 +33,7 @@ Write the code that will take a string and make this conversion given a number o
 ```
 string convert(string s, int numRows);
 ```
+
 ```
 Example 1:
 
@@ -53,17 +54,16 @@ Y A   H R
 P     I
 ```
 
-
 ## 思路
 
-
-
 ## 代码
+
 ```
 
 ```
+
 运行结果：
+
 ```
 Runtime: 0 ms, faster than 100.00%
 ```
-

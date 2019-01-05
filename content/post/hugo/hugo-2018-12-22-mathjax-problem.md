@@ -13,23 +13,22 @@ categories = ["hugo"]
 
 description =  "markdown 在 hugo 中默认是没有公式渲染的，需要引入 Mathjax 模块。"
 
-mathjax = true
+mathjax = false
 +++
 
 [原文地址](http://note.qidong.name/2018/03/hugo-mathjax/)
 
 markdown 在 hugo 中默认是没有公式渲染的，需要引入 Mathjax 模块。
-### 方案
+
+# 方案
 
 在 layouts/partials/ 目录下，把所有和公式有关的修改都写在一个文件中，然后在适当的位置调用
 
-##### 步骤1
+## 步骤1
 
 创建文件 `layouts/partials/mathjax.html`
 
-
-
-```
+```hugo
 <!-- layouts/partials/mathjax.html -->
 <!-- 公式渲染 mathjax -->
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -39,7 +38,7 @@ markdown 在 hugo 中默认是没有公式渲染的，需要引入 Mathjax 模�
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[','\]']],
+        displayMath: [['$$','$$'], ['\[[','\]]']],
         processEscapes: true,
         processEnvironments: true,
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -68,19 +67,20 @@ MathJax.Hub.Config({
     }
 </style>
 ```
-##### 步骤2
+
+## 步骤2
+
 在文件 layout/footer.html (`<foot>` 或 `<head>`都可以)适当位置添加下面代码
-```
+
+```hugo
 {{ partial "mathjax.html" . }}
 ```
 
-
----
-### 代码说明
+# 代码说明
 
 第一块代码是渲染用的主要调用
 
-```
+```hugo
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 ```
 
@@ -88,7 +88,9 @@ MathJax.Hub.Config({
 
 因为在 markdown 中，对一些特殊字符进行了转义，使MathJax对行内代码渲染无效，因此需要添加下面代码把普通的代码和MathJax代码分开
 
-```
+由于经常用中括号`[`和`]`, 为了不受影响，将displayMath字段内的 `['\[','\]']]` 改为 `['\[[','\]]']]`
+
+```hugo
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {
@@ -116,7 +118,7 @@ MathJax.Hub.Config({
 
 在CSS中对这种特殊的MathJax进行样式处理，否则行内公式的显示会有些奇怪。(<font color=#FF0000>**亲测无效**</font>)
 
-```
+```hugo
 code.has-jax {
     font: inherit;
     font-size: 100%;
@@ -128,10 +130,9 @@ code.has-jax {
 
 <!-- 默认情况下，(c)可转换为©，(r)可转换为®。 -->
 
-
 但是，这样对行内公式仍然无法支持。 而除了支持行内公式，还有Markdown特殊字符的转义问题，如下划线_。 为了支持无需转义地写公式，行内公式推荐写成行内代码，用 \` \` 来包含，而区块公式则推荐用`<div></div>`来包含。
 
-```
+```hugo
 When `$a \ne 0$`, there are two solutions to `\(ax^2 + bx + c = 0\)` and they are:
 
 <div>$$

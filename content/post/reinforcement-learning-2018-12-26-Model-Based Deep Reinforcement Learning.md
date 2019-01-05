@@ -1,5 +1,5 @@
 ---
-title: "模型强化学习 Model-Based Deep Reinforcement Learning"
+title: "[模型强化学习PPT]Model-Based Deep Reinforcement Learning"
 date: 2018-12-26T15:35:02+08:00
 lastmod: 2018-12-26T15:35:02+08:00
 

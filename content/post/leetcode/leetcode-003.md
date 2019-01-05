@@ -42,7 +42,7 @@ Example 3:
 
 Input: "pwwkew"
 Output: 3
-Explanation: The answer is "wke", with the length of 3. 
+Explanation: The answer is "wke", with the length of 3.
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 ```
 
@@ -64,10 +64,8 @@ Explanation: The answer is "wke", with the length of 3.
 
 `len(s$[i:j]$)` 就可以实现  $ret = j - i + 1$
 
-
-
-
 ## 代码
+
 ```
 func lengthOfLongestSubstring(s string) int {
     var i,j,ret int
