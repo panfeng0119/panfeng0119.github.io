@@ -9,7 +9,7 @@ draft = false
 mathjax = true
 
 tags = ["算法"]
-categories = ["算法"]
+categories = ["algorithm"]
 summary = "常用算法|动态规划"
 +++
 
