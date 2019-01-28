@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>常用算法|动态规划</title>
-      <link>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</link>
+      <title>每天进步一点点——动态规划</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</link>
       <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</guid>
-      <description>介绍 动态规划（Dynamic Programming，简称DP），通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法 动态规划常常适用于</description>
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</guid>
+      <description>什么是动态规划？ 动态规划（Dynamic Programming，简称DP）是一种求解复杂问题的方法，它通过把原问题分解为相对简单的子问题方式</description>
     </item>
     
   </channel>

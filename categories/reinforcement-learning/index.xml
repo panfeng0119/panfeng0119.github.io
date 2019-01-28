@@ -13,19 +13,19 @@
     
     <item>
       <title>[模型强化学习PPT]Model-Based Deep Reinforcement Learning</title>
-      <link>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</link>
+      <link>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</guid>
+      <guid>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</guid>
       <description>[模型强化学习PPT]Model-Based Deep Reinforcement Learning 大纲 Why use model-based reinforcement learning? Main model-based RL approaches Using local models &amp;amp; guided policy search Handling high-dimensional observations 1. Why use model-based reinforcement learning?</description>
     </item>
     
     <item>
       <title>[深度强化学习概述]A Brief Survey of Deep Reinforcement Learning</title>
-      <link>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</link>
+      <link>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</guid>
+      <guid>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</guid>
       <description>[深度强化学习概述] A Brief Survey of Deep Reinforcement Learning 原文参考: arXiv:1708.05866v2 [cs.LG] 28 Sep 2017 摘要 本文主要内容有： 研究深度强化学习的核心算法 deep Q-network (深度Q网络) trust region policy optimisation (置信区间策</description>
     </item>
     

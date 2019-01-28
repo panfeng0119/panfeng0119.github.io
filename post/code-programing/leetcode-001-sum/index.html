@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>LeetCode 两数求和 - Pan Feng&#39;s Blog</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Pan Feng" />
+  <meta name="description" content="链接：leetcode 1. 查找指定和的两个数字（Two Sum） 难度：💔 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52" />
+
+
+<link rel="canonical" href="http://panfeng0119.github.io/post/code-programing/leetcode-001-sum/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.c8c1ff75dee09b44060a6c38f41b9036bac2512ccdb22d7f296cec12dc786375.css" integrity="sha256-yMH/dd7gm0QGCmw49BuQNrrCUSzNsi1/KWzsEtx4Y3U=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="LeetCode 两数求和" />
+<meta property="og:description" content="链接：leetcode 1. 查找指定和的两个数字（Two Sum） 难度：💔 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://panfeng0119.github.io/post/code-programing/leetcode-001-sum/" /><meta property="article:published_time" content="2018-09-14T00:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-16T00:00:00&#43;08:00"/>
+
+<meta itemprop="name" content="LeetCode 两数求和">
+<meta itemprop="description" content="链接：leetcode 1. 查找指定和的两个数字（Two Sum） 难度：💔 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use">
+
+
+<meta itemprop="datePublished" content="2018-09-14T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-16T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="880">
+
+
+
+<meta itemprop="keywords" content="LeetCode," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 两数求和"/>
+<meta name="twitter:description" content="链接：leetcode 1. 查找指定和的两个数字（Two Sum） 难度：💔 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+  <link href='http://panfeng0119.github.io/avatar/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Pan Feng</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Pan Feng
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">LeetCode 两数求和</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-09-14" class="post-time">
+          2018-09-14
+        </time>
+        <div class="post-category">
+            <a href="http://panfeng0119.github.io/categories/leetcode/"> LeetCode </a>
+            
+          </div>
+        <span class="more-meta"> 880 words </span>
+          <span class="more-meta"> 2 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-查找指定和的两个数字-two-sum">1. 查找指定和的两个数字（Two Sum）</a>
+<ul>
+<li><a href="#思路">思路</a></li>
+<li><a href="#代码">代码</a></li>
+</ul></li>
+<li><a href="#2-结构体数字求和-add-two-numbers">2. 结构体数字求和（Add Two Numbers）</a>
+<ul>
+<li><a href="#思路-1">思路</a></li>
+<li><a href="#代码-1">代码</a></li>
+<li><a href="#伪代码-同时遍历">伪代码 (同时遍历)</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>链接：<a href="https://leetcode.com/problemset/all/">leetcode</a></p>
+
+<h1 id="1-查找指定和的两个数字-two-sum">1. 查找指定和的两个数字（Two Sum）</h1>
+
+<p>难度：💔</p>
+
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">Example:
+
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="思路">思路</h2>
+
+<p>考虑时间复杂度， 按正常思路遍历是 <code>O(n^2)</code>，而实际上我们可以用一个map 来减少一层循环</p>
+
+<p>所以需要一个map来记录遍历过的值，key 用 <code>target - n</code> 来表示这个数需要匹配的数，value 记录这个位置</p>
+
+<p>如果找到这个值，就直接返回他的value</p>
+
+<p>即，我们有 <code>map[差值]该值位置</code>，如果当前位置值为7，我们需要找2，那么 map中存在 {2:0} 即可返回</p>
+
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">twoSum</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">n</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
+        <span class="nx">_</span><span class="p">,</span> <span class="nx">prs</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nx">prs</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="nx">m</span><span class="p">[</span><span class="nx">n</span><span class="p">],</span> <span class="nx">i</span><span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">m</span><span class="p">[</span><span class="nx">target</span><span class="o">-</span><span class="nx">n</span><span class="p">]</span> <span class="p">=</span> <span class="nx">i</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<hr />
+
+<h1 id="2-结构体数字求和-add-two-numbers">2. 结构体数字求和（Add Two Numbers）</h1>
+
+<p>难度：💔💔💔</p>
+
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+
+<p>Example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+Explanation: 342 + 465 = 807.</pre></td></tr></table>
+</div>
+</div>
+<h2 id="思路-1">思路</h2>
+
+<p>这是一个用结构体来实现一个加法，从最低位开始相加，有进位则下一个位置多加1</p>
+
+<p>进位取值在<code>0</code>或<code>1</code>，因为当前位置最大值为 $9 + 9 + 1 = 19$</p>
+
+<p>需要考虑特殊情况</p>
+
+<!-- | $l1=[0,1 ]$, $l2=[0,1,2]$ | 长短不一
+
+| $l1=[]$, $l2=[0,1]$ | 存在空值
+
+| $l1=[9,9]$, $l2=[1]$ | 一直进位 -->
+
+<table border="1" align="center">
+    <tr>
+        <td align="center" colspan="2">情况</td>
+        <td align="center" rowspan="2">备注</td>
+    </tr>
+    <tr>
+        <td align="center">$l_1$</td>
+        <td align="center">$l_2$</td>
+    </tr>
+    <tr>
+        <td align="center">$[0,1 ]$</td>
+        <td align="center">$[0,1,2]$</td>
+        <td align="center">长短不一</td>
+    </tr>
+    <tr>
+        <td align="center">$[]$</td>
+        <td align="center">$[0,1]$</td>
+        <td align="center">存在空值</td>
+    </tr>
+    <tr>
+        <td align="center">$[9,9]$</td>
+        <td align="center">$[1]$</td>
+        <td align="center">一直进位</td>
+    </tr>
+</table>
+
+<p>使用变量跟踪进位并从列表头部开始模拟逐位数字，其中包含最低有效数字。</p>
+
+<h2 id="代码-1">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="cm">/**
+</span><span class="cm"> * Definition for singly-linked list.
+</span><span class="cm"> * type ListNode struct {
+</span><span class="cm"> *     Val int
+</span><span class="cm"> *     Next *ListNode
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="kd">func</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="nx">l1</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">,</span> <span class="nx">l2</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="nx">r</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{}</span>
+    <span class="nx">rt</span> <span class="o">:=</span> <span class="nx">r</span>
+    <span class="nx">h1</span><span class="p">,</span> <span class="nx">h2</span> <span class="o">:=</span> <span class="nx">l1</span><span class="p">,</span> <span class="nx">l2</span>
+    <span class="nx">t</span> <span class="o">:=</span> <span class="mi">0</span>  <span class="c1">// 进位符号取值 {0,1}
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">h1</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">a</span> <span class="o">:=</span> <span class="nx">h1</span><span class="p">.</span><span class="nx">Val</span> <span class="o">+</span> <span class="nx">t</span>
+        <span class="k">if</span> <span class="nx">h2</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">a</span> <span class="o">+=</span> <span class="nx">h2</span><span class="p">.</span><span class="nx">Val</span>
+            <span class="nx">h2</span> <span class="p">=</span> <span class="nx">h2</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="p">}</span>
+        <span class="nx">t</span> <span class="p">=</span> <span class="nx">a</span> <span class="o">/</span> <span class="mi">10</span>
+        <span class="nx">r</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span> <span class="nx">a</span> <span class="o">%</span> <span class="mi">10</span><span class="p">,}</span>
+        <span class="nx">r</span> <span class="p">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">h1</span> <span class="p">=</span> <span class="nx">h1</span><span class="p">.</span><span class="nx">Next</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="nx">h2</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">a</span> <span class="o">:=</span> <span class="nx">h2</span><span class="p">.</span><span class="nx">Val</span> <span class="o">+</span> <span class="nx">t</span>
+        <span class="nx">t</span> <span class="p">=</span> <span class="nx">a</span> <span class="o">/</span> <span class="mi">10</span>
+        <span class="nx">r</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span> <span class="nx">a</span> <span class="o">%</span> <span class="mi">10</span><span class="p">,}</span>
+        <span class="nx">h2</span> <span class="p">=</span> <span class="nx">h2</span><span class="p">.</span><span class="nx">Next</span>
+        <span class="nx">r</span> <span class="p">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Next</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">t</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">r</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span> <span class="nx">t</span><span class="p">,}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">rt</span><span class="p">.</span><span class="nx">Next</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="伪代码-同时遍历">伪代码 (同时遍历)</h2>
+
+<p>The pseudocode is as following:</p>
+
+<ul>
+<li>Initialize current node to dummy head of the returning list.</li>
+<li>Initialize carry to 0.</li>
+<li>Initialize p and q to head of l1 and l2 respectively.</li>
+<li>Loop through lists l1 and l2 until you reach both ends.
+
+<ul>
+<li>Set x to node p&rsquo;s value. If p has reached the end of l1, set to 0.</li>
+<li>Set y to node q&rsquo;s value. If q has reached the end of l2, set to 0.</li>
+<li>Set $sum = x + y + carry$.</li>
+<li>Update $carry = sum / 10$.</li>
+<li>Create a new node with the digit value of (sum mod 10) and set it to current node&rsquo;s next, then advance current node to next.</li>
+<li>Advance both p and q.</li>
+</ul></li>
+<li>Check if carry = 1, if so append a new node with digit 1 to the returning list.</li>
+<li>Return dummy head&rsquo;s next node.</li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Pan Feng</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-09-16</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">None</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://panfeng0119.github.io/tags/leetcode/">LeetCode</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/hugo/hugo-2018-09-15-host-on-github/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Hugo &#43; GitHub 部署个人站点</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+
+
+
+
+
+
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Pan Feng
+        
+      </span></span>
+
+  
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

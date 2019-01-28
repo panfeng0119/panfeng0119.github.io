@@ -57,6 +57,24 @@
     </item>
     
     <item>
+      <title>Logistic Regression</title>
+      <link>http://panfeng0119.github.io/tags/logistic-regression/</link>
+      <pubDate>Tue, 08 Jan 2019 11:09:53 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/tags/logistic-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>http://panfeng0119.github.io/tags/machine-learning/</link>
+      <pubDate>Tue, 08 Jan 2019 11:09:53 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mathjax</title>
       <link>http://panfeng0119.github.io/tags/mathjax/</link>
       <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
@@ -75,20 +93,11 @@
     </item>
     
     <item>
-      <title>概率论基础</title>
-      <link>http://panfeng0119.github.io/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Sun, 23 Dec 2018 00:00:00 +0800</pubDate>
+      <title>Spark</title>
+      <link>http://panfeng0119.github.io/tags/spark/</link>
+      <pubDate>Fri, 23 Nov 2018 23:06:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>算法</title>
-      <link>http://panfeng0119.github.io/tags/%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/tags/%E7%AE%97%E6%B3%95/</guid>
+      <guid>http://panfeng0119.github.io/tags/spark/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>每天进步一点点——逻辑回归 - Pan Feng&#39;s Blog</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Pan Feng" />
+  <meta name="description" content="介绍 逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的 知识点 1.逻辑回归的基本假设 2" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52" />
+
+
+<link rel="canonical" href="http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.c8c1ff75dee09b44060a6c38f41b9036bac2512ccdb22d7f296cec12dc786375.css" integrity="sha256-yMH/dd7gm0QGCmw49BuQNrrCUSzNsi1/KWzsEtx4Y3U=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="每天进步一点点——逻辑回归" />
+<meta property="og:description" content="介绍 逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的 知识点 1.逻辑回归的基本假设 2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/" /><meta property="article:published_time" content="2019-01-08T11:09:53&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-08T11:09:53&#43;08:00"/>
+
+<meta itemprop="name" content="每天进步一点点——逻辑回归">
+<meta itemprop="description" content="介绍 逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的 知识点 1.逻辑回归的基本假设 2">
+
+
+<meta itemprop="datePublished" content="2019-01-08T11:09:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-08T11:09:53&#43;08:00" />
+<meta itemprop="wordCount" content="1533">
+
+
+
+<meta itemprop="keywords" content="Logistic Regression,machine learning," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="每天进步一点点——逻辑回归"/>
+<meta name="twitter:description" content="介绍 逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的 知识点 1.逻辑回归的基本假设 2"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+  <link href='http://panfeng0119.github.io/avatar/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Pan Feng</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Pan Feng
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">每天进步一点点——逻辑回归</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-01-08" class="post-time">
+          2019-01-08
+        </time>
+        <div class="post-category">
+            <a href="http://panfeng0119.github.io/categories/algorithm/"> algorithm </a>
+            
+          </div>
+        <span class="more-meta"> 1533 words </span>
+          <span class="more-meta"> 4 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#介绍">介绍</a></li>
+<li><a href="#知识点">知识点</a>
+<ul>
+<li><a href="#1-逻辑回归的基本假设">1.逻辑回归的基本假设</a>
+<ul>
+<li><a href="#什么是伯努利分布">什么是伯努利分布？</a></li>
+</ul></li>
+<li><a href="#2-逻辑回归的损失函数">2.逻辑回归的损失函数</a></li>
+<li><a href="#3-求解方法">3.求解方法</a></li>
+<li><a href="#4-逻辑回归的目的">4.逻辑回归的目的</a></li>
+<li><a href="#5-逻辑回归如何分类">5.逻辑回归如何分类</a></li>
+</ul></li>
+<li><a href="#逻辑回归的优缺点总结">逻辑回归的优缺点总结</a></li>
+<li><a href="#进一步思考">进一步思考</a>
+<ul>
+<li><a href="#逻辑回归的损失函数为什么要使用极大似然函数作为损失函数">逻辑回归的损失函数为什么要使用极大似然函数作为损失函数？</a></li>
+<li><a href="#逻辑回归在训练的过程当中-如果有很多的特征高度相关或者说有一个特征重复了100遍-会造成怎样的影响">逻辑回归在训练的过程当中，如果有很多的特征高度相关或者说有一个特征重复了100遍，会造成怎样的影响？</a></li>
+<li><a href="#为什么我们还是会在训练的过程当中将高度相关的特征去掉">为什么我们还是会在训练的过程当中将高度相关的特征去掉？</a></li>
+</ul></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="介绍">介绍</h1>
+
+<p><strong>逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的</strong></p>
+
+<h1 id="知识点">知识点</h1>
+
+<ul>
+<li>1.逻辑回归的基本假设</li>
+<li>2.逻辑回归的损失函数</li>
+<li>3.逻辑回归的求解方法</li>
+<li>4.逻辑回归的目的</li>
+<li>5.逻辑回归如何分类</li>
+</ul>
+
+<h2 id="1-逻辑回归的基本假设">1.逻辑回归的基本假设</h2>
+
+<p>1)假设数据服从伯努利分布</p>
+
+<p>$$p=h_\theta(x;\theta)$$</p>
+
+<p>2)假设样本为正的概率</p>
+
+<p>$$p=\dfrac{1}{1+e^{-\theta^Tx}}$$</p>
+
+<h3 id="什么是伯努利分布">什么是伯努利分布？</h3>
+
+<p>假如我们现在抛硬币，抛中为正面的概率是 $p$ , 抛中为负面的概率是 $1−p$，这个模型在逻辑回归中的假设就是</p>
+
+<ul>
+<li>样本为正的概率 <code>$h_\theta(x)$</code></li>
+<li>样本为负的概率 <code>$1- h_\theta(x)$</code></li>
+</ul>
+
+<h2 id="2-逻辑回归的损失函数">2.逻辑回归的损失函数</h2>
+
+<p>逻辑回归的损失函数是它的极大似然函数</p>
+
+<div>$$L_\theta(x)={\prod_{i=1}^m}h_\theta(x^i;\theta)^{yi}*(1- h_\theta(x^i;\theta))^{1-y^i}$$</div>
+
+<h2 id="3-求解方法">3.求解方法</h2>
+
+<p>无法直接求解，利用梯度下降来不断逼近最优解</p>
+
+<p>梯度下降有哪些方式？</p>
+
+<ul>
+<li><strong>随机梯度下降</strong>。 优点:全局最优解；缺点:更新每个参数的时候需要遍历所有的数据，计算量大，冗余计算多，不适用大数据量</li>
+<li><strong>批梯度下降</strong>。优点:高方差频繁更新，容易获得局部最优解;缺点:收敛到局部最优解的过程复杂</li>
+<li><strong>小批量梯度下降</strong>。 优点:结合sgd和batch gd的优点，每次使用n个样本更新。减少了参数更新次数，达到更稳定的收敛结果</li>
+</ul>
+
+<p>细节——学习率的选择？</p>
+
+<ul>
+<li>模型的学习率</li>
+<li>参数的学习率</li>
+</ul>
+
+<p>我们知道模型刚开始可能离最优解比较远，为了快速逼近，会选择大一些的学习率来使模型更新的间隔大一些，而训练到接近最优解的时候如果还用大学习率的话容易使模型在最优解两次来回震荡，这个时候需要用小的学习率来逼近。</p>
+
+<p>参数更新的时候，有的参数更新频繁，那么学习率适当小一些，有的参数更新缓慢，那么学习率就应该大一些</p>
+
+<h2 id="4-逻辑回归的目的">4.逻辑回归的目的</h2>
+
+<p>二分类，提高准确率</p>
+
+<h2 id="5-逻辑回归如何分类">5.逻辑回归如何分类</h2>
+
+<p>逻辑回归作为一个回归(也就是y值是连续的)，如何应用到分类上去呢。y值确实是一个连续的变量。逻辑回归的做法是划定一个阈值，y值大于这个阈值的是一类，y值小于这个阈值的是另外一类。阈值具体如何调整根据实际情况选择。一般会选择0.5做为阈值来划分。</p>
+
+<h1 id="逻辑回归的优缺点总结">逻辑回归的优缺点总结</h1>
+
+<p>逻辑回归应用到工业界当中一些优点：</p>
+
+<ul>
+<li>形式简单，模型的可解释性非常好。从特征的权重可以看到不同的特征对最后结果的影响，某个特征的权重值比较高，那么这个特征最后对结果的影响会比较大。</li>
+
+<li><p>模型效果不错。在工程上是可以接受的（作为baseline)，如果特征工程做的好，效果不会太差，并且特征工程可以大家并行开发，大大加快开发的速度。</p></li>
+
+<li><p>训练速度较快。分类的时候，计算量仅仅只和特征的数目相关。并且逻辑回归的分布式优化sgd发展比较成熟，训练的速度可以通过堆机器进一步提高，这样我们可以在短时间内迭代好几个版本的模型。</p></li>
+
+<li><p>资源占用小,尤其是内存。因为只需要存储各个维度的特征值。</p></li>
+
+<li><p>方便输出结果调整。逻辑回归可以很方便的得到最后的分类结果，因为输出的是每个样本的概率分数，我们可以很容易的对这些概率分数进行cutoff，也就是划分阈值(大于某个阈值的是一类，小于某个阈值的是一类)。</p></li>
+</ul>
+
+<p>缺点:</p>
+
+<ul>
+<li><p>准确率并不是很高。因为形式非常的简单(非常类似线性模型)，很难去拟合数据的真实分布。</p></li>
+
+<li><p>很难处理数据不平衡的问题。举个例子：如果我们对于一个正负样本非常不平衡的问题比如正负样本比 10000:1.我们把所有样本都预测为正也能使损失函数的值比较小。但是作为一个分类器，它对正负样本的区分能力不会很好。</p></li>
+
+<li><p>处理非线性数据较麻烦。逻辑回归在不引入其他方法的情况下，只能处理线性可分的数据，或者进一步说，处理二分类的问题 。</p></li>
+
+<li><p>逻辑回归本身无法筛选特征。有时候，我们会用gbdt来筛选特征，然后再上逻辑回归。</p></li>
+</ul>
+
+<h1 id="进一步思考">进一步思考</h1>
+
+<h2 id="逻辑回归的损失函数为什么要使用极大似然函数作为损失函数">逻辑回归的损失函数为什么要使用极大似然函数作为损失函数？</h2>
+
+<h2 id="逻辑回归在训练的过程当中-如果有很多的特征高度相关或者说有一个特征重复了100遍-会造成怎样的影响">逻辑回归在训练的过程当中，如果有很多的特征高度相关或者说有一个特征重复了100遍，会造成怎样的影响？</h2>
+
+<h2 id="为什么我们还是会在训练的过程当中将高度相关的特征去掉">为什么我们还是会在训练的过程当中将高度相关的特征去掉？</h2>
+
+<h1 id="参考文献">参考文献</h1>
+
+<ul>
+<li><a href="https://www.cnblogs.com/ModifyRong/p/7739955.html">逻辑回归的常见面试点总结</a></li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://panfeng0119.github.io/tags/logistic-regression/">Logistic Regression</a>
+          <a href="http://panfeng0119.github.io/tags/machine-learning/">machine learning</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/algorithm-strategy/algorithm-consistent-hashing/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">每天进步一点点——一致性哈希散列</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/code-programing/golang/golang-pkg-fasthttp/">
+            <span class="next-text nav-default">Go 服务包 fasthttp</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+
+
+
+
+
+
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Pan Feng
+        
+      </span></span>
+
+  
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  
+  
+
+  
+
+  
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[[','\]]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+                extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+});
+</script>
+  
+<script type="text/x-mathjax-config">
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+    });
+</script> 
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

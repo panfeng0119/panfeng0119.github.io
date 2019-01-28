@@ -6,9 +6,19 @@
     <description>Recent content in Categories on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Tue, 08 Jan 2019 14:11:34 +0800</lastBuildDate>
     
 	<atom:link href="http://panfeng0119.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Algorithm</title>
+      <link>http://panfeng0119.github.io/categories/algorithm/</link>
+      <pubDate>Tue, 08 Jan 2019 14:11:34 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/algorithm/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Go</title>
@@ -38,6 +48,15 @@
     </item>
     
     <item>
+      <title>Other</title>
+      <link>http://panfeng0119.github.io/categories/other/</link>
+      <pubDate>Fri, 23 Nov 2018 23:06:02 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/categories/other/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Reinforcement Learning</title>
       <link>http://panfeng0119.github.io/categories/reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
@@ -52,15 +71,6 @@
       <pubDate>Sun, 23 Dec 2018 00:00:00 +0800</pubDate>
       
       <guid>http://panfeng0119.github.io/categories/%E6%95%B0%E5%AD%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>算法</title>
-      <link>http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     

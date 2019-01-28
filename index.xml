@@ -6,17 +6,160 @@
     <description>Recent content on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 04 Jan 2019 09:35:02 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jan 2019 14:11:34 +0800</lastBuildDate>
     
         <atom:link href="http://panfeng0119.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>每天进步一点点——一致性哈希散列</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-consistent-hashing/</link>
+      <pubDate>Tue, 08 Jan 2019 14:11:34 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-consistent-hashing/</guid>
+      
+        <description>
+
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cywosp/article/details/23397179&#34;&gt;原文链接&lt;/a&gt;
+&lt;a href=&#34;https://infoq.cn/article/cS_Pp9r8Gjd9bpGpjTTv&#34;&gt;携程reids容器化&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+
+&lt;p&gt;携程大部分应用是基于 CRedis 客户端通过集群来访问到实际的 Redis 的实例，集群是访问 Redis 的基本单位，多个集群对应一个 Pool，一个 Pool 对应一个 Group，每个 Group 对应一个或多个实例，Key 是通过一致性 hash 散列到每个 Group 上，集群拓扑图如截图所示。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>每天进步一点点——逻辑回归</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/</link>
+      <pubDate>Tue, 08 Jan 2019 11:09:53 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;知识点&#34;&gt;知识点&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.逻辑回归的基本假设&lt;/li&gt;
+&lt;li&gt;2.逻辑回归的损失函数&lt;/li&gt;
+&lt;li&gt;3.逻辑回归的求解方法&lt;/li&gt;
+&lt;li&gt;4.逻辑回归的目的&lt;/li&gt;
+&lt;li&gt;5.逻辑回归如何分类&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;1-逻辑回归的基本假设&#34;&gt;1.逻辑回归的基本假设&lt;/h2&gt;
+
+&lt;p&gt;1)假设数据服从伯努利分布&lt;/p&gt;
+
+&lt;p&gt;$$p=h_\theta(x;\theta)$$&lt;/p&gt;
+
+&lt;p&gt;2)假设样本为正的概率&lt;/p&gt;
+
+&lt;p&gt;$$p=\dfrac{1}{1+e^{-\theta^Tx}}$$&lt;/p&gt;
+
+&lt;h3 id=&#34;什么是伯努利分布&#34;&gt;什么是伯努利分布？&lt;/h3&gt;
+
+&lt;p&gt;假如我们现在抛硬币，抛中为正面的概率是 $p$ , 抛中为负面的概率是 $1−p$，这个模型在逻辑回归中的假设就是&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;样本为正的概率 &lt;code&gt;$h_\theta(x)$&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;样本为负的概率 &lt;code&gt;$1- h_\theta(x)$&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-逻辑回归的损失函数&#34;&gt;2.逻辑回归的损失函数&lt;/h2&gt;
+
+&lt;p&gt;逻辑回归的损失函数是它的极大似然函数&lt;/p&gt;
+
+&lt;div&gt;$$L_\theta(x)={\prod_{i=1}^m}h_\theta(x^i;\theta)^{yi}*(1- h_\theta(x^i;\theta))^{1-y^i}$$&lt;/div&gt;
+
+&lt;h2 id=&#34;3-求解方法&#34;&gt;3.求解方法&lt;/h2&gt;
+
+&lt;p&gt;无法直接求解，利用梯度下降来不断逼近最优解&lt;/p&gt;
+
+&lt;p&gt;梯度下降有哪些方式？&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;随机梯度下降&lt;/strong&gt;。 优点:全局最优解；缺点:更新每个参数的时候需要遍历所有的数据，计算量大，冗余计算多，不适用大数据量&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;批梯度下降&lt;/strong&gt;。优点:高方差频繁更新，容易获得局部最优解;缺点:收敛到局部最优解的过程复杂&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;小批量梯度下降&lt;/strong&gt;。 优点:结合sgd和batch gd的优点，每次使用n个样本更新。减少了参数更新次数，达到更稳定的收敛结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;细节——学习率的选择？&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;模型的学习率&lt;/li&gt;
+&lt;li&gt;参数的学习率&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们知道模型刚开始可能离最优解比较远，为了快速逼近，会选择大一些的学习率来使模型更新的间隔大一些，而训练到接近最优解的时候如果还用大学习率的话容易使模型在最优解两次来回震荡，这个时候需要用小的学习率来逼近。&lt;/p&gt;
+
+&lt;p&gt;参数更新的时候，有的参数更新频繁，那么学习率适当小一些，有的参数更新缓慢，那么学习率就应该大一些&lt;/p&gt;
+
+&lt;h2 id=&#34;4-逻辑回归的目的&#34;&gt;4.逻辑回归的目的&lt;/h2&gt;
+
+&lt;p&gt;二分类，提高准确率&lt;/p&gt;
+
+&lt;h2 id=&#34;5-逻辑回归如何分类&#34;&gt;5.逻辑回归如何分类&lt;/h2&gt;
+
+&lt;p&gt;逻辑回归作为一个回归(也就是y值是连续的)，如何应用到分类上去呢。y值确实是一个连续的变量。逻辑回归的做法是划定一个阈值，y值大于这个阈值的是一类，y值小于这个阈值的是另外一类。阈值具体如何调整根据实际情况选择。一般会选择0.5做为阈值来划分。&lt;/p&gt;
+
+&lt;h1 id=&#34;逻辑回归的优缺点总结&#34;&gt;逻辑回归的优缺点总结&lt;/h1&gt;
+
+&lt;p&gt;逻辑回归应用到工业界当中一些优点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;形式简单，模型的可解释性非常好。从特征的权重可以看到不同的特征对最后结果的影响，某个特征的权重值比较高，那么这个特征最后对结果的影响会比较大。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;模型效果不错。在工程上是可以接受的（作为baseline)，如果特征工程做的好，效果不会太差，并且特征工程可以大家并行开发，大大加快开发的速度。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;训练速度较快。分类的时候，计算量仅仅只和特征的数目相关。并且逻辑回归的分布式优化sgd发展比较成熟，训练的速度可以通过堆机器进一步提高，这样我们可以在短时间内迭代好几个版本的模型。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;资源占用小,尤其是内存。因为只需要存储各个维度的特征值。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;方便输出结果调整。逻辑回归可以很方便的得到最后的分类结果，因为输出的是每个样本的概率分数，我们可以很容易的对这些概率分数进行cutoff，也就是划分阈值(大于某个阈值的是一类，小于某个阈值的是一类)。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;缺点:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;准确率并不是很高。因为形式非常的简单(非常类似线性模型)，很难去拟合数据的真实分布。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;很难处理数据不平衡的问题。举个例子：如果我们对于一个正负样本非常不平衡的问题比如正负样本比 10000:1.我们把所有样本都预测为正也能使损失函数的值比较小。但是作为一个分类器，它对正负样本的区分能力不会很好。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;处理非线性数据较麻烦。逻辑回归在不引入其他方法的情况下，只能处理线性可分的数据，或者进一步说，处理二分类的问题 。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;逻辑回归本身无法筛选特征。有时候，我们会用gbdt来筛选特征，然后再上逻辑回归。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;进一步思考&#34;&gt;进一步思考&lt;/h1&gt;
+
+&lt;h2 id=&#34;逻辑回归的损失函数为什么要使用极大似然函数作为损失函数&#34;&gt;逻辑回归的损失函数为什么要使用极大似然函数作为损失函数？&lt;/h2&gt;
+
+&lt;h2 id=&#34;逻辑回归在训练的过程当中-如果有很多的特征高度相关或者说有一个特征重复了100遍-会造成怎样的影响&#34;&gt;逻辑回归在训练的过程当中，如果有很多的特征高度相关或者说有一个特征重复了100遍，会造成怎样的影响？&lt;/h2&gt;
+
+&lt;h2 id=&#34;为什么我们还是会在训练的过程当中将高度相关的特征去掉&#34;&gt;为什么我们还是会在训练的过程当中将高度相关的特征去掉？&lt;/h2&gt;
+
+&lt;h1 id=&#34;参考文献&#34;&gt;参考文献&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/ModifyRong/p/7739955.html&#34;&gt;逻辑回归的常见面试点总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>Go 服务包 fasthttp</title>
-      <link>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</link>
+      <link>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</link>
       <pubDate>Fri, 04 Jan 2019 09:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</guid>
       
         <description>&lt;p&gt;fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面：&lt;/p&gt;
 
@@ -191,23 +334,35 @@
     </item>
     
     <item>
-      <title>常用算法|动态规划</title>
-      <link>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</link>
+      <title>每天进步一点点——动态规划</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</link>
       <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</guid>
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</guid>
       
         <description>
 
-&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+&lt;h1 id=&#34;什么是动态规划&#34;&gt;什么是动态规划？&lt;/h1&gt;
 
-&lt;p&gt;&lt;strong&gt;动态规划&lt;/strong&gt;（Dynamic Programming，简称DP），通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;动态规划&lt;/strong&gt;（Dynamic Programming，简称DP）是一种求解复杂问题的方法，它通过把原问题分解为相对简单的子问题方式求解复杂问题&lt;/p&gt;
 
-&lt;p&gt;动态规划常常适用于&lt;strong&gt;有重叠子问题&lt;/strong&gt;和&lt;strong&gt;最优子结构性质&lt;/strong&gt;的问题&lt;/p&gt;
+&lt;h1 id=&#34;动态规划适用于什么场景&#34;&gt;动态规划适用于什么场景？&lt;/h1&gt;
 
-&lt;p&gt;将结果逐渐计算并保存到备忘录，每次查询备忘录如果该子问题计算过则直接返回备忘录里的结果&lt;/p&gt;
+&lt;p&gt;动态规划常常适用于有&lt;strong&gt;重叠子问题&lt;/strong&gt;和&lt;strong&gt;最优子结构&lt;/strong&gt;性质的问题&lt;/p&gt;
 
-&lt;p&gt;动态规划只能应用于有最优子结构的问题。最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）。简单地说，问题能够分解成子问题来解决。&lt;/p&gt;
+&lt;p&gt;重叠子问题&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;存在重复计算的情况，将结果逐渐计算并保存到备忘录&lt;/li&gt;
+&lt;li&gt;每次查询备忘录如果该子问题计算过则直接返回备忘录里的结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最优子结构&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）&lt;/li&gt;
+&lt;li&gt;动态规划只能应用于有最优子结构的问题&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;适用情况&lt;/p&gt;
 
@@ -321,11 +476,11 @@
     </item>
     
     <item>
-      <title>LeetCode 面试题top145 07-08</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-top-interview-questions-007/</link>
+      <title>排序算法——功能</title>
+      <link>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</link>
       <pubDate>Sat, 29 Dec 2018 16:06:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-top-interview-questions-007/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</guid>
       
         <description>
 
@@ -403,10 +558,10 @@
     
     <item>
       <title>[模型强化学习PPT]Model-Based Deep Reinforcement Learning</title>
-      <link>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</link>
+      <link>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</guid>
+      <guid>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</guid>
       
         <description>
 
@@ -428,10 +583,10 @@
     
     <item>
       <title>[深度强化学习概述]A Brief Survey of Deep Reinforcement Learning</title>
-      <link>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</link>
+      <link>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</guid>
+      <guid>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</guid>
       
         <description>
 
@@ -561,11 +716,11 @@
     </item>
     
     <item>
-      <title>LeetCode 刷题笔记06</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-006/</link>
+      <title>LeetCode 功能实现</title>
+      <link>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</link>
       <pubDate>Tue, 25 Dec 2018 17:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-006/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</guid>
       
         <description>
 
@@ -578,42 +733,22 @@
 &lt;p&gt;The string &amp;ldquo;PAYPALISHIRING&amp;rdquo; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;P   A   H   N
-A P L S I I G
-Y   I   R&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;And then read line by line: &amp;ldquo;PAHNAPLSIIGYIR&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;Write the code that will take a string and make this conversion given a number of rows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;string convert(string s, int numRows);&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 1:
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;P   A   H   N
+A P L S I I G
+Y   I   R
 
-Input: s = &amp;#34;PAYPALISHIRING&amp;#34;, numRows = 3
-Output: &amp;#34;PAHNAPLSIIGYIR&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+And then read line by line: &amp;#34;PAHNAPLSIIGYIR&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
@@ -623,10 +758,16 @@ Output: &amp;#34;PAHNAPLSIIGYIR&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/t
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 2:
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Example 1:
+Input: s = &amp;#34;PAYPALISHIRING&amp;#34;, numRows = 3
+Output: &amp;#34;PAHNAPLSIIGYIR&amp;#34;
 
+Example 2:
 Input: s = &amp;#34;PAYPALISHIRING&amp;#34;, numRows = 4
 Output: &amp;#34;PINALSIGYAHRPI&amp;#34;
 Explanation:
@@ -634,7 +775,7 @@ Explanation:
 P     I    N
 A   L S  I G
 Y A   H R
-P     I&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+P     I&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
@@ -642,43 +783,31 @@ P     I&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-运行结果&#34; data-lang=&#34;运行结果&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;运行结果：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Runtime: 0 ms, faster than 100.00%&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-运行结果&#34; data-lang=&#34;运行结果&#34;&gt;Runtime: 0 ms, faster than 100.00%&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
       
     </item>
     
     <item>
-      <title>LeetCode 刷题笔记04</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-004/</link>
-      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
+      <title>LeetCode 重复子串问题</title>
+      <link>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</link>
+      <pubDate>Mon, 24 Dec 2018 16:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-004/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</guid>
       
         <description>
 
 &lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;4-median-of-two-sorted-arrays&#34;&gt;4. Median of Two Sorted Arrays&lt;/h1&gt;
+&lt;h1 id=&#34;3-最大非重复子串-longest-substring-without-repeating-characters&#34;&gt;3. 最大非重复子串（Longest Substring Without Repeating Characters）&lt;/h1&gt;
 
-&lt;p&gt;难度：💔💔💔💔💔&lt;/p&gt;
+&lt;p&gt;难度：medium&lt;/p&gt;
 
-&lt;p&gt;There are two sorted arrays nums1 and nums2 of size m and n respectively.&lt;/p&gt;
-
-&lt;p&gt;Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).&lt;/p&gt;
-
-&lt;p&gt;You may assume nums1 and nums2 cannot be both empty.&lt;/p&gt;
+&lt;p&gt;Given a string, find the length of the longest substring without repeating characters.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -686,15 +815,28 @@ P     I&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;Example 1:
 
-nums1 = [1, 3]
-nums2 = [2]
+Input: &amp;#34;abcabcbb&amp;#34;
+Output: 3
+Explanation: The answer is &amp;#34;abc&amp;#34;, with the length of 3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Example 2:
 
-The median is 2.0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+Input: &amp;#34;bbbbb&amp;#34;
+Output: 1
+Explanation: The answer is &amp;#34;b&amp;#34;, with the length of 1.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -706,31 +848,44 @@ The median is 2.0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 2:
+&lt;pre class=&#34;chroma&#34;&gt;Example 3:
 
-nums1 = [1, 2]
-nums2 = [3, 4]
-
-The median is (2 + 3)/2 = 2.5&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+Input: &amp;#34;pwwkew&amp;#34;
+Output: 3
+Explanation: The answer is &amp;#34;wke&amp;#34;, with the length of 3.
+             Note that the answer must be a substring, &amp;#34;pwke&amp;#34; is a subsequence and not a substring.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
 
-&lt;p&gt;什么是“中位数”，找到一个数使一个数组分为两个部分，left 和 right，&lt;/p&gt;
+&lt;p&gt;思路一定是：逐个检查所有子字符串，看它是否没有重复的字符。&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;$len(left)=len(right)$&lt;/li&gt;
-&lt;li&gt;$\max(\text{left}) \leq \min(\text{right}))$&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;优化方式1：&lt;/p&gt;
 
-&lt;p&gt;不要想太多，将两个数组合并然后找中位数就可以&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不要直接用子串，尽量用底层存放的地址、或byte值来判断&lt;/li&gt;
+&lt;li&gt;判断重复时，最好使用map，将子串的每个元素导入map，值为位置&lt;/li&gt;
+&lt;li&gt;再次检查时只需检查key是否存在，如果存在，映射该值到当前位置的长度，即为本次循环的最大子串&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;优化方式2：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;去重复无效的判断&lt;/li&gt;
+&lt;li&gt;本次循环后，下一次循环只需要在重复元素的下一个元素进行判断即可&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;优化方式3：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;能减少计算就不要计算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;len(s$[i:j]$)&lt;/code&gt; 就可以实现  $ret = j - i + 1$&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
@@ -745,46 +900,35 @@ The median is (2 + 3)/2 = 2.5&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-    nums1 = append(nums1, nums2...)
-    sort.Ints(nums1)
-    
-    var median float64
-    
-    if len(nums1) % 2 == 1 {
-        median = float64(nums1[len(nums1) / 2])
-    } else {
-        median = float64((nums1[len(nums1) / 2] + nums1[(len(nums1) / 2) - 1]))
-        median = median / 2
-    }
-    
-    return median
-}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;32 ms, faster than 33.90%&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>LeetCode 刷题笔记05</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-005/</link>
-      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-005/</guid>
-      
-        <description>
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;lengthOfLongestSubstring&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ret&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// i头，j尾，ret长度
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;byte&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 辅助变量
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ok&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]];&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ok&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;ret&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;max&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// 如果重复，记录当前最大值
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;max&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// i直接跳到重复点记录位置的下一个位置，i到v之间的点不需要在计算了
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;max&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; 
 
-&lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
-
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;max&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;h1 id=&#34;5-longest-palindromic-substring-取最长回文子串&#34;&gt;5. Longest Palindromic Substring（取最长回文子串）&lt;/h1&gt;
 
 &lt;p&gt;难度: medium&lt;/p&gt;
@@ -821,7 +965,7 @@ Input: &amp;#34;cbbd&amp;#34;
 Output: &amp;#34;bb&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;h2 id=&#34;思路-1&#34;&gt;思路&lt;/h2&gt;
 
 &lt;h3 id=&#34;1-解决长度奇偶性带来的对称轴位置问题-manacher算法-马拉车算法&#34;&gt;（1）解决长度奇偶性带来的对称轴位置问题——Manacher算法（马拉车算法）&lt;/h3&gt;
 
@@ -887,7 +1031,7 @@ pi-1:    0 1 0 1 4 1 0 1 0
 
 &lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000003914228&#34;&gt;参考文档&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;h2 id=&#34;代码-1&#34;&gt;代码&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1003,21 +1147,23 @@ pi-1:    0 1 0 1 4 1 0 1 0
     </item>
     
     <item>
-      <title>LeetCode 刷题笔记03</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-003/</link>
-      <pubDate>Mon, 24 Dec 2018 16:00:00 +0800</pubDate>
+      <title>Hugo 03 | Hugo 查询顺序</title>
+      <link>http://panfeng0119.github.io/post/hugo/hugo03-2018-12-23-lookup/</link>
+      <pubDate>Sun, 23 Dec 2018 18:31:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-003/</guid>
+      <guid>http://panfeng0119.github.io/post/hugo/hugo03-2018-12-23-lookup/</guid>
       
         <description>
 
-&lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hugo 使用Go的 html/template 和 text/template. 详情请看&lt;a href=&#34;http://golang.org/pkg/html/template/&#34;&gt;Go docs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;3-最大非重复子串-longest-substring-without-repeating-characters&#34;&gt;3. 最大非重复子串（Longest Substring Without Repeating Characters）&lt;/h1&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;难度：💔💔💔&lt;/p&gt;
+&lt;h2 id=&#34;基本语法-basic-syntax&#34;&gt;&lt;strong&gt;基本语法 Basic Syntax&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;Given a string, find the length of the longest substring without repeating characters.&lt;/p&gt;
+&lt;p&gt;模板主要由 &lt;code&gt;variables&lt;/code&gt; 和 &lt;code&gt;functions&lt;/code&gt;组成，在 &lt;code&gt;{{ }}&lt;/code&gt; 内中使用&lt;/p&gt;
+
+&lt;p&gt;访问变量&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1027,13 +1173,76 @@ pi-1:    0 1 0 1 4 1 0 1 0
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 1:
+&lt;pre class=&#34;chroma&#34;&gt;// 可以是当前作用域中已存在的变量
+{{ .Title }}
 
-Input: &amp;#34;abcabcbb&amp;#34;
-Output: 3 
-Explanation: The answer is &amp;#34;abc&amp;#34;, with the length of 3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+// 或者自定义变量
+{{ $address }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;函数参数用空格分割&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ FUNCTION ARG1 ARG2 .. }}
+
+// 例如
+{{ add 1 2 }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;方法调用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// 方法和字段用&amp;#34;.&amp;#34;来访问
+{{ .Params.bar }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;用括号组织&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if or (isset .Params &amp;#34;alt&amp;#34;) (isset .Params &amp;#34;caption&amp;#34;) }} Caption {{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;变量&#34;&gt;&lt;strong&gt;变量&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;每个Go Template都会获取一个data对象。而在Hugo中，每个Template都传递一个Page&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.Title&lt;/code&gt; 就是 &lt;a href=&#34;https://gohugo.io/variables/page/&#34;&gt;&lt;code&gt;Page&lt;/code&gt;&lt;/a&gt; 变量中可访问的元素之一，通过 &amp;ldquo;.&amp;rdquo; 访问：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;title&amp;gt;{{ .Title }}&amp;lt;/title&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;变量赋值&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ $address := &amp;#34;123 Main St.&amp;#34; }}
+{{ $address }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;下面的示例仅适用于 Hugov0.48 或更新的版本&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;在主页上打印“Var is Hugo Home”，在所有其他页面上打印“Var is Hugo Page”：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1042,13 +1251,416 @@ Explanation: The answer is &amp;#34;abc&amp;#34;, with the length of 3&lt;/pre&g
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 2:
-
-Input: &amp;#34;bbbbb&amp;#34;
-Output: 1
-Explanation: The answer is &amp;#34;b&amp;#34;, with the length of 1.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ $var := &amp;#34;Hugo Page&amp;#34; }}
+{{ if .IsHome }}
+    {{ $var = &amp;#34;Hugo Home&amp;#34; }}
+{{ end }}
+Var is {{ $var }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;函数&#34;&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Hugo Template 的&lt;a href=&#34;https://gohugo.io/functions/&#34;&gt;自带函数&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;新的函数需要编译后才能使用&lt;/p&gt;
+
+&lt;p&gt;Example 1: Adding Numbers&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ add 1 2 }}
+&amp;lt;!-- prints 3 --&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example 2: Comparing Numbers&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ lt 1 2 }}
+&amp;lt;!-- prints true (i.e., since 1 is less than 2) --&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这两个示例都使用了 &lt;a href=&#34;https://gohugo.io/functions/math/&#34;&gt;math functions&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;includes&#34;&gt;&lt;strong&gt;Includes&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;模板的位置从 &lt;code&gt;layouts/&lt;/code&gt; 目录开始&lt;/p&gt;
+
+&lt;h2 id=&#34;partial-函数&#34;&gt;&lt;strong&gt;Partial 函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;用来调用 partial templates&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// 使用方法
+{{ partial &amp;#34;&amp;lt;PATH&amp;gt;/&amp;lt;PARTIAL&amp;gt;.&amp;lt;EXTENSION&amp;gt;&amp;#34; . }}
+
+// 例如:  调用 layouts/partials/header.html partial
+{{ partial &amp;#34;header.html&amp;#34; . }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;template-函数&#34;&gt;&lt;strong&gt;Template 函数&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;仅用于调用 &lt;a href=&#34;https://gohugo.io/templates/internal/&#34;&gt;internal templates&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;可用模板在&lt;a href=&#34;https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates&#34;&gt;这里&lt;/a&gt;找&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// 语法为
+{{template“_internal / &amp;lt;TEMPLATE&amp;gt;.&amp;lt;EXTENSION&amp;gt;”. }}
+
+// 例如： 调用 internal opengraph.html template:
+{{ template &amp;#34;_internal/opengraph.html&amp;#34; . }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;逻辑&#34;&gt;&lt;strong&gt;逻辑&lt;/strong&gt;&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// Example 1: Using Context (.) 
+{{ range $array }}
+    {{ . }} &amp;lt;!--  . 表示 $array 中的一个元素 --&amp;gt;
+{{ end }}
+
+// Example 2: 给元素声明一个变量名
+{{ range $elem_val := $array }}
+    {{ $elem_val }}
+{{ end }}
+
+// Example 3: array 和 slice 的索引和变量
+{{ range $elem_index, $elem_val := $array }}
+   {{ $elem_index }} -- {{ $elem_val }}
+{{ end }}
+// Example 4: map 的 key 和 value
+{{ range $elem_key, $elem_val := $map }}
+   {{ $elem_key }} -- {{ $elem_val }}
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;条件语句&#34;&gt;&lt;strong&gt;条件语句&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;每个语句用 &lt;code&gt;{{ end }}&lt;/code&gt; 结束&lt;/p&gt;
+
+&lt;p&gt;可以用到的关键字：&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;, &lt;code&gt;with&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt;, &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;range&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;作为 false 的值可以是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;false (boolean)&lt;/li&gt;
+&lt;li&gt;0 (integer)&lt;/li&gt;
+&lt;li&gt;任何 zero-length array, slice, map, 或者 string&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;example-1-with&#34;&gt;Example 1: with&lt;/h3&gt;
+
+&lt;p&gt;功能：如果变量存在，则&amp;hellip;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// 如果变量不存在，或判定为 false 则跳过
+{{ with .Params.title }}
+    &amp;lt;h4&amp;gt;{{ . }}&amp;lt;/h4&amp;gt;
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-2-with-else&#34;&gt;Example 2: with .. else&lt;/h3&gt;
+
+&lt;p&gt;如果设置了参数 &lt;code&gt;“description”&lt;/code&gt; 的值，执行&lt;code&gt;.&lt;/code&gt;命令&lt;/p&gt;
+
+&lt;p&gt;否则使用&lt;code&gt;.Summary&lt;/code&gt;的变量值&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ with .Param &amp;#34;description&amp;#34; }}
+    {{ . }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-3-if&#34;&gt;Example 3: if&lt;/h3&gt;
+
+&lt;p&gt;一种更长（冗余）的写法是用if，下面给出Example1重写的代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if isset .Params &amp;#34;title&amp;#34; }}
+    &amp;lt;h4&amp;gt;{{ index .Params &amp;#34;title&amp;#34; }}&amp;lt;/h4&amp;gt;
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-4-if-else&#34;&gt;Example 4: if .. else&lt;/h3&gt;
+
+&lt;p&gt;Below example is “Example 2” rewritten using if .. else, and using isset function + .Params variable (different from the .Param function) instead:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if (isset .Params &amp;#34;description&amp;#34;) }}
+    {{ index .Params &amp;#34;description&amp;#34; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example 5: if .. else if .. else
+Unlike with, if can contain else if clauses too.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if (isset .Params &amp;#34;description&amp;#34;) }}
+    {{ index .Params &amp;#34;description&amp;#34; }}
+{{ else if (isset .Params &amp;#34;summary&amp;#34;) }}
+    {{ index .Params &amp;#34;summary&amp;#34; }}
+{{ else }}
+    {{ .Summary }}
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-6-and-or&#34;&gt;Example 6: and &amp;amp; or&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if (and (or (isset .Params &amp;#34;title&amp;#34;) (isset .Params &amp;#34;caption&amp;#34;)) (isset .Params &amp;#34;attr&amp;#34;)) }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;未完待续&lt;/p&gt;
+
+&lt;h2 id=&#34;管道符号-pipes&#34;&gt;&lt;strong&gt;管道符号（Pipes）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;概念：每个管道（pipe）的输出都成为后续管道的输入&lt;/p&gt;
+
+&lt;p&gt;限制：只能使用一个值作为传递参数&lt;/p&gt;
+
+&lt;h3 id=&#34;example-1-shuffle&#34;&gt;Example 1: shuffle&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;//两条语句功能一样
+{{ shuffle (seq 1 5) }}
+{{ (seq 1 5) | shuffle }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-2-index&#34;&gt;Example 2: index&lt;/h3&gt;
+
+&lt;p&gt;以下访问名为“disqus_url”的页面参数并转义HTML。此示例还使用index函数，(内置在 Go Templates中)：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ index .Params &amp;#34;disqus_url&amp;#34; | html }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-3-or-with-isset&#34;&gt;Example 3: or with isset&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if or (or (isset .Params &amp;#34;title&amp;#34;) (isset .Params &amp;#34;caption&amp;#34;)) (isset .Params &amp;#34;attr&amp;#34;) }}
+Stuff Here
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;改写为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if isset .Params &amp;#34;caption&amp;#34; | or isset .Params &amp;#34;title&amp;#34; | or isset .Params &amp;#34;attr&amp;#34; }}
+Stuff Here
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-4-internet-explorer-conditional-comments&#34;&gt;Example 4: Internet Explorer Conditional Comments&lt;/h3&gt;
+
+&lt;p&gt;Go Templates 默认会删除HTML注释&lt;/p&gt;
+
+&lt;p&gt;这有不幸的副作用是删除Internet Explorer条件注释。作为解决办法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ &amp;#34;&amp;lt;!--[if lt IE 9]&amp;gt;&amp;#34; | safeHTML }}
+  &amp;lt;script src=&amp;#34;html5shiv.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+{{ &amp;#34;&amp;lt;![endif]--&amp;gt;&amp;#34; | safeHTML }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;或者使用反勾号（`）来引用IE条件注释，避免转义内部每个双引号（&amp;rdquo;）的繁琐任务&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ `&amp;lt;!--[if lt IE 7]&amp;gt;&amp;lt;html class=&amp;#34;no-js lt-ie9 lt-ie8 lt-ie7&amp;#34;&amp;gt;&amp;lt;![endif]--&amp;gt;` | safeHTML }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;context-aka-the-dot&#34;&gt;&lt;strong&gt;Context (aka “the dot”)&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;在最顶层，这是可用的数据集合
+在迭代循环内，它具有当前值（.在循环内不会引用整个页面的数据）
+如果需要访问页面数据，有以下方法&lt;/p&gt;
+
+&lt;h3 id=&#34;1-定义一个变量&#34;&gt;1.定义一个变量&lt;/h3&gt;
+
+&lt;p&gt;下面展示了如何定义变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;//tags-range-with-page-variable.html
+
+{{ $title := .Site.Title }}
+&amp;lt;ul&amp;gt;
+{{ range .Params.tags }}
+    &amp;lt;li&amp;gt;
+        &amp;lt;a href=&amp;#34;/tags/{{ . | urlize }}&amp;#34;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
+        - {{ $title }}
+    &amp;lt;/li&amp;gt;
+{{ end }}
+&amp;lt;/ul&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意: 一旦我们进入循环（如 range），值{{.}}已更改。
+由于已经在循环外部定义了一个变量（{{$title}}），并分配了一个值，因此我们也可以从循环内部访问该值。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-使用全局变量参数&#34;&gt;2.使用全局变量参数 $.&lt;/h3&gt;
+
+&lt;p&gt;$.可以从任何地方访问全局上下文。&lt;/p&gt;
+
+&lt;p&gt;使用$从全局上下文中获取.Site.Title：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;//range-through-tags-w-global.html
+
+&amp;lt;ul&amp;gt;
+{{ range .Params.tags }}
+  &amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;#34;/tags/{{ . | urlize }}&amp;#34;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
+            - {{ $.Site.Title }}
+  &amp;lt;/li&amp;gt;
+{{ end }}
+&amp;lt;/ul&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果重定义&lt;code&gt;$&lt;/code&gt;, &lt;code&gt;{{$：=.Site}}&lt;/code&gt;, 那么内置的&lt;code&gt;$&lt;/code&gt;将停止工作。您可以通过使用&lt;code&gt;{{$: =.}}&lt;/code&gt; 来将&lt;code&gt;$&lt;/code&gt;重置为其默认值。&lt;/p&gt;
+
+&lt;h2 id=&#34;空白-whitespace&#34;&gt;&lt;strong&gt;空白（Whitespace）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;使用连字符（hyphen, &amp;ldquo;-&amp;ldquo;）可以去掉空白（类似 trim），如&lt;code&gt;{{- XXXX -}}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;可以去掉的有：
+- 空格 （space）
+- 当前行的Tab（horizontal tab）
+- 回车（carriage return）
+- 换行符 （newline）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1058,157 +1670,213 @@ Explanation: The answer is &amp;#34;b&amp;#34;, with the length of 1.&lt;/pre&gt
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 3:
-
-Input: &amp;#34;pwwkew&amp;#34;
-Output: 3
-Explanation: The answer is &amp;#34;wke&amp;#34;, with the length of 3.
-             Note that the answer must be a substring, &amp;#34;pwke&amp;#34; is a subsequence and not a substring.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;div&amp;gt;
+  {{ .Title }}
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+  {{- .Title -}}
+&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
-
-&lt;p&gt;思路一定是：逐个检查所有子字符串，看它是否没有重复的字符。&lt;/p&gt;
-
-&lt;p&gt;优化方式1：不要直接用子串，尽量用底层存放的地址、或byte值来判断&lt;/p&gt;
-
-&lt;p&gt;判断重复时，最好使用map，将子串的每个元素导入map，值为位置&lt;/p&gt;
-
-&lt;p&gt;再次检查时只需检查key是否存在，如果存在，映射该值到当前位置的长度，即为本次循环的最大子串&lt;/p&gt;
-
-&lt;p&gt;优化方式2：去重复无效的判断&lt;/p&gt;
-
-&lt;p&gt;本次循环后，下一次循环只需要在重复元素的下一个元素进行判断即可&lt;/p&gt;
-
-&lt;p&gt;优化方式3：能减少计算就不要计算&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;len(s$[i:j]$)&lt;/code&gt; 就可以实现  $ret = j - i + 1$&lt;/p&gt;
-
-&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;func lengthOfLongestSubstring(s string) int {
-    var i,j,ret int
-    m := make(map[byte]int)
-    for j &amp;lt; len(s) {
-        if v, ok := m[s[j]]; ok {
-            ret = max(ret, len(s[i:j]))
-            i = max(i, v+1)
-        }
-        m[s[j]] = j
-        j += 1
-    }
-    return max(ret, len(s[i:j]))
-} 
-
-func max(a, b int) int {
-    if a &amp;gt; b {
-        return a
-    }
-    return b
-}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>LeetCode 刷题笔记02</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-002/</link>
-      <pubDate>Mon, 24 Dec 2018 13:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-002/</guid>
-      
-        <description>
-
-&lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;2-结构体数字求和-add-two-numbers&#34;&gt;2. 结构体数字求和（Add Two Numbers）&lt;/h1&gt;
-
-&lt;p&gt;难度：💔💔💔&lt;/p&gt;
-
-&lt;p&gt;You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.&lt;/p&gt;
-
-&lt;p&gt;You may assume the two numbers do not contain any leading zero, except the number 0 itself.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
+&lt;p&gt;输出:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)
-Output: 7 -&amp;gt; 0 -&amp;gt; 8
-Explanation: 342 + 465 = 807.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;div&amp;gt;
+  Hello, World!
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;Hello, World!&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;h2 id=&#34;注释-comments&#34;&gt;&lt;strong&gt;注释（Comments）&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;这是一个用结构体来实现一个加法，从最低位开始相加，有进位则下一个位置多加1&lt;/p&gt;
+&lt;h3 id=&#34;go-templates-的注释&#34;&gt;Go Templates 的注释&lt;/h3&gt;
 
-&lt;p&gt;进位取值在&lt;code&gt;0&lt;/code&gt;或&lt;code&gt;1&lt;/code&gt;，因为当前位置最大值为 $9 + 9 + 1 = 19$&lt;/p&gt;
+&lt;p&gt;注释块用 &lt;code&gt;{{/*&lt;/code&gt; 和 &lt;code&gt;*/}}&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;需要考虑特殊情况&lt;/p&gt;
+&lt;h3 id=&#34;html-注释&#34;&gt;HTML 注释&lt;/h3&gt;
 
-&lt;!-- | $l1=[0,1 ]$, $l2=[0,1,2]$ | 长短不一
+&lt;p&gt;注释用 &lt;code&gt;&amp;lt;!--xxx --&amp;gt;&lt;/code&gt;
+如果需要构造 html 注释块，可以用管道符导入到safeHTML&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ printf &amp;#34;&amp;lt;!-- Our website is named: %s --&amp;gt;&amp;#34; .Site.Title | safeHTML }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;包含go模板的html注释&#34;&gt;包含Go模板的HTML注释&lt;/h3&gt;
 
-| $l1=[]$, $l2=[0,1]$ | 存在空值
+&lt;p&gt;不要用 HTML 注释来注释 GO 模板
+引擎默认先编译 Go 模板代码，如果HTML注释中代码出错，编译就会失败。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;!-- {{ $author := &amp;#34;Emma Goldman&amp;#34; }} was a great woman. --&amp;gt;
+{{ $author }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;hugo-parameters&#34;&gt;&lt;strong&gt;Hugo Parameters&lt;/strong&gt;&lt;/h2&gt;
 
-| $l1=[9,9]$, $l2=[1]$ | 一直进位 --&gt;
+&lt;p&gt;网页范围的参数配置，通过特定的内容片断来指定一些特定的渲染（如当前网站不需要用到的）传递到模板中&lt;/p&gt;
 
-&lt;table border=&#34;1&#34; align=&#34;center&#34;&gt;
-    &lt;tr&gt;
-        &lt;td align=&#34;center&#34; colspan=&#34;2&#34;&gt;情况&lt;/td&gt;
-        &lt;td align=&#34;center&#34; rowspan=&#34;2&#34;&gt;备注&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td align=&#34;center&#34;&gt;$l_1$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;$l_2$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td align=&#34;center&#34;&gt;$[0,1 ]$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;$[0,1,2]$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;长短不一&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td align=&#34;center&#34;&gt;$[]$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;$[0,1]$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;存在空值&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td align=&#34;center&#34;&gt;$[9,9]$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;$[1]$&lt;/td&gt;
-        &lt;td align=&#34;center&#34;&gt;一直进位&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
+&lt;p&gt;You can define any values of any type and use them however you want in your templates, as long as the values are supported by the front matter format specified via metaDataFormat in your configuration file.&lt;/p&gt;
 
-&lt;p&gt;使用变量跟踪进位并从列表头部开始模拟逐位数字，其中包含最低有效数字。&lt;/p&gt;
+&lt;p&gt;您可以定义任何类型的值，并在模板中根据需要使用它们，只要这些值由配置文件中通过metaDataFormat指定的前置事项格式支持。&lt;/p&gt;
 
-&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;h3 id=&#34;使用content-page-参数&#34;&gt;使用Content (Page) 参数&lt;/h3&gt;
+
+&lt;p&gt;全局都使用变量 notoc ，但有时我们不需要内容表。此时，我们在文件头设置为true，它将阻止内容表呈现。&lt;/p&gt;
+
+&lt;p&gt;Here is the example front matter (YAML):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;---
+title: Roadmap
+lastmod: 2017-03-05
+date: 2013-11-18
+notoc: true
+---&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;对应的模板中要加上处理的代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;//layouts/partials/toc.html
+
+{{ if not .Params.notoc }}
+&amp;lt;aside&amp;gt;
+  &amp;lt;header&amp;gt;
+    &amp;lt;a href=&amp;#34;#{{.Title | urlize}}&amp;#34;&amp;gt;
+    &amp;lt;h3&amp;gt;{{.Title}}&amp;lt;/h3&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/header&amp;gt;
+  {{.TableOfContents}}
+&amp;lt;/aside&amp;gt;
+&amp;lt;a href=&amp;#34;#&amp;#34; id=&amp;#34;toc-toggle&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We want the default behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the notoc: field in this page’s front matter is not true.
+我们希望页面的默认行为包括TOC，除非另有指定。此模板检查以确保此页’s前端中的notoc:字段不正确。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用-全局参数-来判断代码块是否执行&#34;&gt;使用 全局参数 来判断代码块是否执行&lt;/h3&gt;
+
+&lt;p&gt;这些参数在模板中是全局可用的。&lt;/p&gt;
+
+&lt;p&gt;如：版权copyrighthtml这个内容，需要在全局使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;[params]
+  copyrighthtml = &amp;#34;Copyright &amp;amp;#xA9; 2017 John Doe. All Rights Reserved.&amp;#34;
+  sidebarrecentlimit = 5
+  twitteruser = &amp;#34;spf13&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后，在页脚中声明一个&lt;code&gt;&amp;lt;footer&amp;gt;&lt;/code&gt;，只有当提供了copyrightml参数时才会呈现它。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ if .Site.Params.copyrighthtml }}
+    &amp;lt;footer&amp;gt;
+        &amp;lt;div class=&amp;#34;text-center&amp;#34;&amp;gt;{{.Site.Params.CopyrightHTML | safeHTML}}&amp;lt;/div&amp;gt;
+    &amp;lt;/footer&amp;gt;
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;或者用 &lt;code&gt;with&lt;/code&gt; 来替换 &lt;code&gt;if&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// layouts/partials/twitter.html
+
+{{ with .Site.Params.twitteruser }}
+    &amp;lt;div&amp;gt;
+        &amp;lt;a href=&amp;#34;https://twitter.com/{{.}}&amp;#34; rel=&amp;#34;author&amp;#34;&amp;gt;
+        &amp;lt;img src=&amp;#34;/images/twitter.png&amp;#34; width=&amp;#34;48&amp;#34; height=&amp;#34;48&amp;#34; title=&amp;#34;Twitter: {{.}}&amp;#34; alt=&amp;#34;Twitter&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
+{{ end }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;layout 中可以使用“magic constants”&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;nav&amp;gt;
+  &amp;lt;h1&amp;gt;Recent Posts&amp;lt;/h1&amp;gt;
+  &amp;lt;ul&amp;gt;
+  {{- range first .Site.Params.SidebarRecentLimit .Site.Pages -}}
+      &amp;lt;li&amp;gt;&amp;lt;a href=&amp;#34;{{.RelPermalink}}&amp;#34;&amp;gt;{{.Title}}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+  {{- end -}}
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/nav&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;example-show-only-upcoming-events-只显示即将发生的事件&#34;&gt;Example: Show Only Upcoming Events 只显示即将发生的事件&lt;/h3&gt;
+
+&lt;p&gt;Go allows you to do more than what’s shown here. Using Hugo’s &lt;code&gt;where function&lt;/code&gt; and Go built-ins, we can list only the items from content/events/ whose date (set in a content file’s front matter) is in the future. The following is an example partial template:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1228,84 +1896,28 @@ Explanation: 342 + 465 = 807.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	r := &amp;amp;ListNode{}
-	rt := r
-	h1, h2 := l1, l2
-	t := 0
-	for h1 != nil {
-		a := h1.Val + t
-		if h2 != nil {
-			a += h2.Val
-			h2 = h2.Next
-		}
-		t = a / 10
-		r.Next = &amp;amp;ListNode{Val: a % 10,}
-		r = r.Next
-		h1 = h1.Next
-	}
-	for h2 != nil {
-		a := h2.Val + t
-		t = a / 10
-		r.Next = &amp;amp;ListNode{Val: a % 10,}
-		h2 = h2.Next
-		r = r.Next
-	}
-	if t != 0 {
-		r.Next = &amp;amp;ListNode{Val: t,}
-	}
-	return rt.Next
-}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;layouts/partials/upcoming-events.html
+
+&amp;lt;h4&amp;gt;Upcoming Events&amp;lt;/h4&amp;gt;
+&amp;lt;ul class=&amp;#34;upcoming-events&amp;#34;&amp;gt;
+{{ range where .Pages.ByDate &amp;#34;Section&amp;#34; &amp;#34;events&amp;#34; }}
+    {{ if ge .Date.Unix now.Unix }}
+        &amp;lt;li&amp;gt;
+        &amp;lt;!-- add span for event type --&amp;gt;
+          &amp;lt;span&amp;gt;{{ .Type | title }} —&amp;lt;/span&amp;gt;
+          {{ .Title }} on
+        &amp;lt;!-- add span for event date --&amp;gt;
+          &amp;lt;span&amp;gt;{{ .Date.Format &amp;#34;2 January at 3:04pm&amp;#34; }}&amp;lt;/span&amp;gt;
+          at {{ .Params.place }}
+        &amp;lt;/li&amp;gt;
+    {{ end }}
+{{ end }}
+&amp;lt;/ul&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;伪代码-同时遍历&#34;&gt;伪代码 (同时遍历)&lt;/h2&gt;
-
-&lt;p&gt;The pseudocode is as following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Initialize current node to dummy head of the returning list.&lt;/li&gt;
-&lt;li&gt;Initialize carry to 0.&lt;/li&gt;
-&lt;li&gt;Initialize p and q to head of l1 and l2 respectively.&lt;/li&gt;
-&lt;li&gt;Loop through lists l1 and l2 until you reach both ends.
-
-&lt;ul&gt;
-&lt;li&gt;Set x to node p&amp;rsquo;s value. If p has reached the end of l1, set to 0.&lt;/li&gt;
-&lt;li&gt;Set y to node q&amp;rsquo;s value. If q has reached the end of l2, set to 0.&lt;/li&gt;
-&lt;li&gt;Set $sum = x + y + carry$.&lt;/li&gt;
-&lt;li&gt;Update $carry = sum / 10$.&lt;/li&gt;
-&lt;li&gt;Create a new node with the digit value of (sum mod 10) and set it to current node&amp;rsquo;s next, then advance current node to next.&lt;/li&gt;
-&lt;li&gt;Advance both p and q.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Check if carry = 1, if so append a new node with digit 1 to the returning list.&lt;/li&gt;
-&lt;li&gt;Return dummy head&amp;rsquo;s next node.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://gohugo.io/templates/introduction/#basic-syntax&#34;&gt;https://gohugo.io/templates/introduction/#basic-syntax&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 </description>
       
     </item>

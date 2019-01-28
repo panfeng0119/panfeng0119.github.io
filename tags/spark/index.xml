@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on Pan Feng&#39;s Blog</title>
+    <link>http://panfeng0119.github.io/tags/spark/</link>
+    <description>Recent content in Spark on Pan Feng&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 23 Nov 2018 23:06:02 +0800</lastBuildDate>
+    
+	<atom:link href="http://panfeng0119.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spark vs Hadoop</title>
+      <link>http://panfeng0119.github.io/post/other-categories/spark-001/</link>
+      <pubDate>Fri, 23 Nov 2018 23:06:02 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/other-categories/spark-001/</guid>
+      <description>Spark使用了一种缓存机制的技术（不是提出了新的基于内存的技术）, 允许我们利用缓存技术和LRU算法缓存数据的 Spark并不支持数据持久化至</description>
+    </item>
+    
+  </channel>
+</rss>

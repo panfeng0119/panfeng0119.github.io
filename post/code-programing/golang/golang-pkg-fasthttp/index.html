@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Go 服务包 fasthttp - Pan Feng&#39;s Blog</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Pan Feng" />
+  <meta name="description" content="fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52" />
+
+
+<link rel="canonical" href="http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.c8c1ff75dee09b44060a6c38f41b9036bac2512ccdb22d7f296cec12dc786375.css" integrity="sha256-yMH/dd7gm0QGCmw49BuQNrrCUSzNsi1/KWzsEtx4Y3U=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Go 服务包 fasthttp" />
+<meta property="og:description" content="fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/" /><meta property="article:published_time" content="2019-01-04T09:35:02&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-04T09:35:02&#43;08:00"/>
+
+<meta itemprop="name" content="Go 服务包 fasthttp">
+<meta itemprop="description" content="fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连">
+
+
+<meta itemprop="datePublished" content="2019-01-04T09:35:02&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-04T09:35:02&#43;08:00" />
+<meta itemprop="wordCount" content="1262">
+
+
+
+<meta itemprop="keywords" content="go," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 服务包 fasthttp"/>
+<meta name="twitter:description" content="fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+  <link href='http://panfeng0119.github.io/avatar/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Pan Feng</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Pan Feng
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://panfeng0119.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Go 服务包 fasthttp</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-01-04" class="post-time">
+          2019-01-04
+        </time>
+        <div class="post-category">
+            <a href="http://panfeng0119.github.io/categories/go/"> go </a>
+            
+          </div>
+        <span class="more-meta"> 1262 words </span>
+          <span class="more-meta"> 3 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面：</p>
+
+<ul>
+<li>net/http 的实现是一个连接新建一个 goroutine；fasthttp 是利用一个 worker 复用 goroutine，减轻 runtime 调度 goroutine 的压力</li>
+<li>net/http 解析的请求数据很多放在 map[string]string(http.Header) 或 map[string][]string(http.Request.Form)，有不必要的 []byte 到 string 的转换，是可以规避的</li>
+<li>net/http 解析 HTTP 请求每次生成新的 *http.Request 和 http.ResponseWriter; fasthttp 解析 HTTP 数据到 *fasthttp.RequestCtx，然后使用 sync.Pool 复用结构实例，减少对象的数量</li>
+<li>fasthttp 会延迟解析 HTTP 请求中的数据，尤其是 Body 部分。这样节省了很多不直接操作 Body 的情况的消耗</li>
+</ul>
+
+<p>但是因为 fasthttp 的实现与标准库差距较大，所以 API 的设计完全不同。使用时既需要理解 HTTP 的处理过程，又需要注意和标准库的差别。</p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/52644362">原文地址</a></p>
+
+<p>go虽然在后台开发上没什么问题，但是要和AI联系起来就有点麻烦了，首先go没有pmml这方面的解析库，其次如果将python模型转pmml也有性能损失啊，肯定没有原生语言好。</p>
+
+<p>之所以用go是因为，go比java简单，比python要快，网络并发稍微调优一下性能杠杠的，综合来说是个不错的选择。</p>
+
+<p>这里贴个demo，记录下怎么用fasthttp创建web服务器，包括：</p>
+
+<ul>
+<li>web服务器创建</li>
+<li>路由</li>
+<li>请求参数获取</li>
+</ul>
+
+<p>基本上实现上面的功能后，就可以基于此做更多的web服务器操作了，毕竟拿到了请求的参数，知道client想干什么，剩下的就是把事情做完把结果返回就好了。说来也有趣，fasthttp的返回不是用return的方式将字符串返回，而是用fmt.Fprint(ctx, string_data)的形式将返回的数据输出到ctx管道。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;github.com/buaazp/fasthttprouter&#34;</span>
+    <span class="s">&#34;github.com/valyala/fasthttp&#34;</span>
+    <span class="s">&#34;log&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">// index 页
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">Index</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fasthttp</span><span class="p">.</span><span class="nx">RequestCtx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;Welcome&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 简单路由页
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">Hello</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fasthttp</span><span class="p">.</span><span class="nx">RequestCtx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 获取GET请求json数据
+</span><span class="c1">// 使用 ctx.QueryArgs() 方法
+</span><span class="c1">// Peek类似与python中dict的pop方法，取某个键对应的值
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">TestGet</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fasthttp</span><span class="p">.</span><span class="nx">RequestCtx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">values</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">QueryArgs</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nf">Peek</span><span class="p">(</span><span class="s">&#34;abc&#34;</span><span class="p">)))</span> <span class="c1">// 不加string返回的byte数组
+</span><span class="c1"></span>
+<span class="p">}</span>
+
+<span class="c1">// 获取post的请求json数据
+</span><span class="c1">// 这里就有点坑是，查了很多网页说可以用 ctx.PostArgs() 取post的参数，返现不行，返回空
+</span><span class="c1">// 后来用 ctx.FormValue() 取表单数据就好了，难道是版本升级的问题？
+</span><span class="c1">// ctx.PostBody() 在上传文件的时候比较有用
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">TestPost</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fasthttp</span><span class="p">.</span><span class="nx">RequestCtx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//postValues := ctx.PostArgs()
+</span><span class="c1"></span>    <span class="c1">//fmt.Fprint(ctx, string(postValues))
+</span><span class="c1"></span>
+    <span class="c1">// 获取表单数据
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">FormValue</span><span class="p">(</span><span class="s">&#34;abc&#34;</span><span class="p">)))</span>
+
+    <span class="c1">// 这两行可以获取PostBody数据，在上传数据文件的时候有用
+</span><span class="c1"></span>    <span class="nx">postBody</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">PostBody</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">postBody</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// 创建路由
+</span><span class="c1"></span>    <span class="nx">router</span> <span class="o">:=</span> <span class="nx">fasthttprouter</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+    <span class="c1">// 不同的路由执行不同的处理函数
+</span><span class="c1"></span>    <span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">Index</span><span class="p">)</span>
+
+    <span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">,</span> <span class="nx">Hello</span><span class="p">)</span>
+
+    <span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/get&#34;</span><span class="p">,</span> <span class="nx">TestGet</span><span class="p">)</span>
+
+    <span class="c1">// post方法
+</span><span class="c1"></span>    <span class="nx">router</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/post&#34;</span><span class="p">,</span> <span class="nx">TestPost</span><span class="p">)</span>
+
+    <span class="c1">// 启动web服务器，监听 0.0.0.0:12345
+</span><span class="c1"></span>    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">fasthttp</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:12345&#34;</span><span class="p">,</span> <span class="nx">router</span><span class="p">.</span><span class="nx">Handler</span><span class="p">))</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果要实现模型服务呢，怎么做？可以用goscore，在python中将模型导出为pmml，然后用goscore读取并提供服务，也挺简单的。</p>
+
+<p>但是对于很多自定义模型结构，pmml就不适用了，真是让人头大，难道要用scala写模型，用java提供服务？</p>
+
+<p>原文参考</p>
+
+<ul>
+<li><a href="http://link.zhihu.com/?target=https%3A//github.com/DavidCai1993/my-blog/issues/35">fasthttp手册文档-中文版</a></li>
+<li><a href="http://link.zhihu.com/?target=https%3A//blog.yumaojun.net/2017/01/25/fasthttp/">高性能web之fasthttp</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//fuxiaohei.me/2016/9/24/go-and-fasthttp-server.html">Go开发HTTP的另一个选择 fasthttp</a></li>
+<li><a href="http://link.zhihu.com/?target=https%3A//github.com/asafschers/goscore">goscore</a></li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Pan Feng</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2019-01-04</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">None</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://panfeng0119.github.io/tags/go/">go</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/algorithm-strategy/algorithm-logistic-regression/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">每天进步一点点——逻辑回归</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/algorithm-strategy/algorithm-dynamic-programming/">
+            <span class="next-text nav-default">每天进步一点点——动态规划</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+
+
+
+
+
+
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Pan Feng
+        
+      </span></span>
+
+  
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

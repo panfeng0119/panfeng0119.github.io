@@ -6,99 +6,99 @@
     <description>Recent content in Posts on Pan Feng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 04 Jan 2019 09:35:02 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jan 2019 14:11:34 +0800</lastBuildDate>
     
 	<atom:link href="http://panfeng0119.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>每天进步一点点——一致性哈希散列</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-consistent-hashing/</link>
+      <pubDate>Tue, 08 Jan 2019 14:11:34 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-consistent-hashing/</guid>
+      <description>原文链接 携程reids容器化 背景 携程大部分应用是基于 CRedis 客户端通过集群来访问到实际的 Redis 的实例，集群是访问 Redis 的基本单位，多个集群对应一个 Pool</description>
+    </item>
+    
+    <item>
+      <title>每天进步一点点——逻辑回归</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/</link>
+      <pubDate>Tue, 08 Jan 2019 11:09:53 +0800</pubDate>
+      
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/</guid>
+      <description>介绍 逻辑回归假设数据服从伯努利分布, 通过极大化似然函数的方法, 运用梯度下降来求解参数,来达到将数据二分类的目的 知识点 1.逻辑回归的基本假设 2</description>
+    </item>
+    
+    <item>
       <title>Go 服务包 fasthttp</title>
-      <link>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</link>
+      <link>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</link>
       <pubDate>Fri, 04 Jan 2019 09:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</guid>
       <description>fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连</description>
     </item>
     
     <item>
-      <title>常用算法|动态规划</title>
-      <link>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</link>
+      <title>每天进步一点点——动态规划</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</link>
       <pubDate>Thu, 03 Jan 2019 11:06:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</guid>
-      <description>介绍 动态规划（Dynamic Programming，简称DP），通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法 动态规划常常适用于</description>
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</guid>
+      <description>什么是动态规划？ 动态规划（Dynamic Programming，简称DP）是一种求解复杂问题的方法，它通过把原问题分解为相对简单的子问题方式</description>
     </item>
     
     <item>
-      <title>LeetCode 面试题top145 07-08</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-top-interview-questions-007/</link>
+      <title>排序算法——功能</title>
+      <link>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</link>
       <pubDate>Sat, 29 Dec 2018 16:06:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-top-interview-questions-007/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</guid>
       <description>链接：leetcode 7. Reverse Integer () 难度: Easy 描述: 给定 32bit的int类型，将数字倒过来 123 =&amp;gt; 321 注意两点 负数 -123 =&amp;gt; -321 别越界，math.Pow(2,3</description>
     </item>
     
     <item>
       <title>[模型强化学习PPT]Model-Based Deep Reinforcement Learning</title>
-      <link>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</link>
+      <link>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</guid>
+      <guid>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</guid>
       <description>[模型强化学习PPT]Model-Based Deep Reinforcement Learning 大纲 Why use model-based reinforcement learning? Main model-based RL approaches Using local models &amp;amp; guided policy search Handling high-dimensional observations 1. Why use model-based reinforcement learning?</description>
     </item>
     
     <item>
       <title>[深度强化学习概述]A Brief Survey of Deep Reinforcement Learning</title>
-      <link>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</link>
+      <link>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</link>
       <pubDate>Wed, 26 Dec 2018 15:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</guid>
+      <guid>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</guid>
       <description>[深度强化学习概述] A Brief Survey of Deep Reinforcement Learning 原文参考: arXiv:1708.05866v2 [cs.LG] 28 Sep 2017 摘要 本文主要内容有： 研究深度强化学习的核心算法 deep Q-network (深度Q网络) trust region policy optimisation (置信区间策</description>
     </item>
     
     <item>
-      <title>LeetCode 刷题笔记06</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-006/</link>
+      <title>LeetCode 功能实现</title>
+      <link>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</link>
       <pubDate>Tue, 25 Dec 2018 17:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-006/</guid>
-      <description>链接：leetcode 6. ZigZag Conversion () 难度：💔💔💔 The string &amp;ldquo;PAYPALISHIRING&amp;rdquo; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) 1 2 3 P A H N A P L S I I G Y I R And</description>
+      <guid>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</guid>
+      <description>链接：leetcode 6. ZigZag Conversion () 难度：💔💔💔 The string &amp;ldquo;PAYPALISHIRING&amp;rdquo; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) 1 2 3 4 5 P A H N A P L S I I G Y I</description>
     </item>
     
     <item>
-      <title>LeetCode 刷题笔记04</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-004/</link>
-      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-004/</guid>
-      <description>链接：leetcode 4. Median of Two Sorted Arrays 难度：💔💔💔💔💔 There are two sorted arrays nums1 and nums2 of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)). You may assume nums1 and nums2 cannot be both empty. 1 2 3 4</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 刷题笔记05</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-005/</link>
-      <pubDate>Mon, 24 Dec 2018 17:00:00 +0800</pubDate>
-      
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-005/</guid>
-      <description>链接：leetcode 5. Longest Palindromic Substring（取最长回文子串） 难度: medium Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 取最长回文子串 1 2 3 4 5</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 刷题笔记03</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-003/</link>
+      <title>LeetCode 重复子串问题</title>
+      <link>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</link>
       <pubDate>Mon, 24 Dec 2018 16:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-003/</guid>
-      <description>链接：leetcode 3. 最大非重复子串（Longest Substring Without Repeating Characters） 难度：💔💔💔 Given a string, find the length of the longest substring without repeating characters. 1 2 3 4 5 Example 1: Input: &amp;#34;abcabcbb&amp;#34; Output:</description>
+      <guid>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</guid>
+      <description>链接：leetcode 3. 最大非重复子串（Longest Substring Without Repeating Characters） 难度：medium Given a string, find the length of the longest substring without repeating characters. 1 2 3 4 5 Example 1:</description>
     </item>
     
     <item>
-      <title>LeetCode 刷题笔记02</title>
-      <link>http://panfeng0119.github.io/post/leetcode/leetcode-002/</link>
-      <pubDate>Mon, 24 Dec 2018 13:00:00 +0800</pubDate>
+      <title>Hugo 03 | Hugo 查询顺序</title>
+      <link>http://panfeng0119.github.io/post/hugo/hugo03-2018-12-23-lookup/</link>
+      <pubDate>Sun, 23 Dec 2018 18:31:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/leetcode/leetcode-002/</guid>
-      <description>链接：leetcode 2. 结构体数字求和（Add Two Numbers） 难度：💔💔💔 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and</description>
+      <guid>http://panfeng0119.github.io/post/hugo/hugo03-2018-12-23-lookup/</guid>
+      <description>Hugo 使用Go的 html/template 和 text/template. 详情请看Go docs. 基本语法 Basic Syntax 模板主要由 variables 和 functions组成，在 {{ }} 内中使用 访问变量 1 2 3 4 5 // 可以是当前作用域中已存在</description>
     </item>
     
   </channel>

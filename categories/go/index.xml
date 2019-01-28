@@ -13,10 +13,10 @@
     
     <item>
       <title>Go 服务包 fasthttp</title>
-      <link>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</link>
+      <link>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</link>
       <pubDate>Fri, 04 Jan 2019 09:35:02 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</guid>
       <description>fasthttp 是 Go 的一款不同于标准库 net/http 的 HTTP 实现。fasthttp 的性能可以达到标准库的 10 倍，说明他魔性的实现方式。主要的点在于四个方面： net/http 的实现是一个连</description>
     </item>
     

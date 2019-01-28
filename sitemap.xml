@@ -3,71 +3,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://panfeng0119.github.io/post/golang/go-pkg-fasthttp/</loc>
+    <loc>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-consistent-hashing/</loc>
+    <lastmod>2019-01-08T14:11:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-logistic-regression/</loc>
+    <lastmod>2019-01-08T11:09:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://panfeng0119.github.io/post/code-programing/golang/golang-pkg-fasthttp/</loc>
     <lastmod>2019-01-04T09:35:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/algorithm-dynamic-programming/</loc>
+    <loc>http://panfeng0119.github.io/post/algorithm-strategy/algorithm-dynamic-programming/</loc>
     <lastmod>2019-01-03T11:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-top-interview-questions-007/</loc>
+    <loc>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</loc>
     <lastmod>2018-12-29T16:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</loc>
+    <loc>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-model-based-deep-reinforcement-learning/</loc>
     <lastmod>2018-12-26T15:35:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</loc>
+    <loc>http://panfeng0119.github.io/post/artificial-intelligence/reinforcement-learning-2018-12-26-a-brief-survey-of-deep-reinforcement-learning/</loc>
     <lastmod>2018-12-26T15:35:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-006/</loc>
+    <loc>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</loc>
     <lastmod>2018-12-25T17:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-004/</loc>
-    <lastmod>2018-12-24T17:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-005/</loc>
-    <lastmod>2018-12-24T17:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-003/</loc>
+    <loc>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</loc>
     <lastmod>2018-12-24T16:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-002/</loc>
-    <lastmod>2018-12-24T13:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -94,6 +87,20 @@
   </url>
   
   <url>
+    <loc>http://panfeng0119.github.io/post/code-programing/leetcode-003-sort/</loc>
+    <lastmod>2018-11-24T17:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://panfeng0119.github.io/post/other-categories/spark-001/</loc>
+    <lastmod>2018-11-23T23:06:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://panfeng0119.github.io/post/hugo/hugo02-2018-09-28-template/</loc>
     <lastmod>2018-09-28T23:59:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -108,14 +115,14 @@
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-principle/</loc>
+    <loc>http://panfeng0119.github.io/post/algorithm-strategy/design-pattern/designpattern-2018-09-26-principle/</loc>
     <lastmod>2018-09-26T00:13:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/design-pattern/designpattern-2018-09-26-factory/</loc>
+    <loc>http://panfeng0119.github.io/post/algorithm-strategy/design-pattern/designpattern-2018-09-26-factory/</loc>
     <lastmod>2018-09-26T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -129,14 +136,22 @@
   </url>
   
   <url>
-    <loc>http://panfeng0119.github.io/post/leetcode/leetcode-001/</loc>
+    <loc>http://panfeng0119.github.io/post/code-programing/leetcode-001-sum/</loc>
     <lastmod>2018-09-16T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
+    <loc>http://panfeng0119.github.io/categories/algorithm/</loc>
+    <lastmod>2019-01-08T14:11:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://panfeng0119.github.io/categories/</loc>
+    <lastmod>2019-01-08T14:11:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -198,6 +213,20 @@
   </url>
   
   <url>
+    <loc>http://panfeng0119.github.io/tags/logistic-regression/</loc>
+    <lastmod>2019-01-08T11:09:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://panfeng0119.github.io/tags/machine-learning/</loc>
+    <lastmod>2019-01-08T11:09:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://panfeng0119.github.io/tags/mathjax/</loc>
     <lastmod>2018-12-23T23:02:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -205,15 +234,22 @@
   </url>
   
   <url>
+    <loc>http://panfeng0119.github.io/categories/other/</loc>
+    <lastmod>2018-11-23T23:06:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://panfeng0119.github.io/</loc>
-    <lastmod>2019-01-04T09:35:02+08:00</lastmod>
+    <lastmod>2019-01-08T14:11:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://panfeng0119.github.io/post/</loc>
-    <lastmod>2019-01-04T09:35:02+08:00</lastmod>
+    <lastmod>2019-01-08T14:11:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -228,6 +264,13 @@
   <url>
     <loc>http://panfeng0119.github.io/categories/reinforcement-learning/</loc>
     <lastmod>2018-12-26T15:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://panfeng0119.github.io/tags/spark/</loc>
+    <lastmod>2018-11-23T23:06:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -255,13 +298,6 @@
   
   <url>
     <loc>http://panfeng0119.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2019-01-03T11:06:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://panfeng0119.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2019-01-03T11:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
