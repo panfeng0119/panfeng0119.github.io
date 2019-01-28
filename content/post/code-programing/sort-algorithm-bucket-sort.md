@@ -1,5 +1,5 @@
 +++
-title = "LeetCode 面试题top145 07-08"
+title = "排序算法——功能"
 authors = ['潘峰']
 
 date = 2018-12-29T16:06:00 
