@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2018-11-24T17:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2018-11-24T17:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="2249">
+<meta itemprop="wordCount" content="3917">
 
 
 
@@ -281,8 +281,8 @@
             <a href="http://panfeng0119.github.io/categories/leetcode/"> LeetCode </a>
             
           </div>
-        <span class="more-meta"> 2249 words </span>
-          <span class="more-meta"> 5 min read </span>
+        <span class="more-meta"> 3917 words </span>
+          <span class="more-meta"> 8 min read </span>
 
         
         
@@ -304,8 +304,11 @@
 <li><a href="#普通方法">普通方法</a></li>
 <li><a href="#简洁方法">简洁方法</a></li>
 <li><a href="#随机pivot">随机pivot</a></li>
-<li><a href="#三路快排">三路快排</a></li>
+<li><a href="#三路快排">三路快排(*)</a></li>
+<li><a href="#重复数组优化">重复数组优化</a></li>
+<li><a href="#按经验优化">按经验优化</a></li>
 </ul></li>
+<li><a href="#排序算法-堆排序">排序算法——堆排序</a></li>
 <li><a href="#排序算法-插入排序">排序算法——插入排序</a>
 <ul>
 <li><a href="#147-insertion-sort-list-单链表插入排序-难度-medium">147. Insertion Sort List——单链表插入排序【难度: medium】</a>
@@ -393,53 +396,39 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 需要指定头尾指针
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">quickSort</span><span class="p">(</span><span class="nx">values</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 基准
-</span><span class="c1"></span>    <span class="nx">pivot</span> <span class="o">:=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span>
-    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">left</span>  <span class="c1">// 基准的位置
-</span><span class="c1"></span>    <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span>  <span class="c1">// 左右指针
-</span><span class="c1"></span>
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">j</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="nx">p</span> <span class="o">&amp;&amp;</span> <span class="nx">values</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">pivot</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">qsort</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">left</span> <span class="o">&gt;=</span> <span class="nx">right</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="c1">// 提取基准pivot, p为快排过程中空位，初始化为基准的位置
+</span><span class="c1"></span>    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">left</span>
+    <span class="nx">pivot</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span>
+    <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span>
+    <span class="c1">// 每一次调用qsort相当于把基准放到适当的位置上，使左边的值小于pivot、右边的值都大于pivot
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">j</span> <span class="p">{</span>
+        <span class="c1">// 从右开始
+</span><span class="c1"></span>        <span class="k">for</span> <span class="nx">p</span> <span class="o">&lt;=</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">pivot</span> <span class="p">{</span>
             <span class="nx">j</span><span class="o">--</span>
         <span class="p">}</span>
-        <span class="k">if</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="nx">p</span> <span class="p">{</span>
-            <span class="nx">values</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
-            <span class="nx">p</span> <span class="p">=</span> <span class="nx">j</span>
-        <span class="p">}</span>
-
-        <span class="k">for</span> <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">pivot</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">p</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">j</span> <span class="p">&gt;</span> <span class="nx">p</span> <span class="p">{</span>
+            <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="c1">// 把位置j的值移动到位置p上
+</span><span class="c1"></span>            <span class="nx">p</span> <span class="p">=</span> <span class="nx">j</span>           <span class="c1">// j这个位置就没用了
+</span><span class="c1"></span>        <span class="p">}</span>
+        <span class="k">for</span> <span class="nx">p</span> <span class="o">&gt;=</span> <span class="nx">i</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">pivot</span> <span class="p">{</span>
             <span class="nx">i</span><span class="o">++</span>
         <span class="p">}</span>
-        <span class="k">if</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">p</span> <span class="p">{</span>
-            <span class="nx">values</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">p</span> <span class="p">{</span>
+            <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
             <span class="nx">p</span> <span class="p">=</span> <span class="nx">i</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="nx">values</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">=</span> <span class="nx">pivot</span>
-    <span class="k">if</span> <span class="nx">p</span><span class="o">-</span><span class="nx">left</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
-        <span class="nf">quickSort</span><span class="p">(</span><span class="nx">values</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="nx">right</span><span class="o">-</span><span class="nx">p</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
-        <span class="nf">quickSort</span><span class="p">(</span><span class="nx">values</span><span class="p">,</span> <span class="nx">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">right</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">QuickSort</span><span class="p">(</span><span class="nx">values</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-    <span class="nf">quickSort</span><span class="p">(</span><span class="nx">values</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">=</span> <span class="nx">pivot</span>        <span class="c1">// 放回基准
+</span><span class="c1"></span>    <span class="nf">qsort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// p 已经找到指定位置，无需再计算
+</span><span class="c1"></span>    <span class="nf">qsort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">right</span><span class="p">)</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -496,11 +485,34 @@
 
 <p>在面临有序或者近乎有序的数组时，会退化成为一个O(n^2)的算法</p>
 
-<p>于是我们使用了一个很简单的随机选取pivot的方式来处理这个问题。这步随机化让快速排序的时间期望成为了O(nlogn)，并且只有极低的概率退化为O(n^2)。关于这一点，背后的数学证明比较复杂，对背后的数学不感兴趣的同学，只要相信这个结论就好了。</p>
+<p>于是我们使用了一个很简单的随机选取pivot的方式来处理这个问题。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go">    <span class="c1">// 提取基准pivot, p为快排过程中空位，初始化为基准的位置
+</span><span class="c1"></span>    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">left</span> <span class="o">+</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="nx">right</span><span class="o">-</span><span class="nx">left</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">pivot</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这步随机化让快速排序的时间期望成为了O(nlogn)，并且只有极低的概率退化为O(n^2)。关于这一点，背后的数学证明比较复杂，对背后的数学不感兴趣的同学，只要相信这个结论就好了。（不过随机数生成器也带有性能消耗。当数组存在大量的随机元素时，就是很长的无规则数组，需要执行多次）</p>
 
-<h2 id="三路快排">三路快排</h2>
+<p>现在，最大的开销还是随机数产生器选择pivot带来的开销，我们用随机数产生器来选择pivot，是希望pivot能尽量将数组划分得均匀一些，可以选择一个替代方案来替代随机数产生器来选择pivot，比如三数取中，通过对序列的first、middle和last做比较，选择三个数的中间大小的那一个做pivot，从概率上可以将比较次数下降到12/7 ln(n)</p>
 
-<p>当序列中有大量的重复元素时，快排有可能退化成O(n^2)级别</p>
+<p>median-of-three对小数组来说有很大的概率选择到一个比较好的pivot，但是对于大数组来说就不足以保证能够选择出一个好的pivot，因此还有个办法是所谓median-of-nine</p>
+
+<p>这个怎么做呢？它是先从数组中分三次取样，每次取三个数，三个样品各取出中数，然后从这三个中数当中再取出一个中数作为pivot，也就是median-of-medians。取样也不是乱来，分别是在左端点、中点和右端点取样。</p>
+
+<p>什么时候采用median-of-nine去选择pivot，这里也有个数组大小的阀值，这个值也完全是经验值，设定在40，大小大于40的数组使用median-of-nine选择pivot，大小在7到40之间的数组使用median-of-three选择中数，大小等于7的数组直接选择中数，大小小于7的数组则直接使用插入排序</p>
+
+<h2 id="三路快排">三路快排(*)</h2>
+
+<p><code>*</code> 表示特殊情况</p>
+
+<p>当序列中有大量的重复元素时，也退化成O(n^2)</p>
 
 <p>于是衍生三路快排的思想：就是将数组分成三部分：小于v，等于v和大于v，之后递归的对小于v和大于v部分进行排序就好了。</p>
 
@@ -524,8 +536,201 @@
 </tbody>
 </table>
 
+<h2 id="重复数组优化">重复数组优化</h2>
+
+<p>那么对于大量重复数组，对比pivot会产生消耗</p>
+
+<p>更进一步的优化是在划分算法上，使用两个索引i和j，分别从左右两端进行扫描，i扫描到大于等于pivot的元素就停止，j扫描到小于等于pivot的元素也停止，交换两个元素，持续这个过程直到两个索引相遇，此时的pivot的位置就落在了j，然后交换pivot和j的位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="c1">// 待验证
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">qs2</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nf">qSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">qSort</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">left</span> <span class="o">&gt;=</span> <span class="nx">right</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="c1">// 随机基准
+</span><span class="c1"></span>    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">left</span> <span class="o">+</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="nx">right</span><span class="o">-</span><span class="nx">left</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">],</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">left</span><span class="p">],</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span>
+
+    <span class="c1">//fmt.Println(p, arr[p], arr[left])
+</span><span class="c1"></span>    <span class="c1">//fmt.Println(arr)
+</span><span class="c1"></span>    <span class="nx">pivot</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="c1">// 把这个位置上的基准提取出来
+</span><span class="c1"></span>    <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span>
+    <span class="c1">// 每一次调用相当于 把当前基准放到适当的位置上
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">j</span> <span class="p">{</span>
+        <span class="c1">//fmt.Println(&#34;i,j:&#34;, i, j)
+</span><span class="c1"></span>        <span class="k">for</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">pivot</span> <span class="p">{</span> <span class="c1">// 大的都在右边
+</span><span class="c1"></span>            <span class="c1">//fmt.Println(j)
+</span><span class="c1"></span>            <span class="nx">j</span><span class="o">--</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">pivot</span> <span class="p">{</span> <span class="c1">// 小的都在左边
+</span><span class="c1"></span>            <span class="c1">//fmt.Println(i)
+</span><span class="c1"></span>            <span class="nx">i</span><span class="o">++</span>
+        <span class="p">}</span>
+        <span class="c1">// 交换
+</span><span class="c1"></span>        <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">pivot</span>        <span class="c1">// 放回基准
+</span><span class="c1"></span>    <span class="nf">qSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// p 已经找到指定位置，无需再计算
+</span><span class="c1"></span>    <span class="nf">qSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">right</span><span class="p">)</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="按经验优化">按经验优化</h2>
+
+<p>思路：插入排序在大致排序好的数组上面，最佳情况是O(n)</p>
+
+<ul>
+<li>先用快排，数组小于阈值（7？）的时候直接用插入排序</li>
+<li>小于阈值不做操作，快排结束后对整个数组进行插入排序（与上面本质上相同）</li>
+</ul>
+
 <hr />
 
+<h1 id="排序算法-堆排序">排序算法——堆排序</h1>
+
+<p>堆排序是利用堆这种数据结构而设计的一种排序算法，堆排序是一种选择排序，它的最坏，最好，平均时间复杂度均为O(nlogn)，它也是不稳定排序。首先简单了解下堆结构。</p>
+
+<p>堆是完全二叉树，分为大顶堆和小顶堆。</p>
+
+<ul>
+<li>大顶堆：每个结点的值都大于或等于其左右孩子结点的值；</li>
+<li>小顶堆：每个结点的值都小于或等于其左右孩子结点的值；</li>
+</ul>
+
+<p>用公式描述就是</p>
+
+<ul>
+<li>大顶堆：arr[i] &gt;= arr[2i+1] &amp;&amp; arr[i] &gt;= arr[2i+2]  </li>
+<li>小顶堆：arr[i] &lt;= arr[2i+1] &amp;&amp; arr[i] &lt;= arr[2i+2]</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">HeapSort</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 1. 初始化: 构建（初始状态不一定是大（小）顶堆，）
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+        <span class="c1">//从第一个非叶子结点从下至上，从右至左调整结构
+</span><span class="c1"></span>        <span class="nf">adjustHeap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="c1">// 2. 调整堆顶并重新构建
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">--</span> <span class="p">{</span>
+        <span class="c1">// 交换
+</span><span class="c1"></span>        <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">// 调整
+</span><span class="c1"></span>        <span class="nf">adjustHeap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// 调整结构
+</span><span class="c1">// @param a 需要调整的数组左边界
+</span><span class="c1">// @param b 需要调整的数组右边界
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">adjustHeap</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">tmp</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span>
+    <span class="c1">// 从i的左孩子节点开始遍历，每次比较节点和左右孩子的大小
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="nx">a</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">k</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">;</span> <span class="nx">k</span> <span class="p">=</span> <span class="nx">k</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="c1">// 左右孩子比较，如果右孩子大，则转向右孩子
+</span><span class="c1"></span>        <span class="k">if</span> <span class="nx">k</span><span class="o">+</span><span class="mi">1</span> <span class="p">&lt;</span> <span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+            <span class="nx">k</span><span class="o">++</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">tmp</span> <span class="p">{</span>
+            <span class="nx">arr</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span>
+            <span class="nx">a</span> <span class="p">=</span> <span class="nx">k</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span> <span class="p">=</span> <span class="nx">tmp</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h1 id="排序算法-插入排序">排序算法——插入排序</h1>
 
 <h2 id="147-insertion-sort-list-单链表插入排序-难度-medium">147. Insertion Sort List——单链表插入排序【难度: medium】</h2>
