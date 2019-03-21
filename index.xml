@@ -477,10 +477,10 @@
     
     <item>
       <title>排序算法——功能</title>
-      <link>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</link>
+      <link>http://panfeng0119.github.io/post/code-programing/2018-12-29-implement/</link>
       <pubDate>Sat, 29 Dec 2018 16:06:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/code-programing/sort-algorithm-bucket-sort/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/2018-12-29-implement/</guid>
       
         <description>
 
@@ -717,10 +717,10 @@
     
     <item>
       <title>LeetCode 功能实现</title>
-      <link>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</link>
+      <link>http://panfeng0119.github.io/post/code-programing/2018-12-25-skills/</link>
       <pubDate>Tue, 25 Dec 2018 17:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/code-programing/leetcode-004-skill/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/2018-12-25-skills/</guid>
       
         <description>
 
@@ -793,70 +793,64 @@ P     I&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     </item>
     
     <item>
-      <title>LeetCode 重复子串问题</title>
-      <link>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</link>
+      <title>LeetCode 字符串问题</title>
+      <link>http://panfeng0119.github.io/post/code-programing/2018-12-24-substring/</link>
       <pubDate>Mon, 24 Dec 2018 16:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/code-programing/leetcode-002-substring/</guid>
+      <guid>http://panfeng0119.github.io/post/code-programing/2018-12-24-substring/</guid>
       
         <description>
 
 &lt;p&gt;链接：&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;leetcode&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;3-最大非重复子串-longest-substring-without-repeating-characters&#34;&gt;3. 最大非重复子串（Longest Substring Without Repeating Characters）&lt;/h1&gt;
+&lt;h1 id=&#34;匹配最长的子串&#34;&gt;匹配最长的子串&lt;/h1&gt;
 
-&lt;p&gt;难度：medium&lt;/p&gt;
+&lt;h2 id=&#34;3-最大非重复子串-longest-substring-without-repeating-characters-难度-medium&#34;&gt;3. 最大非重复子串（Longest Substring Without Repeating Characters）【难度：medium】&lt;/h2&gt;
 
 &lt;p&gt;Given a string, find the length of the longest substring without repeating characters.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 1:
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Example 1:
 
 Input: &amp;#34;abcabcbb&amp;#34;
 Output: 3
-Explanation: The answer is &amp;#34;abc&amp;#34;, with the length of 3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 2:
+Explanation: The answer is &amp;#34;abc&amp;#34;, with the length of 3
+
+Example 2:
 
 Input: &amp;#34;bbbbb&amp;#34;
 Output: 1
-Explanation: The answer is &amp;#34;b&amp;#34;, with the length of 1.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Example 3:
+Explanation: The answer is &amp;#34;b&amp;#34;, with the length of 1.
+
+Example 3:
 
 Input: &amp;#34;pwwkew&amp;#34;
 Output: 3
 Explanation: The answer is &amp;#34;wke&amp;#34;, with the length of 3.
-             Note that the answer must be a substring, &amp;#34;pwke&amp;#34; is a subsequence and not a substring.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+             Note that the answer must be a substring, &amp;#34;pwke&amp;#34; is a subsequence and not a substring.&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
 
 &lt;p&gt;思路一定是：逐个检查所有子字符串，看它是否没有重复的字符。&lt;/p&gt;
 
@@ -882,7 +876,7 @@ Explanation: The answer is &amp;#34;wke&amp;#34;, with the length of 3.
 &lt;li&gt;&lt;code&gt;len(s$[i:j]$)&lt;/code&gt; 就可以实现  $ret = j - i + 1$&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;h3 id=&#34;代码&#34;&gt;代码&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -929,9 +923,7 @@ Explanation: The answer is &amp;#34;wke&amp;#34;, with the length of 3.
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h1 id=&#34;5-longest-palindromic-substring-取最长回文子串&#34;&gt;5. Longest Palindromic Substring（取最长回文子串）&lt;/h1&gt;
-
-&lt;p&gt;难度: medium&lt;/p&gt;
+&lt;h2 id=&#34;5-longest-palindromic-substring-取最长回文子串-难度-medium&#34;&gt;5. Longest Palindromic Substring（取最长回文子串）【难度: medium】&lt;/h2&gt;
 
 &lt;p&gt;Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.&lt;/p&gt;
 
@@ -965,9 +957,9 @@ Input: &amp;#34;cbbd&amp;#34;
 Output: &amp;#34;bb&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;思路-1&#34;&gt;思路&lt;/h2&gt;
+&lt;h3 id=&#34;思路-1&#34;&gt;思路&lt;/h3&gt;
 
-&lt;h3 id=&#34;1-解决长度奇偶性带来的对称轴位置问题-manacher算法-马拉车算法&#34;&gt;（1）解决长度奇偶性带来的对称轴位置问题——Manacher算法（马拉车算法）&lt;/h3&gt;
+&lt;h4 id=&#34;1-解决长度奇偶性带来的对称轴位置问题-manacher算法-马拉车算法&#34;&gt;（1）解决长度奇偶性带来的对称轴位置问题——Manacher算法（马拉车算法）&lt;/h4&gt;
 
 &lt;p&gt;回文分为偶回文（比如 bccb ）和奇回文（比如 bcacb ），处理奇偶问题会比较繁琐，所以这里我们使用一个技巧&lt;/p&gt;
 
@@ -978,15 +970,15 @@ Output: &amp;#34;bb&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;举个例子：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;aba  ———&amp;gt;  #a#b#a#
-abba ———&amp;gt;  #a#b#b#a#&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;aba  ———&amp;gt;  #a#b#a#
+abba ———&amp;gt;  #a#b#b#a#&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3 id=&#34;2-解决重复访问问题-辅助变量&#34;&gt;(2)解决重复访问问题——辅助变量&lt;/h3&gt;
+&lt;h4 id=&#34;2-解决重复访问问题-辅助变量&#34;&gt;(2)解决重复访问问题——辅助变量&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;当前回文串长度：max-len&lt;/li&gt;
@@ -1000,7 +992,7 @@ abba ———&amp;gt;  #a#b#b#a#&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
@@ -1009,9 +1001,9 @@ abba ———&amp;gt;  #a#b#b#a#&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;char:    # a # b # a #
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;char:    # a # b # a #
  pi :    1 2 1 4 1 2 1
 pi-1:    0 1 0 3 0 1 0
   i :    0 1 2 3 4 5 6
@@ -1019,7 +1011,7 @@ pi-1:    0 1 0 3 0 1 0
 char:    # a # b # b # a #
  pi :    1 2 1 2 5 2 1 2 1
 pi-1:    0 1 0 1 4 1 0 1 0
-  i :    0 1 2 3 4 5 6 7 8&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+  i :    0 1 2 3 4 5 6 7 8&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;ul&gt;
@@ -1031,7 +1023,7 @@ pi-1:    0 1 0 1 4 1 0 1 0
 
 &lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000003914228&#34;&gt;参考文档&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;代码-1&#34;&gt;代码&lt;/h2&gt;
+&lt;h3 id=&#34;代码-1&#34;&gt;代码&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1082,6 +1074,10 @@ pi-1:    0 1 0 1 4 1 0 1 0
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;longestPalindrome&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -1114,7 +1110,7 @@ pi-1:    0 1 0 1 4 1 0 1 0
             &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
         &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    
+
     &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int32&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -1131,18 +1127,26 @@ pi-1:    0 1 0 1 4 1 0 1 0
         &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
     &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;s&#34;&gt;``&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;text&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;运行结果&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Runtime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ms&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;faster&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;than&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;100.00&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;运行结果：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;Runtime: 0 ms, faster than 100.00%&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;h1 id=&#34;kmp算法&#34;&gt;KMP算法&lt;/h1&gt;
+
+&lt;p&gt;KMP算法（Knuth-Morris-Pratt 字符串查找算法），常用于在一个文本串S内查找一个模式串P出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。&lt;/p&gt;
+
+&lt;h2 id=&#34;首先看一下kmp步骤&#34;&gt;首先看一下KMP步骤&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置&lt;/li&gt;
+&lt;li&gt;如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；&lt;/li&gt;
+&lt;li&gt;如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。&lt;/li&gt;
+&lt;li&gt;换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的next 值（next 数组的求解会在下文的3.3.3节中详细阐述），即移动的实际位数为：j - next[j]，且此值大于等于1。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
       
     </item>
     
