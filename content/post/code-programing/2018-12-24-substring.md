@@ -1,5 +1,5 @@
 +++
-title = "LeetCode 重复子串问题"
+title = "LeetCode 字符串问题"
 authors = ['潘峰']
 
 date = 2018-12-24T16:00:00 
@@ -15,29 +15,25 @@ summary = "LeetCode 刷题之旅."
 
 链接：[leetcode](https://leetcode.com/problemset/all/)
 
-# 3. 最大非重复子串（Longest Substring Without Repeating Characters）
+# 匹配最长的子串
 
-难度：medium
+## 3. 最大非重复子串（Longest Substring Without Repeating Characters）【难度：medium】
 
 Given a string, find the length of the longest substring without repeating characters.
 
-```
+```text
 Example 1:
 
 Input: "abcabcbb"
 Output: 3
 Explanation: The answer is "abc", with the length of 3
-```
 
-```
 Example 2:
 
 Input: "bbbbb"
 Output: 1
 Explanation: The answer is "b", with the length of 1.
-```
 
-```
 Example 3:
 
 Input: "pwwkew"
@@ -46,7 +42,7 @@ Explanation: The answer is "wke", with the length of 3.
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 ```
 
-## 思路
+### 思路
 
 思路一定是：逐个检查所有子字符串，看它是否没有重复的字符。
 
@@ -66,7 +62,7 @@ Explanation: The answer is "wke", with the length of 3.
 + 能减少计算就不要计算
 + `len(s$[i:j]$)` 就可以实现  $ret = j - i + 1$
 
-## 代码
+### 代码
 
 ```Go
 func lengthOfLongestSubstring(s string) int {
@@ -91,9 +87,7 @@ func max(a, b int) int {
 }
 ```
 
-# 5. Longest Palindromic Substring（取最长回文子串）
-
-难度: medium
+## 5. Longest Palindromic Substring（取最长回文子串）【难度: medium】
 
 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
 
@@ -114,9 +108,9 @@ Input: "cbbd"
 Output: "bb"
 ```
 
-## 思路
+### 思路
 
-### （1）解决长度奇偶性带来的对称轴位置问题——Manacher算法（马拉车算法）
+#### （1）解决长度奇偶性带来的对称轴位置问题——Manacher算法（马拉车算法）
 
 回文分为偶回文（比如 bccb ）和奇回文（比如 bcacb ），处理奇偶问题会比较繁琐，所以这里我们使用一个技巧
 
@@ -124,12 +118,12 @@ Output: "bb"
 
 举个例子：
 
-```
+```text
 aba  ———>  #a#b#a#
 abba ———>  #a#b#b#a#
 ```
 
-### (2)解决重复访问问题——辅助变量
+#### (2)解决重复访问问题——辅助变量
 
 + 当前回文串长度：max-len
 + 第 $i$ 个位置上的回文半径, $p[i]$ , 即回文半径数组pi
@@ -137,7 +131,7 @@ abba ———>  #a#b#b#a#
   + 可以推出 `$p[i] - 1$ = max-len` ，那么只要我们求出了pi数组，就能得到最长回文子串的长度
   + 于是问题变成了，怎样高效地求的pi。基本思路是利用回文串的对称性，扩展回文串。
 
-```
+```text
 char:    # a # b # a #
  pi :    1 2 1 4 1 2 1
 pi-1:    0 1 0 3 0 1 0
@@ -156,7 +150,7 @@ pi-1:    0 1 0 1 4 1 0 1 0
 
 [参考文档](https://segmentfault.com/a/1190000003914228)
 
-## 代码
+### 代码
 
 ```go
 func longestPalindrome(s string) string {
@@ -189,7 +183,7 @@ func longestPalindrome(s string) string {
             res = append(res,c)
         }
     }
-    
+
     return string(res)
 }
 func Init(s string) []int32 {
@@ -207,9 +201,19 @@ func Min(x, y int) int {
     }
     return y
 }
-```
+
+```text
 运行结果：
-```
 Runtime: 0 ms, faster than 100.00%
 ```
 
+# KMP算法
+
+KMP算法（Knuth-Morris-Pratt 字符串查找算法），常用于在一个文本串S内查找一个模式串P出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。
+
+## 首先看一下KMP步骤
+
++ 假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置
++ 如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；
++ 如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。
++ 换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的next 值（next 数组的求解会在下文的3.3.3节中详细阐述），即移动的实际位数为：j - next[j]，且此值大于等于1。

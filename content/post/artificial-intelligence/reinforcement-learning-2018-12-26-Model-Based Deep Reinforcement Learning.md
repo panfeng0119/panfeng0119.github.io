@@ -14,10 +14,9 @@ draft: false
 
 ---
 
-
 # [模型强化学习PPT]Model-Based Deep Reinforcement Learning
 
-大纲 
+大纲
 
 1. Why use model-based reinforcement learning? 
 2. Main model-based RL approaches
