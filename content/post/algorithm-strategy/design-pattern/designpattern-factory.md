@@ -1,5 +1,5 @@
 +++
-title = "设计模式：工厂模式（Factory Pattern）"
+title = "1. 工厂模式"
 
 date = 2018-09-26T00:00:00
 lastmod = 2018-09-26T00:00:00
@@ -12,9 +12,9 @@ categories = ["设计模式"]
 summary = "Go语言设计模式：工厂模式"
 +++
 
-工厂模式（Factory Pattern）
+# 设计模式：工厂模式（Factory Pattern）
 
-### 类型
+## 类型
 
 创建型模式</br>
 提供了一种创建对象的最佳方式
