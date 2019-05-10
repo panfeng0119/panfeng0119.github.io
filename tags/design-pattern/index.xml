@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>设计模式：工厂模式（Factory Pattern）</title>
-      <link>http://panfeng0119.github.io/post/algorithm-strategy/design-pattern/designpattern-2018-09-26-factory/</link>
+      <title>1. 工厂模式</title>
+      <link>http://panfeng0119.github.io/post/algorithm-strategy/design-pattern/designpattern-factory/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>http://panfeng0119.github.io/post/algorithm-strategy/design-pattern/designpattern-2018-09-26-factory/</guid>
-      <description>工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个工厂类，工</description>
+      <guid>http://panfeng0119.github.io/post/algorithm-strategy/design-pattern/designpattern-factory/</guid>
+      <description>设计模式：工厂模式（Factory Pattern） 类型 创建型模式 提供了一种创建对象的最佳方式 意图：定义一个接口，让其子类自己决定实例化哪一个</description>
     </item>
     
   </channel>
